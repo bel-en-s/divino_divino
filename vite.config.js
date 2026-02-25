@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import { resolve } from "path";
 
 export default defineConfig({
+  base: "/divino_divino/",
   build: {
     rollupOptions: {
       input: {
@@ -13,13 +14,5 @@ export default defineConfig({
         film: resolve(__dirname, "film.html"),
       },
     },
-    assetsInclude: [
-      "**/*.jpeg",
-      "**/*.jpg",
-      "**/*.png",
-      "**/*.svg",
-      "**/*.gif",
-    ],
-    copyPublicDir: true,
   },
 });
