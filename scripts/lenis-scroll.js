@@ -1,4 +1,4 @@
-import Lenis from "lenis";
+import Lenis from "https://cdn.jsdelivr.net/npm/lenis@1.3.17/+esm";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
