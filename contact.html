@@ -3,24 +3,134 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contact</title>
-    <link rel="icon" href="./site-icon.png" />
-  </head>
+    <title>Contact | Divino Divino — Creative Digital Studio</title>
+    <link rel="icon" href="/site-icon.png" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="author" content="Divino Divino" />
 
+    <meta
+      name="description"
+      content="Contact Divino Divino — creative digital studio specializing in experimental web design, interactive experiences, motion and 3D. Based in Buenos Aires, working worldwide."
+    />
+    <meta
+      name="keywords"
+      content="contact creative studio, web design argentina, experimental web, interactive design studio, buenos aires digital agency"
+    />
+    <meta name="robots" content="index, follow" />
+
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/css/transition.css" />
+    <link rel="stylesheet" href="/css/menu.css" />
+    <link rel="stylesheet" href="/css/pixelated-video.css" />
+    <link rel="stylesheet" href="/css/contact.css" />
+  </head>
   <body>
+    <!-- page transition -->
+    <div class="transition">
+      <div class="transition-overlay"></div>
+    </div>
+
+    <!-- menu -->
+    <nav>
+      <div class="container">
+        <div class="logo">
+          <div class="logo-container">
+            <a href="/"><span></span>DIVINO DIVINO</a>
+          </div>
+        </div>
+
+        <div class="menu-toggle-btn">
+          <div class="menu-toggle-btn-wrapper">
+            <p>Menu</p>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay">
+      <div class="nav-items">
+        <div class="nav-item">
+          <a href="/">Index</a>
+        </div>
+      
+        <div class="nav-item active">
+          <a href="/contact">Contact</a>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <div class="container">
+          <div class="nav-footer-item">
+            <a href="https://www.instagram.com/bel-en-s/" target="_blank"
+              >Instagram</a
+            >
+          <a href="https://bel-en-s.com/" target="_blank">Belén — Website</a>
+<a href="https://danielaregert.com.ar/" target="_blank">Daniela — Website</a>
+          </div>
+
+          <div class="nav-footer-item">
+            <a href="/contact">[ &nbsp;Start a project &nbsp; ]</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contact: hero section -->
     <section class="hero contact-page">
-      <video autoplay muted loop playsinline>
-        <source src="./contact/contact-hero.mp4" type="video/mp4" />
+      <video class="hero-video" autoplay muted loop playsinline>
+        <source src="/contact/contact-hero.mp4" type="video/mp4" />
       </video>
 
-      <div>
-        <h4>Negative Films</h4>
-        <h4>Warsaw / Marseille</h4>
-        <h4>Inquiry@negative.com</h4>
+      <div class="contact-copy">
+        <div class="contact-copy-main">
+          <div class="contact-col-copy">
+            <h4 class="contact-header">Divino Divino</h4>
+            <h4>Buenos Aires / Worldwide</h4>
+            <h4>Creative Digital Studio</h4>
+            <h4>Experimental Web & Interaction</h4>
+            <h4>AR-1000</h4>
+          </div>
+
+          <div class="contact-col-copy">
+            <h4>Start a project</h4>
+
+            <h4>
+              <a href="mailto:belen.seoane.palmieri@gmail.com">
+                belen.seoane.palmieri@gmail.com
+              </a>
+            </h4>
+
+            <h4>
+              <a href="mailto:danielaregert@gmail.com">
+                danielaregert@gmail.com
+              </a>
+            </h4>
+
+            <h4>
+              <a
+                href="https://www.instagram.com/bel-en-s/"
+                target="_blank"
+              >
+                @bel-en-s
+              </a>
+            </h4>
+
+            <h4>
+              <a href="https://wa.me/5491169188741" target="_blank">
+                +54 11 6918 8741
+              </a>
+            </h4>
+          </div>
+        </div>
+
+        <div class="contact-copy-footer">
+          <div class="container">
+            <p>Developed by DIVINO DIVINO</p>
+            <p>&copy; 2026 Divino Divino</p>
+          </div>
+        </div>
       </div>
     </section>
-
-    <!-- 🔥 CLAVE -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
