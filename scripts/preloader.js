@@ -1,3 +1,4 @@
+
 import gsap from "gsap";
 import { CustomEase } from "gsap/CustomEase";
 import { lenis } from "./lenis-scroll.js";
@@ -106,31 +107,8 @@ function initializeDynamicContent() {
   const projectsContainer = document.querySelector(".projects");
   const locationsContainer = document.querySelector(".locations");
 
-  projectsData.forEach((project) => {
-    const projectItem = document.createElement("div");
-    projectItem.className = "project-item";
-
-    const projectName = document.createElement("p");
-    projectName.textContent = project.name;
-
-    const directorName = document.createElement("p");
-    directorName.textContent = project.director;
-
-    projectItem.appendChild(projectName);
-    projectItem.appendChild(directorName);
-    projectsContainer.appendChild(projectItem);
-  });
-
-  projectsData.forEach((project) => {
-    const locationItem = document.createElement("div");
-    locationItem.className = "location-item";
-
-    const locationName = document.createElement("p");
-    locationName.textContent = project.location;
-
-    locationItem.appendChild(locationName);
-    locationsContainer.appendChild(locationItem);
-  });
+  if (projectsContainer) projectsContainer.style.display = "none";
+  if (locationsContainer) locationsContainer.style.display = "none";
 }
 
 // rotate images during preloader
@@ -209,60 +187,6 @@ function createAnimationTimelines() {
     },
   });
 
-  // projects appear
-  overlayTimeline.to([".projects-header", ".project-item"], {
-    opacity: 1,
-    duration: 0.05,
-    stagger: 0.075,
-    delay: 1,
-  });
-
-  // locations appear
-  overlayTimeline.to(
-    [".locations-header", ".location-item"],
-    {
-      opacity: 1,
-      duration: 0.05,
-      stagger: 0.075,
-    },
-    "<"
-  );
-
-  // text color change
-  overlayTimeline.to(".project-item", {
-    color: "#e3e4d8",
-    duration: 0.15,
-    stagger: 0.075,
-  });
-
-  overlayTimeline.to(
-    ".location-item",
-    {
-      color: "#e3e4d8",
-      duration: 0.15,
-      stagger: 0.075,
-    },
-    "<"
-  );
-
-  // fade out projects
-  overlayTimeline.to([".projects-header", ".project-item"], {
-    opacity: 0,
-    duration: 0.05,
-    stagger: 0.075,
-  });
-
-  // fade out locations
-  overlayTimeline.to(
-    [".locations-header", ".location-item"],
-    {
-      opacity: 0,
-      duration: 0.05,
-      stagger: 0.075,
-    },
-    "<"
-  );
-
   // fade out overlay
   overlayTimeline.to(".overlay", {
     opacity: 0,
@@ -333,3 +257,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
   init();
 });
+
