@@ -1,25 +1,29 @@
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 let lenis = null;
 
-// initialization
+function isCoarsePointer() {
+  return window.matchMedia?.("(pointer: coarse)")?.matches ?? false;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const isMobile = window.innerWidth <= 1000;
+  const isMobileLike = isCoarsePointer() || window.innerWidth <= 1000;
 
   lenis = new Lenis({
-    duration: isMobile ? 0.8 : 1.2,
-    lerp: isMobile ? 0.075 : 0.1,
-    smoothWheel: true,
-    syncTouch: true,
-    touchMultiplier: isMobile ? 1.5 : 2,
+    smoothWheel: !isMobileLike,
+    syncTouch: false,
+    touchMultiplier: 1,
+    lerp: isMobileLike ? 1 : 0.1,
+    duration: isMobileLike ? 0 : 1.2,
+    autoRaf: true,
   });
 
-  // integrate with gsap and scrolltrigger
   lenis.on("scroll", ScrollTrigger.update);
-  gsap.ticker.add((time) => lenis.raf(time * 1000));
-  gsap.ticker.lagSmoothing(0);
 
   window.lenis = lenis;
 });
