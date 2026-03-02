@@ -25,6 +25,14 @@ nav .logo a,
 nav .menu-toggle-btn p {
   color: var(--tone-400);
   user-select: none;
+  
+}
+
+@media (min-width: 1000px) {
+  nav .logo a,
+  nav .menu-toggle-btn p {
+    font-size: 1.5rem; 
+  }
 }
 
 nav .logo a {
@@ -61,7 +69,7 @@ nav .logo a span {
   z-index: 10;
   width: 100vw;
   height: 100svh;
-  background-color: var(--tone-200);
+  background-color: #4175c4;
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
   overflow: hidden;
   pointer-events: none;
