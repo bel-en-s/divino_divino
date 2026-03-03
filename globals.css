@@ -129,3 +129,26 @@ p {
     padding: 1rem;
   }
 }
+
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
