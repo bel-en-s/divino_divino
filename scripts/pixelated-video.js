@@ -5,9 +5,10 @@ class PixelatedVideoEffect {
     this.heroContainer = document.querySelector(".hero");
     this.videoElement = document.querySelector(".hero-video");
 
-    if (!this.heroContainer || !this.videoElement) return;
-
-    this.time = 0;
+    if (!this.heroContainer || !this.videoElement) {
+      console.debug("Hero container or video element not found");
+      return;
+    }
 
     this.mouse = {
       x: 0.5,
@@ -19,10 +20,10 @@ class PixelatedVideoEffect {
     };
 
     this.settings = {
-      grid: 120,          // tamaño pixel
-      radius: 0.08,      // área afectada 
-      strength: 1,     // intensidad
-      relaxation: 1   // persistencia
+      grid: 100,
+      radius: 0.1,
+      strength: 1,
+      relaxation: 0.94
     };
 
     this.init();
@@ -92,15 +93,9 @@ class PixelatedVideoEffect {
       varying vec2 vUv;
 
       void main() {
-
-        // pixelado
         vec2 pixelUv = floor(vUv * uGrid) / uGrid;
-
-        // desplazamiento
         vec2 offset = texture2D(uDataTexture, pixelUv).rg;
-
         vec2 distortedUv = pixelUv - offset * 0.6;
-
         gl_FragColor = texture2D(uTexture, distortedUv);
       }
     `;
@@ -132,79 +127,106 @@ class PixelatedVideoEffect {
 
   updateDataTexture() {
     const data = this.dataTexture.image.data;
-    const size = this.settings.grid;
 
-    // relajación
     for (let i = 0; i < data.length; i += 4) {
       data[i] *= this.settings.relaxation;
       data[i + 1] *= this.settings.relaxation;
     }
 
-    const mouseX = this.mouse.x * size;
-    const mouseY = (1 - this.mouse.y) * size;
+    this.dataTexture.needsUpdate = true;
+  }
 
-    const radius = this.settings.radius * size;
-    const radiusSq = radius * radius;
+  paintTrail(fromX, fromY, toX, toY) {
+    const size = this.settings.grid;
+    const data = this.dataTexture.image.data;
 
-    for (let y = 0; y < size; y++) {
-      for (let x = 0; x < size; x++) {
-        const dx = x - mouseX;
-        const dy = y - mouseY;
-        const distSq = dx * dx + dy * dy;
+    const startX = fromX * size;
+    const startY = (1 - fromY) * size;
+    const endX = toX * size;
+    const endY = (1 - toY) * size;
 
-        if (distSq < radiusSq) {
-          const index = 4 * (x + y * size);
+    const dx = endX - startX;
+    const dy = endY - startY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+    const steps = Math.ceil(distance);
 
-          const falloff = 1.0 - distSq / radiusSq;
+    for (let i = 0; i <= steps; i++) {
+      const t = i / steps;
+      const x = startX + dx * t;
+      const y = startY + dy * t;
 
-          data[index] += this.mouse.vX * this.settings.strength * falloff;
-          data[index + 1] -= this.mouse.vY * this.settings.strength * falloff;
+      const radius = size * this.settings.radius;
+      const radiusSq = radius * radius;
+
+      for (let iy = 0; iy < size; iy++) {
+        for (let ix = 0; ix < size; ix++) {
+          const px = ix - x;
+          const py = iy - y;
+          const distSq = px * px + py * py;
+
+          if (distSq < radiusSq) {
+            const index = 4 * (ix + iy * size);
+            const falloff = 1.0 - distSq / radiusSq;
+
+            data[index] += dx * 0.002 * falloff * this.settings.strength;
+            data[index + 1] -= dy * 0.002 * falloff * this.settings.strength;
+          }
         }
       }
     }
 
-    this.mouse.vX *= 0.9;
-    this.mouse.vY *= 0.9;
-
     this.dataTexture.needsUpdate = true;
   }
 
-setupEvents() {
-  const resetBtn = document.querySelector(".pixel-reset");
+  setupEvents() {
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
-if (resetBtn) {
-  resetBtn.addEventListener("click", () => {
-    this.resetDataTexture();
-  });
-}
-  const handleMove = (clientX, clientY) => {
-    const rect = this.heroContainer.getBoundingClientRect();
-    const newX = (clientX - rect.left) / rect.width;
-    const newY = (clientY - rect.top) / rect.height;
+    const handleMove = (clientX, clientY) => {
+      const rect = this.heroContainer.getBoundingClientRect();
 
-    this.mouse.vX = newX - this.mouse.prevX;
-    this.mouse.vY = newY - this.mouse.prevY;
+      const x = (clientX - rect.left) / rect.width;
+      const y = (clientY - rect.top) / rect.height;
 
-    this.mouse.prevX = newX;
-    this.mouse.prevY = newY;
+      this.paintTrail(this.mouse.prevX, this.mouse.prevY, x, y);
 
-    this.mouse.x = newX;
-    this.mouse.y = newY;
-  };
+      this.mouse.prevX = x;
+      this.mouse.prevY = y;
+    };
 
-  this.heroContainer.addEventListener("pointermove", (e) => {
-    handleMove(e.clientX, e.clientY);
-  });
+    if (!isTouchDevice) {
+      this.heroContainer.addEventListener("pointermove", (e) => {
+        handleMove(e.clientX, e.clientY);
+      });
+    } else {
+      let isTouching = false;
 
-  this.heroContainer.addEventListener("pointerdown", (e) => {
-    handleMove(e.clientX, e.clientY);
-  });
+      this.heroContainer.addEventListener("pointerdown", (e) => {
+        isTouching = true;
 
-  window.addEventListener("resize", () => {
-    this.updateCameraAndGeometry();
-    this.renderer.setSize(this.width, this.height);
-  });
-}
+        const rect = this.heroContainer.getBoundingClientRect();
+        this.mouse.prevX = (e.clientX - rect.left) / rect.width;
+        this.mouse.prevY = (e.clientY - rect.top) / rect.height;
+      });
+
+      this.heroContainer.addEventListener("pointermove", (e) => {
+        if (!isTouching) return;
+
+        handleMove(e.clientX, e.clientY);
+      });
+
+      const stopTouch = () => {
+        isTouching = false;
+      };
+
+      this.heroContainer.addEventListener("pointerup", stopTouch);
+      this.heroContainer.addEventListener("pointercancel", stopTouch);
+    }
+
+    window.addEventListener("resize", () => {
+      this.updateCameraAndGeometry();
+      this.renderer.setSize(this.width, this.height);
+    });
+  }
 
   render() {
     this.updateDataTexture();
@@ -212,27 +234,25 @@ if (resetBtn) {
     requestAnimationFrame(() => this.render());
   }
 
-  resetDataTexture() {
-  if (!this.dataTexture) return;
-
-  const data = this.dataTexture.image.data;
-
-  for (let i = 0; i < data.length; i += 4) {
-    data[i] = 0;
-    data[i + 1] = 0;
-  }
-
-  this.mouse.vX = 0;
-  this.mouse.vY = 0;
-
-  this.dataTexture.needsUpdate = true;
-}
-
   async init() {
     await new Promise((resolve) => {
       if (this.videoElement.readyState >= 2) resolve();
-      else this.videoElement.addEventListener("loadeddata", resolve);
+      else
+        this.videoElement.addEventListener("loadeddata", resolve, {
+          once: true
+        });
     });
+
+    this.videoElement.muted = true;
+    this.videoElement.playsInline = true;
+    this.videoElement.setAttribute("muted", "");
+    this.videoElement.setAttribute("playsinline", "");
+
+    try {
+      await this.videoElement.play();
+    } catch (error) {
+      console.warn("Video autoplay blocked:", error);
+    }
 
     const texture = this.createVideoTexture();
     this.initializeScene(texture);
@@ -242,4 +262,3 @@ if (resetBtn) {
 }
 
 new PixelatedVideoEffect();
-

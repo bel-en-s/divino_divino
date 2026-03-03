@@ -47,7 +47,13 @@ nav .logo a span {
   display: inline-block;
   width: 0.5rem;
   height: 0.5rem;
-  background-color: var(--tone-500);
+  font-size: 30px;
+  /* Use image instead of background color */
+  background-image: url("/site-icon.jpg");
+  background-size: cover;        /* Ensure image covers the element */
+  background-position: center;   /* Center the image */
+  background-repeat: no-repeat;  /* Prevent repetition */
+
   animation: blink 1s infinite;
 }
 

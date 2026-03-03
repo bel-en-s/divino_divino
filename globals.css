@@ -152,3 +152,34 @@ p {
   position: relative;
   z-index: 2;
 }
+
+
+
+/* Mobile footer layout fix */
+@media (max-width: 768px) {
+  .footer-meta-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
+    gap: 24px;
+    align-items: start;
+  }
+
+  .footer-meta-row .meta-info {
+    width: 100%;
+  }
+
+  .footer-meta-row p,
+  .footer-meta-row a {
+    display: block;
+  }
+
+  /* Bottom copyright row */
+  .footer-meta-row:last-child {
+    grid-template-columns: repeat(2, 1fr);
+    font-size: 0.85rem;
+  }
+}
+
+.hero {
+  touch-action: pan-y;
+}
