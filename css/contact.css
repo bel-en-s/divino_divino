@@ -21,7 +21,7 @@
 }
 
 .contact-copy .contact-copy-main .contact-header {
-  color: var(--tone-500);
+  color: var(--tone-400);
 }
 
 .contact-copy .contact-copy-footer {
@@ -36,7 +36,7 @@
   justify-content: space-between;
   align-items: flex-end;
   gap: 2rem;
-  color: var(--tone-400);
+  color: var(--tone-500);
 }
 
 .contact-col-copy h4:last-child {
@@ -51,7 +51,7 @@
 
 a[href^="tel:"] {
   pointer-events: none !important;
-  color: var(--tone-400) !important;
+  color: var(--tone-500) !important;
   text-decoration: none !important;
   font-size: inherit !important;
   font-weight: inherit !important;

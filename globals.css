@@ -1,18 +1,4 @@
-@font-face {
-  font-family: "Nordhin";
-  src: url("/fonts/Nordhin.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Nordhin";
-  src: url("/fonts/Nordhin-Italic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
+@import url("https://fonts.googleapis.com/css2?family=Cossette+Titre:wght@400;700&display=swap");
 
 :root {
   --tone-100: #000000;
@@ -44,22 +30,21 @@ h4,
 a,
 p,
 span {
-  font-family: "Nordhin", sans-serif;
-  /* text-transform: uppercase; */
+  font-family: "Cossette Titre";
+  text-transform: uppercase;
 }
 
 h1 {
-  font-size: 5rem;
+  font-size: 15rem;
   font-weight: 500;
   color: var(--tone-500);
   line-height: 0.85;
 }
 
 h2 {
-  font-size: 6rem;
+  font-size: 7rem;
   font-weight: 500;
   line-height: 0.9;
-   font-style: italic;
 }
 
 h3 {
@@ -131,55 +116,15 @@ p {
 }
 
 
-.hero {
-  position: relative;
-  overflow: hidden;
+.hero h2,
+.services-copy h3,
+.about-copy h3,
+.about-callout-copy p {
+  perspective: 1000px;
 }
 
-.hero canvas {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-video {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-}
-
-
-
-/* Mobile footer layout fix */
-@media (max-width: 768px) {
-  .footer-meta-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Always 2 columns */
-    gap: 24px;
-    align-items: start;
-  }
-
-  .footer-meta-row .meta-info {
-    width: 100%;
-  }
-
-  .footer-meta-row p,
-  .footer-meta-row a {
-    display: block;
-  }
-
-  /* Bottom copyright row */
-  .footer-meta-row:last-child {
-    grid-template-columns: repeat(2, 1fr);
-    font-size: 0.85rem;
-  }
-}
-
-.hero {
-  touch-action: pan-y;
+.char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }

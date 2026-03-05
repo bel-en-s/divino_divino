@@ -5,7 +5,7 @@ nav {
   left: 0;
   z-index: 100;
   width: 100vw;
-  mix-blend-mode: difference;
+  /* mix-blend-mode: difference; */
   overflow-x: hidden;
 }
 
@@ -75,7 +75,7 @@ nav .logo a span {
   z-index: 10;
   width: 100vw;
   height: 100svh;
-  background-color: #4175c4;
+  background-color: #000;
   clip-path: polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%);
   overflow: hidden;
   pointer-events: none;
