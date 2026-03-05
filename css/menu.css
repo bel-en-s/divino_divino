@@ -21,11 +21,17 @@ nav .menu-toggle-btn {
   cursor: pointer;
 }
 
+.menu-toggle-btn {
+  background: lightblue;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
 nav .logo a,
 nav .menu-toggle-btn p {
-  color: var(--tone-400);
+  color: var(--tone600);
   user-select: none;
-  
+
 }
 
 @media (min-width: 1000px) {

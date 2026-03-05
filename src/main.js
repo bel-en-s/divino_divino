@@ -23,3 +23,30 @@ import "../scripts/split-element.js";
 import "../scripts/clients.js";
 
 
+function initHeroVideo() {
+  const video = document.querySelector(".hero-video");
+  if (!video) return;
+
+  video.muted = true;
+  video.setAttribute("muted", "");
+  video.setAttribute("playsinline", "");
+  video.setAttribute("webkit-playsinline", "");
+
+  const playPromise = video.play();
+
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      document.addEventListener(
+        "touchstart",
+        () => {
+          video.play();
+        },
+        { once: true }
+      );
+    });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  initHeroVideo();
+});

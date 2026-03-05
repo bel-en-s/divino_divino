@@ -3,7 +3,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>DIVINO DIVINO — Creative & Experimental Digital Design Studio</title>
     <link rel="icon" href="./site-icon.jpg" />
 
@@ -54,6 +53,17 @@
     <link rel="stylesheet" href="./css/split-element.css" />
     <link rel="stylesheet" href="./css/footer.css" />
 
+    <style>
+      .services-copy .container > p,
+      .about-callout-copy p:first-child {
+        display: inline;
+        text-decoration: underline;
+        text-decoration-color: #c00000;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+      }
+    </style>
+
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -77,12 +87,10 @@
       <div class="projects">
         <div class="projects-header"></div>
       </div>
-
       <div class="loader">
         <h1 class="logo-line-1">DIVINO</h1>
         <h1 class="logo-line-2">DIVINO</h1>
       </div>
-
       <div class="locations">
         <div class="locations-header"></div>
       </div>
@@ -99,7 +107,6 @@
             <a href="./">DIVINO <span></span>DIVINO</a>
           </div>
         </div>
-
         <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
             <p>Menu</p>
@@ -108,7 +115,7 @@
       </div>
     </nav>
 
-    <div class="nav-overlay">
+    <div class="nav-overlay dark-nav">
       <div class="nav-items">
         <div class="nav-item active">
           <a href="./">Index</a>
@@ -121,12 +128,17 @@
       <div class="nav-footer">
         <div class="container">
           <div class="nav-footer-item">
-            <a href="https://www.instagram.com/bel-en-s/" target="_blank">Instagram</a>
-            <a href="https://bel-en-s.com/" target="_blank">Website</a>
+            <a href="https://danielaregert.com.ar/" target="_blank">dani</a>
+            <a href="https://bel-en-s.com/" target="_blank">belu</a>
           </div>
-
           <div class="nav-footer-item">
-            <a href="./contact.html">[ &nbsp;Start a project&nbsp; ]</a>
+             <a
+    href="#"
+    class="scramble-hover "
+    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+  >
+    [ &nbsp;hablemos de tu proyecto&nbsp; ]
+  </a>
           </div>
         </div>
       </div>
@@ -137,120 +149,112 @@
         <source src="./hero/hero.mp4" type="video/mp4" />
       </video>
 
+      <a
+    href="#"
+    class="scramble-hover services-cta hero-cta"
+    onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+  >
+    [ &nbsp;hablemos de tu proyecto&nbsp; ]
+  </a>
+
       <div class="hero-content">
         <div class="hero-header">
           <div class="container">
             <h2>
               DIRECCIÓN Y <br />
-              ESTRATEGIA <br />
+              ESTRATEGIA
             </h2>
-
-            DISEÑO Y SEO ★
-
-            <a
-              href="mailto:belen.seoane.palmieri@gmail.com"
-              class="hero-cta"
-            >
-              START A PROJECT <br />
-            </a>
           </div>
+
         </div>
 
         <div class="hero-footer">
           <div class="container">
-            <p>Buenos Aires</p>
-            <p>Worldwide</p>
+            <p>Buenos Aires/ Worldwide</p>
+         
             <p>[ &nbsp;Scroll to Continue&nbsp; ]</p>
           </div>
         </div>
       </div>
     </section>
 
-   <section class="services-copy">
-  <div class="container">
-    <p>Qué podemos hacer por vos</p>
-      <h1 class="service-star">✷</h1>
+    <section class="services-copy">
+      <div class="container">
+        <p>Qué podemos hacer por vos</p>
+        <h1 class="service-star">✷</h1>
 
-    <div class="services-copy-info">
-      <div class="services-list">
-        <div class="service-item">
-          <h4>→  Más autoridad. Más conversión. Más margen.</h4>
-        </div>
-
-        <div class="service-item">
-       
-          <h4>→ Presencia digital alineada al nivel de tu negocio.</h4>
-
-        </div>
-
-        <div class="service-item">
+        <div class="services-copy-info">
+          <div class="services-list">
   
-          <h4>→ Visibilidad orgánica con intención real de compra.</h4>
-
-        </div>
-
-        <div class="service-item">
-
-          <h4>→ Experiencias digitales que elevan percepción y precio.</h4>
-
-        </div>
-      </div>
-
-    <a
-  href="#"
-  class="scramble-hover services-cta"
-  onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
->
-  [ &nbsp;hablemos de tu proyecto&nbsp; ]
-</a>
-    </div>
-  </div>
-</section>
-
-
-<section class="nosotras">
-  <div class="container">
-    <h2 class="nosotras-title">Nosotras</h2>
-
-    <div class="nosotras-grid">
-      <div class="nosotras-item">
-        <img src="./images/belu.jpg" alt="Belu" />
-        <h3>Bel</h3>
-
-       <div class="nav-footer-item">
-            <a href="https://bel-en-s.com/" target="_blank" rel="noopener">[ &nbsp;ver más&nbsp; ]</a>
+            <div class="service-item">
+              <h4>→ Presencia digital alineada al nivel de tu negocio. Conversión con mejor experiencia de usuario</h4>
+            </div>
+            <div class="service-item">
+              <h4>→ Visibilidad orgánica con intención real de compra.</h4>
+            </div>
+             <div class="service-item">
+              <h4>→ Hacemos lugares lindos y memorables para estar. </h4>
+            </div>
+            <div class="service-item">
+              <h4>→ Experiencias digitales que elevan percepción y precio. </h4>
+            </div>
+            <div class="service-item">
+              <h4>→ Convertite en un lugar que aparece, recomendado por motores de b[usqeuda y chatbots</h4>
+            </div>
           </div>
-                   <br>
-        <p>
-          Dirección estratégica y posicionamiento. Arquitectura de marca y
-          estructura digital pensada para conversión.
-        </p>
-       
-      </div>
 
-      <div class="nosotras-item">
-        <img src="./images/dani.jpg" alt="Dani" />
-        <h3>Dani</h3>
-  
-        <div class="nav-footer-item">
-            <a href="https://danielaregert.com.ar/" target="_blank" rel="noopener">[ &nbsp;ver más&nbsp; ]</a>
-          </div>
-                <br>
-        <p>
-          Diseño visual y experiencia. Sistemas tipográficos, ritmo,
-          interacción y sensibilidad estética.
-        </p>
-             
+          <a
+            href="#"
+            class="scramble-hover services-cta"
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+          >
+            [ &nbsp;hablemos de tu proyecto&nbsp; ]
+          </a>
+        </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
+
+    <section class="nosotras">
+      <div class="container">
+        <h2 class="nosotras-title">Nosotras</h2>
+
+        <div class="nosotras-grid">
+          <div class="nosotras-item">
+            <img src="./images/belu.jpg" alt="Bel" />
+            <h3>Bel</h3>
+            <div class="nav-footer-item">
+              <a href="https://bel-en-s.com/" target="_blank" rel="noopener">
+                [ &nbsp;ver más&nbsp; ]
+              </a>
+            </div>
+            <br />
+            <p>
+              Directora de arte interactiva. Artista multimedia. Experta en diseño web premium. Animación web. Desarrollo de producto. 
+            </p>
+          </div>
+
+          <div class="nosotras-item">
+            <img src="./images/dani.jpg" alt="Dani" />
+            <h3>Dani</h3>
+            <div class="nav-footer-item">
+              <a href="https://danielaregert.com.ar/" target="_blank" rel="noopener">
+                [ &nbsp;ver más&nbsp; ]
+              </a>
+            </div>
+            <br />
+            <p>
+              Maquetación pixel-perfect. Estrategia de contenido. Presencia digital. Posicionamiento SEO. Optimización de conversión.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <section class="about-callout">
+      <h1 class="about-cloudr">☁</h1>
       <div class="container">
         <div class="about-callout-copy">
-          <p>We design. We animate. We build.</p>
-          <p>We are Divino Divino.</p>
+          <p>Cuidamos tu tiempo, tu inversión y tu idea.</p>
         </div>
       </div>
     </section>
@@ -259,32 +263,29 @@
 
     <section class="about-copy">
       <div class="container">
-        <h3>
-          Divino Divino crafts brand-led digital experiences: fast, tactile,
-          and visually bold—built to convert attention into action.
+        <h3>Dirección, diseño y estructura para tu mundo digital, para que sea palpable.  
+         
         </h3>
 
         <div class="about-copy-info">
           <p>
-            We work at the intersection of art direction and engineering. Our
-            practice is rooted in clarity: strong hierarchy, clean typography,
-            and precise motion that guides the eye. We design websites that feel
-            like experiences—interactive, responsive, and crafted with detail.
-            From experimental landing pages to full brand worlds, we build
-            systems that scale: visual identity, layout, micro-interactions,
-            motion language, and 3D elements when they add meaning. The goal is
-            not decoration. The goal is impact. A site should communicate
-            positioning in seconds, create desire, and make it effortless to
-            take the next step. We collaborate with culture, hospitality,
-            architecture, and design-forward brands who want a presence that
-            stands out and performs.
+             Hacemos web y productos digitales que se sienten sólidos, coherentes y bien pensados.
+            Espacios digitales donde tu marca se ve a la altura de lo que realmente es.
+            
+            Queremos que tu marca aparezca, que convierta, que funcione
           </p>
+          <a
+  href="#"
+  class="scramble-hover services-cta"
+  style="cursor:pointer; display:inline-block; position:relative; z-index:10; font-size: 20px;"
+  onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+>
+  [ &nbsp;hablemos de tu proyecto&nbsp; ]
+</a>
 
-          <a href="/culture" class="scramble-hover">
-            [ &nbsp;que pasa bro&nbsp; ]
-          </a>
         </div>
       </div>
+      
     </section>
 
     <footer>
@@ -297,14 +298,13 @@
 
           <div class="footer-form-copy">
             <p>
-              A studio for immersive websites, experimental landing pages, and
-              motion-led brand worlds.
+             Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.
             </p>
           </div>
 
           <div class="footer-submit-btn">
             <a href="./contact.html" class="scramble-hover">
-              [ &nbsp;Start a project&nbsp; ]
+              [ &nbsp;Hablemos de tu proyecto&nbsp; ]
             </a>
           </div>
         </div>
@@ -314,55 +314,62 @@
         <div class="container">
           <div class="footer-meta-row">
             <div class="meta-info">
-              <p>Get in touch</p>
-              <p>belen.seoane.palmieri@gmail.com</p>
+              <p>Contáctanos</p>
+              <p>
+  <a href="mailto:belen.seoane.palmieri@gmail.com">
+    belen.seoane.palmieri@gmail.com
+  </a>
+</p>
+
+<p>
+  <a href="mailto:danielaregert@gmail.com">
+    danielaregert@gmail.com
+  </a>
+</p>
             </div>
 
             <div class="meta-info">
-              <a href="https://www.instagram.com/bel-en-s/" target="_blank" class="scramble-hover">Instagram</a>
-              <a href="https://www.behance.net/" target="_blank" class="scramble-hover">Behance</a>
-              <a href="https://www.linkedin.com/" target="_blank" class="scramble-hover">LinkedIn</a>
-              <a href="https://vimeo.com/" target="_blank" class="scramble-hover">Vimeo</a>
-            </div>
-
-            <div class="meta-info">
-              <a href="./culture.html" class="scramble-hover">Culture</a>
-              <a href="./work.html" class="scramble-hover">Work</a>
-            </div>
-
-            <div class="meta-info">
-              <a href="./contact.html" class="scramble-hover">Contact</a>
-            </div>
+  <a href="/draw.html" class="scramble-hover">
+    Draw
+  </a>
+</div>
           </div>
-
-          <p>
-            <a
-              href="https://balvaneralab.com.ar/"
-              target="_blank"
-              style="position: relative; z-index: 9999; pointer-events: auto; text-decoration: underline; color: inherit; cursor: pointer;"
-            >
-              SIDE PROJECT : Balvanera Lab
-            </a>
-          </p>
 
           <div class="footer-meta-row">
             <p>Developed by DIVINO DIVINO</p>
-            <p>All Rights Reserved</p>
           </div>
+          <a
+            href="https://balvaneralab.com.ar/"
+            target="_blank"
+            style="position: relative; z-index: 9999; pointer-events: auto; text-decoration: underline; color: inherit; cursor: pointer;"
+          >
+            SIDE PROJECT : Balvanera Lab
+          </a>
         </div>
+
+        <p>
+          
+        </p>
       </div>
     </footer>
 
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script type="module" src="/src/main.js"></script>
+    
+
     <link
-  href="https://assets.calendly.com/assets/external/widget.css"
-  rel="stylesheet"
-/>
-<script
-  src="https://assets.calendly.com/assets/external/widget.js"
-  type="text/javascript"
-  async
-></script>
+      href="https://assets.calendly.com/assets/external/widget.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://assets.calendly.com/assets/external/widget.js"
+      type="text/javascript"
+      async
+    ></script>
+    <script type="module" src="/scripts/lenis-scroll.js"></script>
+<script type="module" src="/scripts/transition.js"></script>
+<script type="module" src="/scripts/menu.js"></script>
+<script type="module" src="/scripts/pixelated-video.js"></script>
+<script type="module" src="/scripts/contact.js"></script>
   </body>
 </html>

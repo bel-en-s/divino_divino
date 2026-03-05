@@ -51,7 +51,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  color: var(--tone-400);
+   color: var(--tone-600);
 }
 
 .hero .hero-content .hero-footer p:nth-child(1) {
