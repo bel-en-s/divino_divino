@@ -11,8 +11,8 @@ html,body{
 margin:0;
 padding:0;
 overflow:hidden;
-font-family: serif;
 background:black;
+font-family:serif;
 }
 
 .hero{
@@ -24,25 +24,10 @@ overflow:hidden;
 
 .hero-video{
 position:absolute;
-top:0;
-left:0;
 width:100%;
 height:100%;
 object-fit:cover;
 z-index:0;
-}
-
-.center-text{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:72px;
-letter-spacing:0.15em;
-z-index:2;
-pointer-events:none;
-color:black;
 }
 
 canvas{
@@ -52,7 +37,61 @@ left:0;
 width:100%;
 height:100%;
 z-index:1;
+}
+
+.center-text{
+position:absolute;
+inset:0;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:72px;
+letter-spacing:.15em;
+color:black;
+z-index:2;
 pointer-events:none;
+}
+
+/* UI */
+
+.ui{
+position:absolute;
+right:20px;
+top:50%;
+transform:translateY(-50%);
+z-index:5;
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.ui button{
+background:white;
+border:none;
+padding:8px 12px;
+font-size:14px;
+cursor:pointer;
+}
+
+.ui button.active{
+background:black;
+color:white;
+}
+
+@media (max-width:700px){
+
+.ui{
+right:10px;
+top:auto;
+bottom:20px;
+flex-direction:row;
+transform:none;
+}
+
+.center-text{
+font-size:40px;
+}
+
 }
 
 </style>
@@ -70,21 +109,34 @@ pointer-events:none;
 DIVINO DIVINO
 </div>
 
-</section>
+<div class="ui">
+<button data-brush="transparent" class="active">Transparent</button>
+<button data-brush="red">Red</button>
+<button data-brush="black">Black</button>
+<button id="clear">Clear</button>
+</div>
 
+</section>
 
 <script type="module">
 
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js";
 
-class PixelDraw {
+class PixelDraw{
 
 constructor(){
 
 this.hero=document.querySelector(".hero");
 this.video=document.querySelector(".hero-video");
 
-this.grid=120;
+this.grid=140;
+this.brushSize=1;
+this.brush="transparent";
+
+this.isTouch=window.matchMedia("(pointer: coarse)").matches;
+
+this.enabled=true;
+this.drawing=false;
 
 this.init();
 
@@ -103,43 +155,84 @@ return tex;
 createDataTexture(){
 
 const size=this.grid;
-const data=new Float32Array(size*size*4);
 
-for(let i=0;i<data.length;i+=4){
+this.data=new Float32Array(size*size*4);
 
-data[i]=0;
-data[i+1]=0;
-data[i+2]=0;
-data[i+3]=1;
-
-}
+this.clear();
 
 this.dataTexture=new THREE.DataTexture(
-data,
+this.data,
 size,
 size,
 THREE.RGBAFormat,
 THREE.FloatType
 );
 
-this.dataTexture.needsUpdate=true;
 this.dataTexture.magFilter=THREE.NearestFilter;
 this.dataTexture.minFilter=THREE.NearestFilter;
 
 }
 
-draw(x,y){
+clear(){
+
+for(let i=0;i<this.data.length;i+=4){
+
+this.data[i]=0;
+this.data[i+1]=0;
+this.data[i+2]=0;
+this.data[i+3]=0;
+
+}
+
+if(this.dataTexture) this.dataTexture.needsUpdate=true;
+
+}
+
+paint(x,y){
 
 const size=this.grid;
 
 const px=Math.floor(x*size);
 const py=Math.floor((1-y)*size);
 
-const data=this.dataTexture.image.data;
-const index=4*(px+py*size);
+for(let dx=-this.brushSize;dx<=this.brushSize;dx++){
+for(let dy=-this.brushSize;dy<=this.brushSize;dy++){
 
-data[index]=0.08;
-data[index+1]=0.08;
+const x2=px+dx;
+const y2=py+dy;
+
+if(x2<0||y2<0||x2>=size||y2>=size)continue;
+
+const index=4*(x2+y2*size);
+
+if(this.brush==="transparent"){
+
+this.data[index]=0.07;
+this.data[index+1]=0.07;
+this.data[index+2]=0;
+
+}
+
+if(this.brush==="red"){
+
+this.data[index]=1;
+this.data[index+1]=0;
+this.data[index+2]=0;
+
+}
+
+if(this.brush==="black"){
+
+this.data[index]=0;
+this.data[index+1]=0;
+this.data[index+2]=1;
+
+}
+
+this.data[index+3]=1;
+
+}
+}
 
 this.dataTexture.needsUpdate=true;
 
@@ -147,8 +240,8 @@ this.dataTexture.needsUpdate=true;
 
 initScene(texture){
 
-const width=this.hero.offsetWidth;
-const height=this.hero.offsetHeight;
+const w=this.hero.offsetWidth;
+const h=this.hero.offsetHeight;
 
 this.scene=new THREE.Scene();
 
@@ -170,10 +263,8 @@ vertexShader:`
 varying vec2 vUv;
 
 void main(){
-
 vUv=uv;
 gl_Position=vec4(position,1.);
-
 }
 
 `,
@@ -190,11 +281,28 @@ void main(){
 
 vec2 pixelUv=floor(vUv*uGrid)/uGrid;
 
-vec2 offset=texture2D(uDataTexture,pixelUv).rg;
+vec4 data=texture2D(uDataTexture,pixelUv);
 
-vec2 uv=pixelUv-offset;
+if(data.a>0.){
 
+if(data.b==1.){
+gl_FragColor=vec4(0.,0.,0.,1.);
+return;
+}
+
+if(data.r==1.){
+gl_FragColor=vec4(1.,0.,0.,1.);
+return;
+}
+
+vec2 uv=pixelUv-data.rg;
 gl_FragColor=texture2D(uTexture,uv);
+
+}else{
+
+gl_FragColor=texture2D(uTexture,pixelUv);
+
+}
 
 }
 
@@ -206,7 +314,7 @@ this.mesh=new THREE.Mesh(geometry,material);
 this.scene.add(this.mesh);
 
 this.renderer=new THREE.WebGLRenderer({antialias:false});
-this.renderer.setSize(width,height);
+this.renderer.setSize(w,h);
 
 this.hero.appendChild(this.renderer.domElement);
 
@@ -216,16 +324,83 @@ this.video.style.opacity=0;
 
 setupEvents(){
 
-this.hero.addEventListener("pointermove",e=>{
+const getCoords=(e)=>{
 
 const rect=this.hero.getBoundingClientRect();
 
-const x=(e.clientX-rect.left)/rect.width;
-const y=(e.clientY-rect.top)/rect.height;
+return{
+x:(e.clientX-rect.left)/rect.width,
+y:(e.clientY-rect.top)/rect.height
+};
 
-this.draw(x,y);
+};
+
+if(!this.isTouch){
+
+this.hero.addEventListener("pointermove",e=>{
+
+if(!this.enabled)return;
+
+const p=getCoords(e);
+this.paint(p.x,p.y);
 
 });
+
+this.hero.addEventListener("click",()=>{
+
+this.enabled=!this.enabled;
+
+});
+
+}
+
+else{
+
+this.hero.addEventListener("pointerdown",e=>{
+
+this.drawing=true;
+
+const p=getCoords(e);
+this.paint(p.x,p.y);
+
+});
+
+this.hero.addEventListener("pointermove",e=>{
+
+if(!this.drawing)return;
+
+const p=getCoords(e);
+this.paint(p.x,p.y);
+
+});
+
+window.addEventListener("pointerup",()=>{
+
+this.drawing=false;
+
+});
+
+}
+
+}
+
+setupUI(){
+
+document.querySelectorAll("[data-brush]").forEach(btn=>{
+
+btn.onclick=()=>{
+
+document.querySelectorAll("[data-brush]").forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+this.brush=btn.dataset.brush;
+
+};
+
+});
+
+document.getElementById("clear").onclick=()=>this.clear();
 
 }
 
@@ -239,22 +414,24 @@ requestAnimationFrame(()=>this.render());
 
 async init(){
 
-await new Promise(resolve=>{
+await new Promise(r=>{
 
-if(this.video.readyState>=2)resolve();
-else this.video.addEventListener("loadeddata",resolve,{once:true});
+if(this.video.readyState>=2)r();
+else this.video.addEventListener("loadeddata",r,{once:true});
 
 });
 
 this.video.play();
 
-const texture=this.createVideoTexture();
+const tex=this.createVideoTexture();
 
 this.createDataTexture();
 
-this.initScene(texture);
+this.initScene(tex);
 
 this.setupEvents();
+
+this.setupUI();
 
 this.render();
 
