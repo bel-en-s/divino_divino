@@ -16,5 +16,8 @@ export default defineConfig({
     },
     assetsInclude: ["**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.svg", "**/*.gif", "**/*.mp4", "**/*.webp", "**/*.hdr"],
     copyPublicDir: true,
+/*    css: {
+      devSourcemap: true
+    }*/
   },
 });

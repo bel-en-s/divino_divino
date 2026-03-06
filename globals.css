@@ -34,7 +34,7 @@ span {
   text-transform: uppercase;
 }
 
-h1 {
+h1, .h1 {
   font-size: 15rem;
   font-weight: 500;
   color: var(--tone-500);
@@ -127,4 +127,9 @@ p {
   display: inline-block;
   transform-style: preserve-3d;
   backface-visibility: hidden;
+}
+
+.lenis-stopped .logo-container, .footer-visible{ 
+  color:white;
+  transition: all 1s ease;
 }
