@@ -1,4 +1,4 @@
-import gsap from "gsap";
+/*import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,4 +12,4 @@ ScrollTrigger.create({
   onLeaveBack: () => {
     document.querySelector(".logo-container").classList.remove("footer-visible");
   }
-});
+});*/
