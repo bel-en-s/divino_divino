@@ -3,17 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>DIVINO DIVINO — Draw</title>
+
+<link rel="icon" href="./site-icon.jpg">
+
+<meta name="theme-color" content="#000000">
+<meta name="author" content="DIVINO DIVINO">
+
+<link rel="stylesheet" href="./globals.css">
+<link rel="stylesheet" href="./css/preloader.css">
+<link rel="stylesheet" href="./css/transition.css">
+<link rel="stylesheet" href="./css/menu.css">
+<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="./css/draw.css">
 
 <style>
 
 html,body{
 margin:0;
 padding:0;
-overflow:hidden;
 background:black;
-font-family:serif;
+overflow:hidden;
 }
+
+/* hero base */
 
 .hero{
 position:relative;
@@ -30,7 +44,9 @@ object-fit:cover;
 z-index:0;
 }
 
-canvas{
+/* three canvas */
+
+.hero canvas{
 position:absolute;
 top:0;
 left:0;
@@ -39,27 +55,14 @@ height:100%;
 z-index:1;
 }
 
-.center-text{
-position:absolute;
-inset:0;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:72px;
-letter-spacing:.15em;
-color:black;
-z-index:2;
-pointer-events:none;
-}
-
-/* UI */
+/* ui */
 
 .ui{
 position:absolute;
-right:20px;
+right:40px;
 top:50%;
 transform:translateY(-50%);
-z-index:5;
+z-index:10;
 display:flex;
 flex-direction:column;
 gap:10px;
@@ -69,7 +72,7 @@ gap:10px;
 background:white;
 border:none;
 padding:8px 12px;
-font-size:14px;
+font-size:12px;
 cursor:pointer;
 }
 
@@ -88,25 +91,72 @@ flex-direction:row;
 transform:none;
 }
 
-.center-text{
-font-size:40px;
-}
-
 }
 
 </style>
+
 </head>
 
 <body>
 
+<nav>
+<div class="container">
+
+<div class="logo">
+<div class="logo-container">
+<a href="./">DIVINO <span></span>DIVINO</a>
+</div>
+</div>
+
+<div class="menu-toggle-btn">
+<div class="menu-toggle-btn-wrapper">
+<p>Menu</p>
+</div>
+</div>
+
+</div>
+</nav>
+
+<div class="nav-overlay dark-nav">
+<div class="nav-items">
+
+<div class="nav-item">
+<a href="./">Index</a>
+</div>
+
+<div class="nav-item">
+<a href="./contact.html">Contact</a>
+</div>
+
+</div>
+</div>
+
 <section class="hero">
 
 <video class="hero-video" autoplay muted loop playsinline>
-<source src="/hero/hero.mp4" type="video/mp4">
+<source src="./hero/hero.mp4" type="video/mp4">
 </video>
 
-<div class="center-text">
-DIVINO DIVINO
+<div class="hero-content">
+
+<div class="draw-header">
+<div class="container">
+<h2>
+DIVINO <br>
+DIVINO
+</h2>
+<p>Buenos Aires / Worldwide</p>
+<p>Dirección y estrategia digital</p>
+</div>
+</div>
+
+<div class="hero-footer">
+<div class="container">
+<p>Buenos Aires / Worldwide</p>
+<p>[ drag to paint ]</p>
+</div>
+</div>
+
 </div>
 
 <div class="ui">
@@ -117,6 +167,8 @@ DIVINO DIVINO
 </div>
 
 </section>
+
+<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
 
 <script type="module">
 
@@ -132,8 +184,6 @@ this.video=document.querySelector(".hero-video");
 this.grid=140;
 this.brushSize=1;
 this.brush="transparent";
-
-this.isTouch=window.matchMedia("(pointer: coarse)").matches;
 
 this.enabled=true;
 this.drawing=false;
@@ -324,104 +374,55 @@ this.video.style.opacity=0;
 
 setupEvents(){
 
-const getCoords=(e)=>{
+const rect=()=>this.renderer.domElement.getBoundingClientRect();
 
-const rect=this.hero.getBoundingClientRect();
+const coords=(e)=>{
 
-return{
-x:(e.clientX-rect.left)/rect.width,
-y:(e.clientY-rect.top)/rect.height
+const r=rect();
+
+const x=(e.clientX-r.left)/r.width;
+const y=(e.clientY-r.top)/r.height;
+
+return{x,y};
+
 };
 
-};
-
-if(!this.isTouch){
-
-this.hero.addEventListener("pointermove",e=>{
-
-if(!this.enabled)return;
-
-const p=getCoords(e);
-this.paint(p.x,p.y);
-
-});
-
-this.hero.addEventListener("click",()=>{
-
-this.enabled=!this.enabled;
-
-});
-
-}
-
-else{
-
-this.hero.addEventListener("pointerdown",e=>{
-
+window.addEventListener("pointerdown",e=>{
 this.drawing=true;
-
-const p=getCoords(e);
+const p=coords(e);
 this.paint(p.x,p.y);
-
 });
 
-this.hero.addEventListener("pointermove",e=>{
-
+window.addEventListener("pointermove",e=>{
 if(!this.drawing)return;
-
-const p=getCoords(e);
+const p=coords(e);
 this.paint(p.x,p.y);
-
 });
 
 window.addEventListener("pointerup",()=>{
-
 this.drawing=false;
-
 });
 
-}
-
-}
-
-setupUI(){
-
-document.querySelectorAll("[data-brush]").forEach(btn=>{
-
+document.querySelectorAll(".ui button[data-brush]").forEach(btn=>{
 btn.onclick=()=>{
-
-document.querySelectorAll("[data-brush]").forEach(b=>b.classList.remove("active"));
-
+document.querySelectorAll(".ui button").forEach(b=>b.classList.remove("active"));
 btn.classList.add("active");
-
 this.brush=btn.dataset.brush;
-
 };
-
 });
 
 document.getElementById("clear").onclick=()=>this.clear();
 
 }
 
-render(){
+render=()=>{
 
 this.renderer.render(this.scene,this.camera);
-
-requestAnimationFrame(()=>this.render());
+requestAnimationFrame(this.render);
 
 }
 
-async init(){
-
-await new Promise(r=>{
-
-if(this.video.readyState>=2)r();
-else this.video.addEventListener("loadeddata",r,{once:true});
-
-});
-
-this.video.play();
+init(){
 
 const tex=this.createVideoTexture();
 
@@ -431,17 +432,23 @@ this.initScene(tex);
 
 this.setupEvents();
 
-this.setupUI();
-
 this.render();
 
 }
 
 }
 
+window.addEventListener("load",()=>{
+
 new PixelDraw();
 
+});
+
 </script>
+
+<script type="module" src="/scripts/menu.js"></script>
+<script type="module" src="/scripts/transition.js"></script>
+<script type="module" src="/scripts/lenis-scroll.js"></script>
 
 </body>
 </html>
