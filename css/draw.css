@@ -1,0 +1,36 @@
+.draw-header {
+     margin-top: 20%;
+     color: red;
+     justify-content: center;
+  
+}
+
+.draw-header h2 p{
+     color: red;
+
+}
+
+.draw-header{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+width:100%;
+z-index:5;
+}
+
+.draw-header .container{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+}
+
+.draw-header h2{
+text-align:center;
+}
+
+.draw-header p{
+text-align:center;
+}
