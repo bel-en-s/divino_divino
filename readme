@@ -1,0 +1,84 @@
+# DIVINO DIVINO — Website
+
+Sitio del estudio **DIVINO DIVINO**.
+Proyecto estático con un **entry point central (`main.js`)** que importa estilos y scripts.
+
+
+
+
+## Entry point
+
+El archivo principal es:
+
+```
+/src/main.js
+```
+
+Se encarga de importar:
+
+* estilos globales
+* módulos de interacción
+* utilidades del sitio
+
+Ejemplo:
+
+```javascript
+import "../globals.css";
+import "../css/menu.css";
+import "../scripts/menu.js";
+```
+
+## Cómo funcionan las rutas
+
+### En HTML
+
+Las páginas cargan el entry point:
+
+```html
+<script type="module" src="/src/main.js"></script>
+```
+
+### En `main.js`
+
+Los imports usan rutas relativas porque `main.js` está dentro de `/src`.
+
+```
+../css/
+../scripts/
+```
+
+Ejemplo:
+
+```
+../css/menu.css
+```
+
+equivale a:
+
+```
+/css/menu.css
+```
+
+## Dependencias externas
+
+El sitio utiliza:
+
+* **GSAP** → animaciones
+* **Lenis** → smooth scroll
+* **Calendly widget** → agenda de reuniones
+
+## Desarrollo
+
+
+```
+npm install
+
+npm run dev
+
+
+```
+
+
+---
+
+Desarrollado por **DIVINO DIVINO**.

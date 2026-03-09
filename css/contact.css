@@ -39,18 +39,18 @@
   color: var(--tone-500);
 }
 
-.contact-col-copy h4:last-child {
+/* .contact-col-copy h4:last-child {
   pointer-events: none;
-}
+} */
 
 .contact-col-copy h4:last-child * {
-  pointer-events: none;
+
   color: inherit !important;
   text-decoration: none !important;
 }
 
 a[href^="tel:"] {
-  pointer-events: none !important;
+  /* pointer-events: none !important; */
   color: var(--tone-500) !important;
   text-decoration: none !important;
   font-size: inherit !important;
