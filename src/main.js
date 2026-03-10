@@ -10,6 +10,7 @@ import "../css/spotlight.css";
 import "../css/split-element.css";
 import "../css/footer.css";
 
+import "../scripts/footer.js";
 import "../scripts/lenis-scroll.js";
 import "../scripts/preloader.js";
 import "../scripts/transition.js";
@@ -21,7 +22,7 @@ import "../scripts/parallax.js";
 import "../scripts/spotlight.js";
 import "../scripts/split-element.js";
 import "../scripts/clients.js";
-import "../scripts/footer.js";
+
 
 
 function initHeroVideo() {
