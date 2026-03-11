@@ -90,6 +90,48 @@
           <div class="contact-col-copy">
             <h4>Contactanos</h4>
 
+   <p id="result" class="resultado"></p>
+<form id="contactForm" class="formulario-divino">
+  
+  <input type="hidden" name="access_key" value="28a580e8-9dd5-4114-8a49-e1db9866a752">
+
+  <input 
+    type="text" 
+    name="name" 
+    placeholder="Nombre" 
+    required
+    class=""
+  >
+
+  <input 
+    type="email" 
+    name="email" 
+    placeholder="Email" 
+    required
+    class=""
+  >
+
+  <textarea 
+    name="message" 
+    placeholder="Mensaje" 
+    required
+    rows="5"
+    class=""
+  ></textarea>
+
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none;">
+
+
+<button 
+    type="submit"
+    class="submit-btn"
+  >
+    Enviar
+  </button>
+
+</form>
+ 
+
             <h4>
               <a href="mailto:belen.seoane.palmieri@gmail.com">
                 belen.seoane.palmieri@gmail.com
@@ -140,6 +182,77 @@
       </div>
     </section>
 
+<style>.formulario-divino  {
+  display: flex;
+  flex-direction: column;
+  padding:15px;
+  max-width:550px;
+  margin:auto;
+} 
+.resultado {
+  margin-top:10px;
+}
+.formulario-divino input, .formulario-divino textarea {
+  background-color: transparent;
+  color:white !important;
+  font-family:'Cossette Titre', sans-serif;
+  margin-bottom: 10px;
+  padding:10px;
+  border-radius:7px;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.formulario-divino input::placeholder, .formulario-divino textarea::placeholder {
+  color: white;
+  opacity: 0.7;
+}
+
+.submit-btn{
+  font-family:'Cossette Titre', sans-serif;
+  padding:10px;
+  border-radius:7px;
+  background: transparent;
+  border:1px solid white;
+  text-transform: uppercase;
+  color:white;
+}
+</style>
+
+<script>
+
+const form = document.getElementById("contactForm");
+const result = document.getElementById("result");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+
+  result.innerHTML = "Enviando...";
+
+  fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+
+    if (data.success) {
+      result.innerHTML = "Mensaje enviado correctamente";
+      form.reset();
+    } else {
+      result.innerHTML = "Error al enviar el mensaje";
+    }
+
+  })
+  .catch(error => {
+    result.innerHTML = "Error de conexión";
+    result.style.color = "red";
+  });
+});
+</script>
+</script>
     <script type="module" src="/scripts/lenis-scroll.js"></script>
     <script type="module" src="/scripts/transition.js"></script>
     <script type="module" src="/scripts/menu.js"></script>
