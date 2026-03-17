@@ -6,7 +6,7 @@
 
 <title>DIVINO DIVINO — Draw</title>
 
-<link rel="icon" href="./site-icon.jpg">
+    <link rel="icon" href="./estrella-favicon.png">
 
 <meta name="theme-color" content="#000000">
 <meta name="author" content="DIVINO DIVINO">
@@ -19,7 +19,61 @@
 <link rel="stylesheet" href="./css/draw.css">
 
 <style>
+/* Estilos para los Sliders Custom */
+.ui {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 2px;
+}
 
+.control-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.control-group label {
+  color: white;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+/* El "Track" o camino del slider */
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.3);
+}
+
+/* El "Thumb" o bolita del slider */
+input[type=range]::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  border-radius: 50%;
+}
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+} 
 html,body{
 margin:0;
 padding:0;
@@ -138,7 +192,7 @@ transform:none;
 </video>
 
 <div class="hero-content">
-
+<!-- 
 <div class="draw-header">
 <div class="container">
 <h2>
@@ -148,22 +202,34 @@ DIVINO
 <p>Buenos Aires / Worldwide</p>
 <p>Dirección y estrategia digital</p>
 </div>
-</div>
-
+</div> -->
+<!-- 
 <div class="hero-footer">
 <div class="container">
 <p>Buenos Aires / Worldwide</p>
 <p>[ drag to paint ]</p>
 </div>
-</div>
+</div> -->
 
 </div>
 
 <div class="ui">
-<button data-brush="transparent" class="active">Transparent</button>
-<button data-brush="red">Red</button>
-<button data-brush="black">Black</button>
-<button id="clear">Clear</button>
+  <div class="control-group">
+    <label>Pixel Size</label>
+    <input type="range" id="grid-range" min="20" max="300" value="140">
+  </div>
+  
+  <div class="control-group">
+    <label>Brush Size</label>
+    <input type="range" id="brush-range" min="0" max="10" value="1">
+  </div>
+
+  <div class="button-group">
+    <button data-brush="transparent" class="active">Transparent</button>
+    <button data-brush="red">Red</button>
+    <button data-brush="black">Black</button>
+    <button id="clear">Clear</button>
+  </div>
 </div>
 
 </section>
