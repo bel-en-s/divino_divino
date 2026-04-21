@@ -1,5 +1,5 @@
 {
-  "name": "negative-films",
+  "name": "divino-divino",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -10,15 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harrnish/negative-films.git"
+    "url": "https://github.com/bel-en-s/divino_divino"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/harrnish/negative-films/issues"
-  },
-  "homepage": "https://github.com/harrnish/negative-films#readme",
+  "bugs": {},
   "description": "",
   "dependencies": {
     "gsap": "^3.14.2",

@@ -12,6 +12,7 @@ export default defineConfig({
         directors: resolve(__dirname, "directors.html"),
         contact: resolve(__dirname, "contact.html"),
         film: resolve(__dirname, "film.html"),
+        draw: resolve(__dirname, "draw.html"),
       },
     },
     assetsInclude: ["**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.svg", "**/*.gif", "**/*.mp4", "**/*.webp", "**/*.hdr"],

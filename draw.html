@@ -1,520 +1,251 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DIVINO DIVINO — Draw</title>
 
-<title>DIVINO DIVINO — Draw</title>
+  <link rel="icon" href="./estrella-favicon.png">
+  <meta name="theme-color" content="#000000">
+  <meta name="author" content="DIVINO DIVINO">
 
-    <link rel="icon" href="./estrella-favicon.png">
-
-<meta name="theme-color" content="#000000">
-<meta name="author" content="DIVINO DIVINO">
-
-<link rel="stylesheet" href="./globals.css">
-<link rel="stylesheet" href="./css/preloader.css">
-<link rel="stylesheet" href="./css/transition.css">
-<link rel="stylesheet" href="./css/menu.css">
-<link rel="stylesheet" href="./css/home.css">
-<link rel="stylesheet" href="./css/draw.css">
-
-<style>
-/* Estilos para los Sliders Custom */
-.ui {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  padding: 20px;
-  border-radius: 2px;
-}
-
-.control-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
-
-.control-group label {
-  color: white;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 5px;
-}
-
-input[type=range] {
-  -webkit-appearance: none;
-  width: 100%;
-  background: transparent;
-}
-
-input[type=range]:focus {
-  outline: none;
-}
-
-/* El "Track" o camino del slider */
-input[type=range]::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 2px;
-  background: rgba(255,255,255,0.3);
-}
-
-/* El "Thumb" o bolita del slider */
-input[type=range]::-webkit-slider-thumb {
-  height: 12px;
-  width: 12px;
-  background: #ffffff;
-  cursor: pointer;
-  -webkit-appearance: none;
-  margin-top: -5px;
-  border-radius: 50%;
-}
-
-.button-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-} 
-html,body{
-margin:0;
-padding:0;
-background:black;
-overflow:hidden;
-}
-
-/* hero base */
-
-.hero{
-position:relative;
-width:100vw;
-height:100vh;
-overflow:hidden;
-}
-
-.hero-video{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-z-index:0;
-}
-
-/* three canvas */
-
-.hero canvas{
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:100%;
-z-index:1;
-}
-
-/* ui */
-
-.ui{
-position:absolute;
-right:40px;
-top:50%;
-transform:translateY(-50%);
-z-index:10;
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.ui button{
-background:white;
-border:none;
-padding:8px 12px;
-font-size:12px;
-cursor:pointer;
-}
-
-.ui button.active{
-background:black;
-color:white;
-}
-
-@media (max-width:700px){
-
-.ui{
-right:10px;
-top:auto;
-bottom:20px;
-flex-direction:row;
-transform:none;
-}
-
-}
-
-</style>
-
+  <link rel="stylesheet" href="./globals.css">
+  <link rel="stylesheet" href="./css/preloader.css">
+  <link rel="stylesheet" href="./css/transition.css">
+  <link rel="stylesheet" href="./css/menu.css">
+  <link rel="stylesheet" href="./css/home.css">
+  <link rel="stylesheet" href="./css/draw.css">
 </head>
 
 <body>
 
-<nav>
-<div class="container">
+  <nav>
+    <div class="container">
+      <div class="logo">
+        <div class="logo-container">
+          <a href="./">DIVINO <span></span>DIVINO</a>
+        </div>
+      </div>
+      <div class="menu-toggle-btn">
+        <div class="menu-toggle-btn-wrapper">
+          <p>Menu</p>
+        </div>
+      </div>
+    </div>
+  </nav>
 
-<div class="logo">
-<div class="logo-container">
-<a href="./">DIVINO <span></span>DIVINO</a>
-</div>
-</div>
-
-<div class="menu-toggle-btn">
-<div class="menu-toggle-btn-wrapper">
-<p>Menu</p>
-</div>
-</div>
-
-</div>
-</nav>
-
-<div class="nav-overlay dark-nav">
-<div class="nav-items">
-
-<div class="nav-item">
-<a href="./">Index</a>
-</div>
-
-<div class="nav-item">
-<a href="./contact.html">Contact</a>
-</div>
-
-</div>
-</div>
-
-<section class="hero">
-
-<video class="hero-video" autoplay muted loop playsinline>
-<source src="./hero/hero.mp4" type="video/mp4">
-</video>
-
-<div class="hero-content">
-<!-- 
-<div class="draw-header">
-<div class="container">
-<h2>
-DIVINO <br>
-DIVINO
-</h2>
-<p>Buenos Aires / Worldwide</p>
-<p>Dirección y estrategia digital</p>
-</div>
-</div> -->
-<!-- 
-<div class="hero-footer">
-<div class="container">
-<p>Buenos Aires / Worldwide</p>
-<p>[ drag to paint ]</p>
-</div>
-</div> -->
-
-</div>
-
-<div class="ui">
-  <div class="control-group">
-    <label>Pixel Size</label>
-    <input type="range" id="grid-range" min="20" max="300" value="140">
-  </div>
-  
-  <div class="control-group">
-    <label>Brush Size</label>
-    <input type="range" id="brush-range" min="0" max="10" value="1">
+  <div class="nav-overlay dark-nav">
+    <div class="nav-items">
+      <div class="nav-item"><a href="./">Index</a></div>
+      <div class="nav-item"><a href="./contact.html">Contact</a></div>
+    </div>
   </div>
 
-  <div class="button-group">
-    <button data-brush="transparent" class="active">Transparent</button>
-    <button data-brush="red">Red</button>
-    <button data-brush="black">Black</button>
-    <button id="clear">Clear</button>
-  </div>
-</div>
-
-</section>
-
-<script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
-
-<script type="module">
-
-import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.161/build/three.module.js";
-
-class PixelDraw{
-
-constructor(){
-
-this.hero=document.querySelector(".hero");
-this.video=document.querySelector(".hero-video");
-
-this.grid=140;
-this.brushSize=1;
-this.brush="transparent";
-
-this.enabled=true;
-this.drawing=false;
-
-this.init();
-
-}
-
-createVideoTexture(){
-
-const tex=new THREE.VideoTexture(this.video);
-tex.minFilter=THREE.NearestFilter;
-tex.magFilter=THREE.NearestFilter;
-
-return tex;
-
-}
-
-createDataTexture(){
-
-const size=this.grid;
-
-this.data=new Float32Array(size*size*4);
-
-this.clear();
-
-this.dataTexture=new THREE.DataTexture(
-this.data,
-size,
-size,
-THREE.RGBAFormat,
-THREE.FloatType
-);
-
-this.dataTexture.magFilter=THREE.NearestFilter;
-this.dataTexture.minFilter=THREE.NearestFilter;
-
-}
-
-clear(){
-
-for(let i=0;i<this.data.length;i+=4){
-
-this.data[i]=0;
-this.data[i+1]=0;
-this.data[i+2]=0;
-this.data[i+3]=0;
-
-}
-
-if(this.dataTexture) this.dataTexture.needsUpdate=true;
-
-}
-
-paint(x,y){
-
-const size=this.grid;
-
-const px=Math.floor(x*size);
-const py=Math.floor((1-y)*size);
-
-for(let dx=-this.brushSize;dx<=this.brushSize;dx++){
-for(let dy=-this.brushSize;dy<=this.brushSize;dy++){
-
-const x2=px+dx;
-const y2=py+dy;
-
-if(x2<0||y2<0||x2>=size||y2>=size)continue;
-
-const index=4*(x2+y2*size);
-
-if(this.brush==="transparent"){
-
-this.data[index]=0.07;
-this.data[index+1]=0.07;
-this.data[index+2]=0;
-
-}
-
-if(this.brush==="red"){
-
-this.data[index]=1;
-this.data[index+1]=0;
-this.data[index+2]=0;
-
-}
-
-if(this.brush==="black"){
-
-this.data[index]=0;
-this.data[index+1]=0;
-this.data[index+2]=1;
-
-}
-
-this.data[index+3]=1;
-
-}
-}
-
-this.dataTexture.needsUpdate=true;
-
-}
-
-initScene(texture){
-
-const w=this.hero.offsetWidth;
-const h=this.hero.offsetHeight;
-
-this.scene=new THREE.Scene();
-
-this.camera=new THREE.OrthographicCamera(-1,1,1,-1,0.1,10);
-this.camera.position.z=1;
-
-const geometry=new THREE.PlaneGeometry(2,2);
-
-const material=new THREE.ShaderMaterial({
-
-uniforms:{
-uTexture:{value:texture},
-uDataTexture:{value:this.dataTexture},
-uGrid:{value:this.grid}
-},
-
-vertexShader:`
-
-varying vec2 vUv;
-
-void main(){
-vUv=uv;
-gl_Position=vec4(position,1.);
-}
-
-`,
-
-fragmentShader:`
-
-uniform sampler2D uTexture;
-uniform sampler2D uDataTexture;
-uniform float uGrid;
-
-varying vec2 vUv;
-
-void main(){
-
-vec2 pixelUv=floor(vUv*uGrid)/uGrid;
-
-vec4 data=texture2D(uDataTexture,pixelUv);
-
-if(data.a>0.){
-
-if(data.b==1.){
-gl_FragColor=vec4(0.,0.,0.,1.);
-return;
-}
-
-if(data.r==1.){
-gl_FragColor=vec4(1.,0.,0.,1.);
-return;
-}
-
-vec2 uv=pixelUv-data.rg;
-gl_FragColor=texture2D(uTexture,uv);
-
-}else{
-
-gl_FragColor=texture2D(uTexture,pixelUv);
-
-}
-
-}
-
-`
-
-});
-
-this.mesh=new THREE.Mesh(geometry,material);
-this.scene.add(this.mesh);
-
-this.renderer=new THREE.WebGLRenderer({antialias:false});
-this.renderer.setSize(w,h);
-
-this.hero.appendChild(this.renderer.domElement);
-
-this.video.style.opacity=0;
-
-}
-
-setupEvents(){
-
-const rect=()=>this.renderer.domElement.getBoundingClientRect();
-
-const coords=(e)=>{
-
-const r=rect();
-
-const x=(e.clientX-r.left)/r.width;
-const y=(e.clientY-r.top)/r.height;
-
-return{x,y};
-
-};
-
-window.addEventListener("pointerdown",e=>{
-this.drawing=true;
-const p=coords(e);
-this.paint(p.x,p.y);
-});
-
-window.addEventListener("pointermove",e=>{
-if(!this.drawing)return;
-const p=coords(e);
-this.paint(p.x,p.y);
-});
-
-window.addEventListener("pointerup",()=>{
-this.drawing=false;
-});
-
-document.querySelectorAll(".ui button[data-brush]").forEach(btn=>{
-btn.onclick=()=>{
-document.querySelectorAll(".ui button").forEach(b=>b.classList.remove("active"));
-btn.classList.add("active");
-this.brush=btn.dataset.brush;
-};
-});
-
-document.getElementById("clear").onclick=()=>this.clear();
-
-}
-
-render=()=>{
-
-this.renderer.render(this.scene,this.camera);
-requestAnimationFrame(this.render);
-
-}
-
-init(){
-
-const tex=this.createVideoTexture();
-
-this.createDataTexture();
-
-this.initScene(tex);
-
-this.setupEvents();
-
-this.render();
-
-}
-
-}
-
-window.addEventListener("load",()=>{
-
-new PixelDraw();
-
-});
-
-</script>
-
-<script type="module" src="/scripts/menu.js"></script>
-<script type="module" src="/scripts/transition.js"></script>
-<script type="module" src="/scripts/lenis-scroll.js"></script>
+  <section class="hero" id="draw-hero">
+
+    <video class="hero-video" autoplay muted loop playsinline>
+      <source src="./hero/hero.mp4" type="video/mp4" />
+    </video>
+
+    <!-- EXPERIENCES CONTAINERS -->
+    <div class="experience-container active" id="exp-pajaro">
+      <!-- El VIDEO oculto del que se extraen los frames -->
+      <video src="/public/ave.mp4" id="ave-gif" autoplay loop muted playsinline
+        style="opacity: 0.001; position: absolute; left: 0; top: 0; width: px; height: 5px; z-index:-1; pointer-events:none;"></video>
+      <!-- El canvas donde se dibuja el ASCII -->
+      <canvas id="ave-ascii-canvas" style=" inset:0; width:50%; height:50%; z-index:1; pointer-events:none;"></canvas>
+    </div>
+
+    <div class="experience-container" id="exp-logo">
+      <div class="draw-logo">
+        <img src="/public/logo.png" alt="DIVINO DIVINO" draggable="false">
+      </div>
+    </div>
+
+    <div class="experience-container" id="exp-dibujar">
+      <!-- Grilla blanca sutil (canvas o html grid) -->
+      <div class="grid-layer"></div>
+    </div>
+
+    <!-- MENU INFERIOR -->
+    <div class="draw-bottom-nav">
+      <button class="exp-btn exp-btn--image active" data-target="exp-pajaro">
+        <img src="/public/ave.png" alt="Ave" />
+      </button>
+      <button class="exp-btn exp-btn--image" data-target="exp-logo">
+        <img src="/public/destello.png" alt="Logo" />
+      </button>
+      <button class="exp-btn exp-btn--image" data-target="exp-dibujar">
+        <img src="/public/lapicera.png" alt="Dibujar" />
+      </button>
+    </div>
+
+    <!-- UI GLOBAL (VIDEO) -->
+    <aside class="draw-ui draw-ui--global" id="draw-ui-global">
+      <div class="draw-ui__body" data-lenis-prevent>
+        <div class="global-controls">
+          <h4 style="margin-bottom: 10px; font-weight:bold; font-size: 0.8rem; letter-spacing:1px; color:#fff;">VIDEO
+            BACKGROUND</h4>
+
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>TAMAÑO PIXEL</span>
+              <output id="out-pixel">120</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-pixel" min="10" max="300" value="120" step="1">
+          </div>
+
+          <div class="ctrl-group" style="margin-top: 15px;">
+            <div class="ctrl-label"><span>PINCEL INTERACTIVO</span></div>
+            <div class="ctrl-pills">
+              <button class="pill" id="btn-draw-on">ON</button>
+              <button class="pill active" id="btn-draw-off">OFF</button>
+            </div>
+          </div>
+
+        </div>
+        <!-- RESET GLOBALES -->
+        <div class="ctrl-group" style="margin-top: 20px;">
+          <button class="draw-ui__reset" id="ctrl-reset">Reset all</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- UI CONTEXT (HERRAMIENTAS) -->
+    <aside class="draw-ui draw-ui--context" id="draw-ui-context">
+      <div class="draw-ui__body" data-lenis-prevent>
+
+        <!-- CONTROLES PÁJARO -->
+        <div class="context-controls" id="controls-pajaro" style="display:none;">
+          <h4 style="margin-bottom: 10px; font-weight:bold; font-size: 0.8rem; letter-spacing:1px; color:#fff;">AVE
+            SETTINGS</h4>
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Densidad ASCII</span>
+              <output id="out-ave-density">8</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-ave-density" min="2" max="32" value="8" step="1">
+          </div>
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Brillo</span>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-ave-brightness" min="-1" max="1" value="0.0" step="0.05">
+          </div>
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Contraste</span>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-ave-contrast" min="0" max="3" value="1.0" step="0.05">
+          </div>
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Umbral (Fondo)</span>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-ave-threshold" min="0" max="1" value="1.0" step="0.01">
+          </div>
+        </div>
+
+        <!-- CONTROLES LOGO -->
+        <div class="context-controls" id="controls-logo" style="display:none;">
+          <h4 style="margin-bottom: 10px; font-weight:bold; font-size: 0.8rem; letter-spacing:1px; color:#fff;">LOGO
+            SETTINGS</h4>
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Radio Pincel</span>
+              <output id="out-logo-radius">0.35</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-logo-radius" min="0.05" max="1.5" value="0.35" step="0.01">
+          </div>
+        </div>
+
+        <!-- CONTROLES DIBUJAR -->
+        <div class="context-controls" id="controls-dibujar" style="display:block;">
+
+          <h4
+            style="margin-bottom: 15px; font-weight:bold; text-transform:uppercase; font-size: 0.8rem; letter-spacing:1px; color:#fff;">
+            DRAWING SETTINGS</h4>
+
+          <div class="ctrl-group">
+            <div class="ctrl-label"><span>Drawing Mode</span></div>
+            <div class="ctrl-pills">
+              <button class="pill active" id="btn-draw-normal">normal</button>
+              <button class="pill" id="btn-draw-45">45°</button>
+              <button class="pill" id="btn-draw-n45">-45°</button>
+            </div>
+          </div>
+
+          <div class="ctrl-group" style="margin-top: 15px;">
+            <div class="ctrl-label">
+              <span>Width</span>
+              <output id="out-draw-width">1</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-draw-width" min="1" max="10" value="1" step="1">
+          </div>
+
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Height</span>
+              <output id="out-draw-height">1</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-draw-height" min="1" max="10" value="1" step="1">
+          </div>
+
+          <div class="ctrl-group" style="margin-bottom: 25px;">
+            <div class="ctrl-label">
+              <span>Radius</span>
+              <output id="out-draw-radius">25</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-draw-radius" min="0" max="100" value="25" step="1">
+          </div>
+
+          <h4
+            style="margin-bottom: 15px; font-weight:bold; text-transform:uppercase; font-size: 0.8rem; letter-spacing:1px; color:#fff;">
+            GRID SETTINGS</h4>
+
+          <div class="ctrl-group">
+            <div class="ctrl-label">
+              <span>Grid X</span>
+              <output id="out-grid-x">80</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-grid-x" min="10" max="250" value="80" step="1">
+          </div>
+
+          <div class="ctrl-group" style="margin-bottom: 25px;">
+            <div class="ctrl-label">
+              <span>Grid Y</span>
+              <output id="out-grid-y">60</output>
+            </div>
+            <input class="ctrl-range" type="range" id="ctrl-grid-y" min="10" max="250" value="60" step="1">
+          </div>
+
+          <div class="ctrl-group">
+            <div class="ctrl-pills" style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
+              <button class="pill" id="btn-draw-clear">clear</button>
+              <button class="pill" id="btn-draw-undo">undo</button>
+              <button class="pill" id="btn-draw-redo">redo</button>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+    </aside>
+
+  </section>
+
+  <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+  <script type="module" src="/scripts/menu.js"></script>
+  <script type="module" src="/scripts/transition.js"></script>
+  <script type="module" src="/scripts/lenis-scroll.js"></script>
+
+  <script type="module" src="./scripts/draw.js"></script>
+  <script type="module" src="./scripts/draw-ave.js"></script>
+  <script type="module" src="./scripts/draw-logo.js"></script>
+  <script type="module" src="./scripts/draw-lapicera.js"></script>
 
 </body>
+
 </html>

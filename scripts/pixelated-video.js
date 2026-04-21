@@ -29,6 +29,31 @@ class PixelatedVideoEffect {
     this.init();
   }
 
+  setupUI() {
+    const pixelSlider = document.getElementById("ctrl-pixel");
+    const pixelOutput = document.getElementById("out-pixel");
+
+    console.log("slider:", pixelSlider); // debug
+
+    if (!pixelSlider) return;
+
+    pixelOutput.textContent = pixelSlider.value;
+
+    pixelSlider.addEventListener("input", (e) => {
+      const value = parseFloat(e.target.value);
+
+      pixelOutput.textContent = value;
+
+      this.settings.grid = value;
+
+      if (this.material) {
+        this.material.uniforms.uGrid.value = value;
+      }
+    });
+  }
+
+  
+
   createVideoTexture() {
     const texture = new THREE.VideoTexture(this.videoElement);
     texture.minFilter = THREE.NearestFilter;
@@ -254,11 +279,15 @@ class PixelatedVideoEffect {
       console.warn("Video autoplay blocked:", error);
     }
 
-    const texture = this.createVideoTexture();
-    this.initializeScene(texture);
-    this.setupEvents();
-    this.render();
+   const texture = this.createVideoTexture();
+
+this.initializeScene(texture);
+this.setupUI();
+this.setupEvents();
+this.render();
   }
 }
 
 new PixelatedVideoEffect();
+
+

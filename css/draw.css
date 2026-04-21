@@ -1,36 +1,475 @@
-.draw-header {
-     margin-top: 20%;
-     color: red;
-     justify-content: center;
-  
+/* ══════════════════════════════════════════════════════
+   draw-lab.css
+   Estilos EXCLUSIVOS de draw.html — no afectan otras páginas.
+   Todas las reglas están anidadas bajo .hero o .draw-*
+   para garantizar el aislamiento.
+══════════════════════════════════════════════════════ */
+
+/* ── Reset local ──────────────────────────────────── */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
 
-.draw-header h2 p{
-     color: red;
+/* ── Hero container ──────────────────────────────── */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* El video fuente: siempre oculto, sólo lo lee el shader */
+.hero-video {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Canvas WebGL — insertado dinámicamente por draw-lab.js */
+#draw-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 1;
+}
+
+/* ── Experiencias Condicionales (Centro) ───────────────────────── */
+.experience-container {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.experience-container.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.exp-placeholder {
+  color: white;
+  font-size: 2rem;
+  font-family: inherit;
+  letter-spacing: 0.1em;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px 40px;
+  border-radius: 4px;
+}
+
+.grid-layer {
+  width: 100vw;
+  height: 100vh;
+  /* Grilla blanca sutil usando background */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Navegación Inferior (3 Botones) ─────────────────────────── */
+.draw-bottom-nav {
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 20px;
+  z-index: 20;
+
+  padding: 10px 20px;
+  border-radius: 40px;
+  /* Aparece desde abajo */
+  animation: nav-in 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes nav-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+}
+
+.exp-btn {
+  background: transparent;
+  color: var(--dd-text);
+  border: none;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+  transition: color 0.3s, background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.exp-btn--image {
+  padding: 4px 12px;
+}
+
+.exp-btn--image img {
+  height: 154px;
+  width: auto;
+  pointer-events: none;
+  /* previene bugs de click en drag */
+  filter: brightness(0.6);
+  transition: filter 0.3s;
+  gap: 50px;
+}
+
+.exp-btn--image:hover img,
+.exp-btn--image.active img {
+  filter: brightness(1) invert(1);
+  /* Assuming black bg, white logo on active? Adjust as needed depending on image color. If the image is black on white, invert gives white on black */
+}
+
+
+.exp-btn:hover {
+  color: var(--dd-white);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.exp-btn.active {
+  color: var(--dd-black);
 
 }
 
-.draw-header{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:100%;
-z-index:5;
+
+/* ── Logo centrado ────────────────────────────────── */
+.draw-logo {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: none;
+  user-select: none;
 }
 
-.draw-header .container{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
-text-align:center;
+.draw-logo img {
+  width: clamp(120px, 30vw, 340px);
+  height: auto;
+  mix-blend-mode: difference;
+  /* se invierte sobre el video
+  filter: invert(1); */
+  opacity: 0.9;
+  /* Aparece suavemente */
+  animation: logo-in 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.draw-header h2{
-text-align:center;
+@keyframes logo-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 0.9;
+    transform: scale(1);
+  }
 }
 
-.draw-header p{
-text-align:center;
+:root {
+  --dd-white: #ffffff;
+  --dd-black: #000000;
+  --dd-glass: rgba(255, 255, 255, 0.07);
+  --dd-border: rgba(255, 255, 255, 0.12);
+  --dd-active: rgba(255, 255, 255, 0.95);
+  --dd-text: rgba(255, 255, 255, 0.55);
+  --dd-label: rgba(0, 0, 0, 0.65);
+  --dd-radius: 2px;
+  --dd-gap: 14px;
+
+}
+
+.draw-ui {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 20;
+  width: 260px;
+  /* Un poco más de espacio */
+
+  background: rgba(0, 0, 0, 0.85);
+  /* Fondo negro en lugar de glassmorphism claro */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Borde sutil blanco para destacar sobre negro */
+  border-radius: calc(var(--dd-radius) * 2);
+  overflow: hidden;
+
+  /* Estado inicial transparente para GSAP */
+  opacity: 0;
+}
+
+/* Modificadores separados */
+.draw-ui--global {
+  left: 20px;
+}
+
+.draw-ui--context {
+  right: 20px;
+}
+
+/* Header del panel */
+.draw-ui__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--dd-border);
+}
+
+.draw-ui__header>span {
+  font: 20px;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  text-transform: uppercase;
+}
+
+.draw-ui__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--dd-label);
+  padding: 2px;
+  line-height: 0;
+  transition: color 0.2s;
+}
+
+.draw-ui__toggle:hover {
+  color: var(--dd-white);
+}
+
+/* Body — colapsable */
+.draw-ui__body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--dd-gap);
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.3s ease,
+    padding 0.3s ease;
+  max-height: 600px;
+  overflow: hidden;
+
+  background-color: black;
+}
+
+.draw-ui__body.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* ── Grupo de control ─────────────────────────────── */
+/* .ctrl-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+} */
+
+.ctrl-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.ctrl-label span {
+  font-size: 20px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  /* Letras blancas */
+}
+
+.ctrl-label output {
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+}
+
+/* ── Range slider custom ──────────────────────────── */
+.ctrl-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1px;
+  background: var(--dd-border);
+  outline: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ctrl-range:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Thumb WebKit */
+.ctrl-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--dd-white);
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.ctrl-range::-webkit-slider-thumb:active {
+  transform: scale(1.4);
+}
+
+/* Thumb Firefox */
+.ctrl-range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: none;
+  background: var(--dd-white);
+  cursor: pointer;
+}
+
+/* ── Pills (botones de opción) ────────────────────── */
+.ctrl-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.pill {
+  /* font-family: var(--dd-font); */
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dd-text);
+  background: transparent;
+  border: 1px solid var(--dd-border);
+  border-radius: var(--dd-radius);
+  padding: 4px 8px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.pill:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--dd-white);
+}
+
+.pill.active {
+  background: var(--dd-active);
+  color: var(--dd-black);
+  border-color: transparent;
+}
+
+/* ── Botón Reset ──────────────────────────────────── */
+.draw-ui__reset {
+  /* font-family: var(--dd-font); */
+  font-size: 8px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--dd-radius);
+  padding: 7px 12px;
+  width: 100%;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.draw-ui__reset:hover {
+  color: var(--dd-white);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE — mobile
+══════════════════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .draw-ui {
+    right: 12px;
+    left: 12px;
+    top: auto;
+    transform: none;
+    width: auto;
+    background: rgba(0, 0, 0, 0.95);
+    /* Fondo negro sólido en móvil */
+    animation-name: ui-in-mobile;
+  }
+
+  /* El panel global arriba */
+  .draw-ui--global {
+    top: 12px;
+    bottom: auto;
+  }
+
+  /* El panel de contextos abajo (arriba de la barra de tabs inferior) */
+  .draw-ui--context {
+    bottom: 75px;
+    top: auto;
+  }
+
+  @keyframes ui-in-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .draw-ui__body {
+    /* limitar altura en pantallas chicas y habilitar scroll */
+    max-height: 35vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 15px;
+    /* Menos margen interior */
+  }
+
+  /* Compactar la botonera en móviles */
+  .draw-bottom-nav {
+    width: 92vw;
+    bottom: 15px;
+    padding: 8px 15px;
+  }
+}
+
+
+
+
+
+.draw-ui {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  z-index: 9999;
+  background: #add8e6;
 }
