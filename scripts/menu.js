@@ -108,9 +108,11 @@ function openMenu() {
   const navOverlay = document.querySelector(".nav-overlay");
   const menuToggleBtn = document.querySelector(".menu-toggle-btn");
   const navItems = document.querySelectorAll(".nav-item");
+  const navCloseBtn = document.querySelector(".nav-close-btn");
 
   isAnimating = true;
   navOverlay.style.pointerEvents = "all";
+  navCloseBtn.classList.add("visible");
   menuToggleBtn.classList.add("menu-open");
 
   // disable scrolling
@@ -175,9 +177,11 @@ function closeMenu() {
   const navOverlay = document.querySelector(".nav-overlay");
   const menuToggleBtn = document.querySelector(".menu-toggle-btn");
   const navItems = document.querySelectorAll(".nav-item");
+  const navCloseBtn = document.querySelector(".nav-close-btn");
 
   isAnimating = true;
   navOverlay.style.pointerEvents = "none";
+  navCloseBtn.classList.remove("visible");
   menuToggleBtn.classList.remove("menu-open");
 
   // enable scrolling
@@ -224,6 +228,8 @@ document.fonts.ready.then(() => {
   const navOverlay = document.querySelector(".nav-overlay");
   const navItems = document.querySelectorAll(".nav-item");
 
+  const navCloseBtn = document.querySelector(".nav-close-btn");
+
   menuToggleBtn.addEventListener("click", () => {
     if (isAnimating) {
       gsap.killTweensOf([navOverlay, navItems]);
@@ -237,5 +243,10 @@ document.fonts.ready.then(() => {
     } else {
       closeMenu();
     }
+  });
+
+  navCloseBtn.addEventListener("click", () => {
+    if (isAnimating) return;
+    closeMenu();
   });
 });

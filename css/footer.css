@@ -74,6 +74,14 @@ footer {
   color: var(--tone-400);
 }
 
+.footer-social-link {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+  width: auto !important;
+  color: #fff !important;
+}
+
 @media (max-width: 1000px) {
   footer {
     height: 100%;

@@ -164,6 +164,49 @@
   font-weight: inherit;
 }
 
+.product-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.product-card {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.product-card-title {
+  margin-bottom: 1rem;
+  color: var(--tone-500);
+}
+
+.product-card-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-card-list li {
+  font-family: "Cossette Titre";
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-transform: uppercase;
+  color: var(--tone-100);
+}
+
+.product-card-list li::before {
+  content: "→ ";
+  color: var(--tone-500);
+}
+
+.service-cta-item a {
+  color: var(--tone-100);
+}
+
 /* BANNER */
 
 .banner {
@@ -319,6 +362,10 @@
 .nosotras-item p {
   width: 80%;
   margin: 0 auto;
+}
+
+.nosotras-item a {
+  color: var(--tone-500);
 }
 
 .about-clouds {
