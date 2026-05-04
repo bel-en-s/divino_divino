@@ -106,7 +106,7 @@
 
 .services-copy-info {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 6rem;
   width: 70%;
   margin: 0 auto;
@@ -125,6 +125,7 @@
   text-transform: uppercase;
   letter-spacing: 0.08em;
   opacity: 0.6;
+  text-align: center;
 }
 
 .services-list {
@@ -166,14 +167,18 @@
 
 .product-cards {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 1.5rem;
   width: 100%;
 }
 
 .product-card {
   padding: 1.5rem;
-  text-align: left;
+  text-align: center;
+  flex: 1 1 0;
+  min-width: 200px;
 }
 
 .product-card-title {
@@ -428,6 +433,17 @@
   .clients .grid-item:not(:last-child) {
     border-right: none;
     border-bottom: 1px solid var(--tone-400);
+  }
+
+  .product-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-card {
+    flex: none;
+    width: 100%;
+    max-width: 400px;
   }
 
   .services-copy-info {
