@@ -16,6 +16,8 @@ import "../scripts/preloader.js";
 import "../scripts/transition.js";
 import "../scripts/menu.js";
 import "../scripts/nav-rotator.js";
+import "../scripts/reveals.js";
+import "../scripts/sparkle-trail.js";
 import "../scripts/hover.js";
 import "../scripts/pixelated-video.js";
 import "../scripts/pixelated-text.js";

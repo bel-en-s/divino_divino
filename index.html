@@ -312,8 +312,15 @@
 
     <section class="services-copy" data-nav-label="Qué podemos hacer por vos?">
       <div class="container">
-        <p>Qué podemos hacer por vos</p>
-        <span class="service-star h1">✷</span>
+        <p style="display:none;">Qué podemos hacer por vos</p>
+        <span class="service-star h1">
+          <span class="service-star-icon">✷</span>
+          <a
+            href="#"
+            class="service-star-cta"
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+          >agendar<br>una call</a>
+        </span>
 
       <div class="services-copy-info">
 
@@ -353,11 +360,11 @@
     <div class="services-list">
       <div class="service-item service-cta-item">
         <a
-          href="#"
+          href="/contact.html"
           class="scramble-hover"
-          onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+      
         >
-          → [ &nbsp;agendar una call&nbsp; ]
+          → [ &nbsp;ESCRIBINOS&nbsp; ]
         </a>
       </div>
     </div>
@@ -368,13 +375,15 @@
       </div>
     </section>
 
-    <section class="nosotras">
+    <section class="nosotras" data-reveal data-nav-label="quienes somos?">
       <div class="container">
-        <h2 class="nosotras-title">Nosotras</h2>
+        <h2 class="nosotras-title"><span class="it">Nosotras</span></h2>
 
         <div class="nosotras-grid">
           <div class="nosotras-item">
-            <!-- <img src="./images/belu.jpg" alt="Bel" /> -->
+            <div style="display:none" class="nosotras-portrait" data-label="01 · BEL">
+              <div class="red-spot"></div>
+            </div>
             <h3>Bel</h3>
             <div class="nav-footer-item">
               <a href="https://bel-en-s.com/" target="_blank" rel="noopener">
@@ -383,12 +392,14 @@
             </div>
             <br />
             <p>
-              Directora de arte interactiva. Artista multimedia. <br>Experta en diseño web premium. Animación web. Desarrollo de producto. 
+              Directora de arte interactiva. Artista multimedia. <br>Experta en diseño web premium. Animación web. Desarrollo de producto.
             </p>
           </div>
 
-          <div class="nosotras-item">
-            <!-- <img src="./images/dani.jpg" alt="Dani" /> -->
+          <div  class="nosotras-item">
+            <div style="display:none" class="nosotras-portrait" data-label="02 · DANI">
+              <div class="red-spot"></div>
+            </div>
             <h3>Dani</h3>
             <div class="nav-footer-item">
               <a href="https://danielaregert.com.ar/" target="_blank" rel="noopener">
@@ -404,11 +415,35 @@
       </div>
     </section>
 
+    <section class="workflow" data-reveal>
+      <div class="container">
+        <h2 style="font-size:2rem;">¿Cómo es nuestra forma de trabajo?</h2>
+
+        <div class="workflow-grid">
+          <div class="workflow-item">
+            <span class="workflow-num">1.</span>
+            <p>Traés tu idea</p>
+            <p class="workflow-detail">Nos contás lo que querés lograr.</p>
+          </div>
+          <div class="workflow-item">
+            <span class="workflow-num">2.</span>
+            <p>Armamos un plan</p>
+            <p class="workflow-detail">Definimos estrategia, diseño y desarrollo.</p>
+          </div>
+          <div class="workflow-item">
+            <span class="workflow-num">3.</span>
+            <p>Concretamos</p>
+            <p class="workflow-detail">Te vas contento y con tu solución online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="about-callout">
-      <span class="about-cloudr h1">☁</span>
+      <span style='display:none' class="about-cloudr h1">☁</span>
       <div class="container">
         <div class="about-callout-copy">
-          <p>Cuidamos tu tiempo, tu inversión y tu idea.</p>
+          <p>Hacemos tu mundo digital</p>
         </div>
       </div>
     </section>
@@ -447,9 +482,9 @@ Habitemos lo virtual desde lo sensible.
       <div class="footer-row form">
         <div class="container">
 
-          <div class="footer-name">
-            <h3>Divino</h3>
-            <h3>Divino</h3>
+          <div class="footer-name big-mark" data-reveal>
+            <span class="row"><span>DIVINO</span></span>
+            <span class="row"><span>DIVINO</span></span>
           </div>
 
 

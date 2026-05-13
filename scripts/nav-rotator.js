@@ -1,53 +1,17 @@
-const CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-const PHRASES = ["Soluciones Digitales", "Webs Creativas", "Tu Mundo Digital"];
-const HOLD_MS = 3000;
-const ITERATIONS = 4;
-const ITER_MS = 25;
-const STAGGER_MS = 30;
-
-const randomChar = () => CHARS[Math.floor(Math.random() * CHARS.length)];
-
-function scrambleTo(el, newText) {
-  const oldText = el.textContent || "";
-  const len = Math.max(oldText.length, newText.length);
-  const display = Array.from({ length: len }, (_, i) => oldText[i] ?? " ");
-
-  for (let i = 0; i < len; i++) {
-    const target = newText[i] ?? "";
-    const isSpace = !target || target === " ";
-
-    for (let iter = 0; iter < ITERATIONS; iter++) {
-      setTimeout(() => {
-        display[i] = isSpace ? " " : randomChar();
-        el.textContent = display.join("");
-      }, i * STAGGER_MS + iter * ITER_MS);
-    }
-
-    setTimeout(() => {
-      display[i] = target;
-      el.textContent = display.join("").trimEnd();
-    }, i * STAGGER_MS + ITERATIONS * ITER_MS);
-  }
-}
-
+const DEFAULT_TEXT = "Soluciones Digitales";
 const SCROLL_THRESHOLD = 30;
 
 document.addEventListener("DOMContentLoaded", () => {
-  const rotators = document.querySelectorAll(".nav-rotator");
-  if (!rotators.length) return;
-
-  let idx = 0;
-  rotators.forEach((el) => (el.textContent = PHRASES[idx]));
-
-  setInterval(() => {
-    idx = (idx + 1) % PHRASES.length;
-    rotators.forEach((el) => scrambleTo(el, PHRASES[idx]));
-  }, HOLD_MS);
-
   const navLefts = document.querySelectorAll(".nav-left");
   const sections = document.querySelectorAll("[data-nav-label]");
   const sectionLabels = document.querySelectorAll(".nav-section-label");
-  let currentSectionLabel = "";
+  const rotators = document.querySelectorAll(".nav-rotator");
+
+  if (!sectionLabels.length) return;
+
+  rotators.forEach((el) => (el.textContent = DEFAULT_TEXT));
+
+  let currentLabel = "";
 
   const getActiveSection = () => {
     for (const section of sections) {
@@ -57,32 +21,43 @@ document.addEventListener("DOMContentLoaded", () => {
     return null;
   };
 
-  const updateSectionLabel = () => {
-    if (!sectionLabels.length) return;
+  const updateLabel = () => {
     const active = getActiveSection();
     const newText = active ? active.dataset.navLabel : "";
-    if (newText === currentSectionLabel) return;
 
-    sectionLabels.forEach((el) => {
+    if (newText === currentLabel) return;
+
+    // Slide out current label (collapse width → text exits right)
+    sectionLabels.forEach((el) => el.classList.remove("is-visible"));
+
+    // When label is active, collapse the rotator
+    if (newText) {
+      navLefts.forEach((el) => el.classList.add("is-collapsed"));
+    }
+
+    setTimeout(() => {
       if (newText) {
-        if (currentSectionLabel) {
-          scrambleTo(el, newText);
-        } else {
+        // Slide in new label (expand width → text enters from left)
+        sectionLabels.forEach((el) => {
           el.textContent = newText;
-        }
-        el.classList.add("is-visible");
+          el.classList.add("is-visible");
+        });
       } else {
-        el.classList.remove("is-visible");
+        // Restore rotator visibility based on scroll position
+        const collapsed = window.scrollY > SCROLL_THRESHOLD;
+        navLefts.forEach((el) => el.classList.toggle("is-collapsed", collapsed));
       }
-    });
-
-    currentSectionLabel = newText;
+      currentLabel = newText;
+    }, 250);
   };
 
   const onScroll = () => {
-    const collapse = window.scrollY > SCROLL_THRESHOLD;
-    navLefts.forEach((el) => el.classList.toggle("is-collapsed", collapse));
-    updateSectionLabel();
+    const collapsed = window.scrollY > SCROLL_THRESHOLD;
+    // Only toggle if no label is active (label manages its own collapse state)
+    if (!currentLabel) {
+      navLefts.forEach((el) => el.classList.toggle("is-collapsed", collapsed));
+    }
+    updateLabel();
   };
 
   onScroll();
