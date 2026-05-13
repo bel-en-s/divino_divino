@@ -108,7 +108,6 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 6rem;
-  width: 70%;
   margin: 0 auto;
 }
 

@@ -166,7 +166,7 @@ p {
   backface-visibility: hidden;
 }
 
-.lenis-stopped .logo-container, .footer-visible{ 
+.footer-visible{
   color:white;
   width: 100px;
   transition: all 1s ease;

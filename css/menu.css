@@ -15,6 +15,60 @@ nav .container {
   align-items: center;
 }
 
+nav .nav-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-rotator {
+  font-family: "Cossette Titre";
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: inherit;
+  white-space: nowrap;
+  user-select: none;
+  min-width: 14rem;
+  max-width: 20rem;
+  overflow: hidden;
+  transition: max-width 0.4s ease, min-width 0.4s ease, opacity 0.4s ease;
+}
+
+@media (max-width: 1000px) {
+  .nav-rotator {
+    display: none;
+  }
+}
+
+.nav-section-label {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 0;
+  opacity: 0;
+  font-family: "Cossette Titre";
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: inherit;
+  user-select: none;
+  transition: max-width 0.4s ease, opacity 0.4s ease;
+}
+
+.nav-section-label.is-visible {
+  max-width: 30rem;
+  opacity: 1;
+}
+
+@media (max-width: 1000px) {
+  .nav-section-label {
+    display: none;
+  }
+}
+
 nav .logo,
 nav .menu-toggle-btn {
   padding: 0.25rem;
@@ -48,7 +102,7 @@ nav .logo a {
   gap: 0.5rem;
 }
 
-nav .logo a span {
+nav .logo a .logo-star {
   position: relative;
   display: inline-block;
   width: 50px;
@@ -59,8 +113,14 @@ nav .logo a span {
   background-size: cover;        /* Ensure image covers the element */
   background-position: center;   /* Center the image */
   background-repeat: no-repeat;  /* Prevent repetition */
+  flex-shrink: 0;
+  transition: filter 0.4s ease;
 
   animation: blink 1s infinite;
+}
+
+.footer-visible .logo-star {
+  filter: invert(1);
 }
 
 nav .logo a {
@@ -68,8 +128,32 @@ nav .logo a {
   align-items: center;
   gap: 4px; /* controlás exactamente la distancia */
 }
-nav .logo a span {
+nav .logo a .logo-star {
   margin: 0 -18px; /* reduce el espacio sin achicar la imagen */
+}
+
+nav .logo a .logo-word {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 10ch;
+  transition: max-width 0.4s ease, opacity 0.4s ease;
+}
+
+.nav-left.is-collapsed .logo-word,
+.nav-left.is-collapsed .nav-rotator {
+  max-width: 0;
+  min-width: 0;
+  opacity: 0;
+}
+
+.nav-left.is-collapsed .nav-rotator {
+  pointer-events: none;
+}
+
+.nav-left.is-collapsed .logo-star {
+  animation: none;
+  opacity: 1;
 }
 @keyframes blink {
   0%,
