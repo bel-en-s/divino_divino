@@ -593,4 +593,9 @@
     grid-template-columns: 1fr;
     gap: 3rem;
   }
+
+  .nosotras-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }
