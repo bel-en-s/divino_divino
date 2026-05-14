@@ -31,8 +31,8 @@ footer {
 
 .big-mark {
   text-align: center;
-  font-size: clamp(80px, 22vw, 340px);
-  font-weight: 700;
+  font-size: clamp(50px, 14vw, 200px);
+  font-weight: 500;
   line-height: 0.85;
   letter-spacing: -0.04em;
   color: var(--tone-500);
@@ -128,7 +128,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10rem;
+  gap: 5rem;
 }
 
 @media 
@@ -173,6 +173,7 @@ footer {
   }
 
   .big-mark {
+    font-size: clamp(40px, 12vw, 140px);
     letter-spacing: -0.03em;
   }
 
