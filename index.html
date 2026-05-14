@@ -221,10 +221,14 @@
 
     <nav>
       <div class="container">
-        <div class="logo">
-          <div class="logo-container">
-           <a href="./">DIVINO<span></span>DIVINO</a>
+        <div class="nav-left">
+          <div class="logo">
+            <div class="logo-container">
+             <a href="./"><span class="logo-word logo-word-left">DIVINO</span><span class="logo-star"></span><span class="logo-word logo-word-right">DIVINO</span></a>
+            </div>
           </div>
+          <div class="nav-rotator" aria-live="polite">Soluciones Digitales</div>
+          <div class="nav-section-label" aria-live="polite"></div>
         </div>
         <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
@@ -288,10 +292,10 @@
           <div class="container">
             <h1>
               <span class="sr-only">DIVINO DIVINO — Estudio de diseño web y posicionamiento SEO en Buenos Aires, Argentina. </span>
-              diferenciate </br>ante otros
+              Dirección, Diseño <br />y Estrategia 
             </h1>
 
-                                <h2 class="hero-subtitle">Webs con aura </h2>
+                                <h2 class="hero-subtitle">para TU MUNDO DIGITAL </h2>
           </div>
 
         </div>
@@ -306,41 +310,45 @@
       </div>
     </section>
 
-    <section class="services-copy">
+    <section class="services-copy" data-nav-label="Qué podemos hacer por vos?">
       <div class="container">
-        <p>Qué podemos hacer por vos</p>
-        <span class="service-star h1">✷</span>
+        <p style="display:none;">Qué podemos hacer por vos</p>
+        <span class="service-star h1">
+          <span class="service-star-icon">✷</span>
+          <a
+            href="#"
+            class="service-star-cta"
+            onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+          >agendar<br>una call</a>
+        </span>
 
       <div class="services-copy-info">
 
   <div class="services-column">
-    <h3 class="services-column-title">nuestros productos</h3>
+    <h3 class="services-column-title">ESTOS SON Nuestros PRINCIPALES Servicios</h3>
 
     <div class="product-cards">
       <div class="product-card">
-        <h4 class="product-card-title">Portfolio</h4>
+        <h4 class="product-card-title">Diseño web</h4>
         <ul class="product-card-list">
-          <li>Panel autoadministrable</li>
-          <li>Multilenguaje</li>
-          <li>Carga rápida</li>
-          <li>Diseño minimalista</li>
+          <li>Tu web es el espacio donde tu marca cobra vida.</li>
+          <li>Creamos experiencias digitales que comunican lo que realmente querés transmitir: sitios visualmente atractivos, intuitivos y fáciles de usar.</li>
+          
         </ul>
       </div>
       <div class="product-card">
-        <h4 class="product-card-title">Tienda</h4>
+        <h4 class="product-card-title">Desarrollo Web</h4>
         <ul class="product-card-list">
-          <li>Integración con pasarelas de pago</li>
-          <li>Catálogo y envíos</li>
-          <li>Enfocado en conversión</li>
-          <li>Sección de suscripciones</li>
+          <li>Si ya tenés un diseño, lo hacemos realidad: Te ayudamos a definir la mejor forma de hacerlo.</li>
+          <li>Trabajamos con enfoque MVP para lanzar rápido una primera versión funcional, validar resultados y crecer paso a paso con nuevas funcionalidades.</li>
         </ul>
       </div>
       <div class="product-card">
         <h4 class="product-card-title">Desarrollo de producto</h4>
         <ul class="product-card-list">
-          <li>Acompañamiento humano</li>
-          <li>UX/UI</li>
-          <li>Salida al mercado</li>
+          <li>Pensamos diseño y desarrollo, uniendo nuestros dos skills más grandes: el diseño web creativo, y las soluciones digitales.</li>
+          <li>Realizamos mantenimiento y reingeniería de productos digitales.</li>
+          <li>Te ayudamos a optimizar tu producto digital para mejorar su rendimiento y experiencia de usuario.</li>
         </ul>
       </div>
     </div>
@@ -352,11 +360,11 @@
     <div class="services-list">
       <div class="service-item service-cta-item">
         <a
-          href="#"
+          href="/contact.html"
           class="scramble-hover"
-          onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
+      
         >
-          → [ &nbsp;agendar una call&nbsp; ]
+          → [ &nbsp;ESCRIBINOS&nbsp; ]
         </a>
       </div>
     </div>
@@ -367,13 +375,15 @@
       </div>
     </section>
 
-    <section class="nosotras">
+    <section class="nosotras" data-reveal data-nav-label="quienes somos?">
       <div class="container">
-        <h2 class="nosotras-title">Nosotras</h2>
+        <h2 class="nosotras-title"><span class="it">Nosotras</span></h2>
 
         <div class="nosotras-grid">
           <div class="nosotras-item">
-            <!-- <img src="./images/belu.jpg" alt="Bel" /> -->
+            <div style="display:none" class="nosotras-portrait" data-label="01 · BEL">
+              <div class="red-spot"></div>
+            </div>
             <h3>Bel</h3>
             <div class="nav-footer-item">
               <a href="https://bel-en-s.com/" target="_blank" rel="noopener">
@@ -382,12 +392,14 @@
             </div>
             <br />
             <p>
-              Directora de arte interactiva. Artista multimedia. Experta en diseño web premium. Animación web. Desarrollo de producto. 
+              Directora de arte interactiva. Artista multimedia. <br>Experta en diseño web premium. Animación web. Desarrollo de producto.
             </p>
           </div>
 
-          <div class="nosotras-item">
-            <!-- <img src="./images/dani.jpg" alt="Dani" /> -->
+          <div  class="nosotras-item">
+            <div style="display:none" class="nosotras-portrait" data-label="02 · DANI">
+              <div class="red-spot"></div>
+            </div>
             <h3>Dani</h3>
             <div class="nav-footer-item">
               <a href="https://danielaregert.com.ar/" target="_blank" rel="noopener">
@@ -396,18 +408,42 @@
             </div>
             <br />
             <p>
-              Maquetación pixel-perfect. Estrategia de contenido. Presencia digital. Posicionamiento SEO. Optimización de conversión.
+              ANALISTA DE SISTEMAS. SEO SPECIALIST. DESARROLLADORA FULL STACK. <br>Licenciada en Dirección Escénica (UNA).
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <section class="workflow" data-reveal>
+      <div class="container">
+        <h2 style="font-size:2rem;">¿Cómo es nuestra forma de trabajo?</h2>
+
+        <div class="workflow-grid">
+          <div class="workflow-item">
+            <span class="workflow-num">1.</span>
+            <p>Traés tu idea</p>
+            <p class="workflow-detail">Nos contás lo que querés lograr.</p>
+          </div>
+          <div class="workflow-item">
+            <span class="workflow-num">2.</span>
+            <p>Armamos un plan</p>
+            <p class="workflow-detail">Definimos estrategia, diseño y desarrollo.</p>
+          </div>
+          <div class="workflow-item">
+            <span class="workflow-num">3.</span>
+            <p>Concretamos</p>
+            <p class="workflow-detail">Te vas contento y con tu solución online.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="about-callout">
-      <span class="about-cloudr h1">☁</span>
+      <span style='display:none' class="about-cloudr h1">☁</span>
       <div class="container">
         <div class="about-callout-copy">
-          <p>Cuidamos tu tiempo, tu inversión y tu idea.</p>
+          <p>Hacemos tu mundo digital</p>
         </div>
       </div>
     </section>
@@ -446,9 +482,9 @@ Habitemos lo virtual desde lo sensible.
       <div class="footer-row form">
         <div class="container">
 
-          <div class="footer-name">
-            <h3>Divino</h3>
-            <h3>Divino</h3>
+          <div class="footer-name big-mark" data-reveal>
+            <span class="row"><span>DIVINO</span></span>
+            <span class="row"><span>DIVINO</span></span>
           </div>
 
 

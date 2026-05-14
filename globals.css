@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Cossette+Titre:wght@400;700&display=swap");
-html {
-  scroll-behavior: smooth;
-}
+
 :root {
   --tone-100: #000000;
   --tone-200: #222222;
@@ -166,11 +164,7 @@ p {
   backface-visibility: hidden;
 }
 
-.lenis-stopped .logo-container, .footer-visible{ 
-  color:white;
-  width: 100px;
-  transition: all 1s ease;
-}
+
 
 
 .link-h2 {
