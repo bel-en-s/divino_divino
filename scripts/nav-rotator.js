@@ -1,4 +1,4 @@
-const DEFAULT_TEXT = "Soluciones Digitales";
+const DEFAULT_TEXT = "Digital Solutions";
 const SCROLL_THRESHOLD = 30;
 
 document.addEventListener("DOMContentLoaded", () => {
