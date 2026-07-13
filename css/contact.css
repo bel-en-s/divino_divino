@@ -17,11 +17,11 @@
   flex-direction: column;
   gap: 2rem;
   text-align: center;
-  color: var(--tone-400);
+  color: var(--tone-100);
 }
 
 .contact-copy .contact-copy-main .contact-header {
-  color: var(--tone-400);
+  color: var(--tone-100);
   font-size: 2rem;
   font-weight: 500;
   line-height: 0.9;
@@ -41,6 +41,10 @@
   align-items: flex-end;
   gap: 2rem;
   color: var(--tone-500);
+}
+
+.contact-col-copy h4 a {
+  color: var(--tone-100);
 }
 
 .contact-col-copy h4:last-child {

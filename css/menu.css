@@ -252,6 +252,40 @@ nav .logo a .logo-word {
   color: var(--tone-500);
 }
 
+.nav-footer-buttons {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-btn-black {
+  background: var(--tone-100);
+  color: var(--tone-400) !important;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-btn-black:hover {
+  background: #2a2a2a;
+  transform: scale(1.05);
+}
+
+.nav-btn-celeste {
+  background: #87CEEB;
+  color: var(--tone-500) !important;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-btn-celeste:hover {
+  background: #b0dff0;
+  transform: scale(1.05);
+}
+
 @media (max-width: 1000px) {
   .nav-overlay .nav-items {
     left: 1rem;

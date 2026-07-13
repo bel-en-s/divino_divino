@@ -71,7 +71,7 @@
               <a href="./"><span class="logo-word logo-word-left">DIVINO</span><span class="logo-star"></span><span class="logo-word logo-word-right">DIVINO</span></a>
             </div>
           </div>
-          <div class="nav-rotator" aria-live="polite">Soluciones Digitales</div>
+          <div class="nav-rotator" aria-live="polite">Diseño web creativo</div>
           <div class="nav-section-label" aria-live="polite"></div>
         </div>
 
@@ -83,30 +83,33 @@
       </div>
     </nav>
 
-    <div class="nav-overlay">
+    <div class="nav-overlay dark-nav">
+      <div class="nav-close-btn">✕</div>
       <div class="nav-items">
         <div class="nav-item">
-          <a href="/">Index</a>
+          <a href="./">Index</a>
         </div>
         <div class="nav-item active">
-          <a href="/contact">Contact</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+        <div class="nav-item">
+          <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link">Instagram</a>
         </div>
       </div>
 
       <div class="nav-footer">
         <div class="container">
           <div class="nav-footer-item">
-            <a href="mailto:belen.seoane.palmieri@gmail.com">Bel</a>
-            <a href="mailto:danielaregert@gmail.com">Dani</a>
+            <a href="https://danielaregert.com.ar/" target="_blank">dani</a>
+            <a href="https://bel-en-s.com/" target="_blank">belu</a>
           </div>
-
-          <div class="nav-footer-item">
+          <div class="nav-footer-item nav-footer-buttons">
             <a
-              href="https://calendly.com/belen-seoane-palmieri/new-meeting-1"
-              target="_blank"
-              rel="noopener"
+              href="#"
+              class="scramble-hover"
+              onclick="Calendly.initPopupWidget({url: 'https://calendly.com/belen-seoane-palmieri/new-meeting-1'}); return false;"
             >
-              [ &nbsp;agendar reunión&nbsp; ]
+              [ &nbsp;hablemos de tu proyecto&nbsp; ]
             </a>
           </div>
         </div>
@@ -122,8 +125,7 @@
       <div class="contact-copy">
         <div class="contact-copy-main">
 
-          <div class="contact-col-copy">
-            <h1 class="contact-header">DIVINO DIVINO</h1>
+            <div class="contact-col-copy">
             <h4>Buenos Aires / Worldwide</h4>
             <h4>Dirección, diseño y posicionamiento SEO</h4>
           </div>
@@ -174,24 +176,18 @@
  
 
             <h4>
-              <a href="mailto:belen.seoane.palmieri@gmail.com">
-                belen.seoane.palmieri@gmail.com
-              </a>
-            </h4>
-
-            <h4>
-              <a href="mailto:danielaregert@gmail.com">
-                danielaregert@gmail.com
+              <a href="mailto:holadivinodivino@gmail.com">
+                holadivinodivino@gmail.com
               </a>
             </h4>
 
             <h4>
               <a
-                href="https://wa.me/5491169188741"
+                href="https://www.instagram.com/divinodivino_/"
                 target="_blank"
                 rel="noopener"
               >
-                WhatsApp
+                Instagram
               </a>
             </h4>
 
@@ -202,22 +198,7 @@
 
         <div class="contact-copy-footer">
           <div class="container">
-            <p>&copy; 2025 DIVINO DIVINO</p>
-
-            <a
-              href="https://balvaneralab.com.ar/"
-              target="_blank"
-              style="
-                position: relative;
-                z-index: 9999;
-                pointer-events: auto;
-                text-decoration: underline;
-                color: inherit;
-                cursor: pointer;
-              "
-            >
-              SIDE PROJECT : Balvanera Lab
-            </a>
+            <p>&copy; <span id="year"></span> DIVINO DIVINO</p>
           </div>
         </div>
       </div>
@@ -235,17 +216,17 @@
 }
 .formulario-divino input, .formulario-divino textarea {
   background-color: transparent;
-  color:white !important;
+  color:black;
   font-family:'Cossette Titre', sans-serif;
   margin-bottom: 10px;
   padding:10px;
   border-radius:7px;
-  border: 1px solid white;
+  border: 1px solid black;
   text-transform: uppercase;
 }
 
 .formulario-divino input::placeholder, .formulario-divino textarea::placeholder {
-  color: white;
+  color: black;
   opacity: 0.7;
 }
 
@@ -254,9 +235,9 @@
   padding:10px;
   border-radius:7px;
   background: transparent;
-  border:1px solid white;
+  border:1px solid black;
   text-transform: uppercase;
-  color:white;
+  color:black;
 }
 </style>
 
@@ -293,7 +274,7 @@ form.addEventListener("submit", function(e) {
   });
 });
 </script>
-</script>
+<script>document.getElementById("year").textContent = new Date().getFullYear()</script>
     <script type="module" src="/scripts/lenis-scroll.js"></script>
     <script type="module" src="/scripts/transition.js"></script>
     <script type="module" src="/scripts/menu.js"></script>

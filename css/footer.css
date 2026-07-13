@@ -2,7 +2,7 @@
 footer {
   position: relative;
   width: 100%;
-  height: 120svh;
+  height: 80svh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -31,7 +31,7 @@ footer {
 
 .big-mark {
   text-align: center;
-  font-size: clamp(50px, 14vw, 200px);
+  font-size: clamp(32px, 7vw, 100px);
   font-weight: 500;
   line-height: 0.85;
   letter-spacing: -0.04em;
