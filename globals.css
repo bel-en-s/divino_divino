@@ -33,6 +33,7 @@
 body {
   background-color: var(--tone-400);
   color: var(--tone-100);
+  overflow-x: hidden;
 }
 
 h1,

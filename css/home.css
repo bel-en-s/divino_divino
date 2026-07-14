@@ -548,6 +548,10 @@
   font-size: 0.9rem !important;
 }
 
+.workflow-title {
+  font-size: clamp(1.5rem, 3vw, 2rem) !important;
+}
+
 .about-clouds {
   color: blue;
 }
@@ -569,21 +573,25 @@
     order: 1;
   }
 
-  .about-copy .container h3 {
-    padding: 4rem 0;
-  }
-
-  .about-callout {
-    width: 85%;
+  .about-copy .container {
+    gap: 3rem;
   }
 
   .about-copy .container h3 {
+    padding: 3rem 0 0;
     width: 100%;
   }
 
   .about-copy .container .about-copy-info {
-    width: 90%;
-    max-width: 400px;
+    width: 100%;
+  }
+
+  .about-copy .container .about-copy-info a {
+    width: 100%;
+  }
+
+  .about-callout {
+    width: 85%;
   }
 
   .banner {
