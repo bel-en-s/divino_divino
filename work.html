@@ -110,15 +110,13 @@
         flex: 1;
         overflow: hidden;
         min-height: 0;
-        perspective: 1200px;
       }
       .work-reel-inner {
         display: flex;
         height: 100%;
         align-items: center;
-        gap: 0;
+        gap: 4vw;
         will-change: transform;
-        transform-style: preserve-3d;
       }
       .work-reel video {
         height: auto;
@@ -216,15 +214,14 @@
 
       const reel = document.querySelector(".work-reel-inner");
       if (reel) {
-        const videos = reel.querySelectorAll("video");
-        const totalWidth = (videos.length / 3 - 1) * window.innerWidth;
+        const totalWidth = reel.scrollWidth - window.innerWidth;
         gsap.to(reel, {
           x: -totalWidth,
           ease: "none",
           scrollTrigger: {
             trigger: ".work-reel-section",
             start: "top top",
-            end: "+=" + (videos.length / 3) * window.innerHeight,
+            end: "+=" + (reel.scrollWidth / window.innerWidth) * window.innerHeight,
             scrub: 1,
             pin: true,
           },
