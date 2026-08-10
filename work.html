@@ -1,33 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Work | Negative Films | Codegrid | MWT Sept 2025</title>
-    <link rel="icon" href="/site-icon.png" />
+    <title>Work | DIVINO DIVINO</title>
+    <link rel="icon" href="./estrella-favicon.png" />
     <meta name="theme-color" content="#000000" />
-    <meta name="author" content="Codegrid" />
+    <meta name="author" content="DIVINO DIVINO" />
+    <meta
+      name="description"
+      content="Portfolio de trabajos de DIVINO DIVINO — diseño web, branding y experiencias digitales."
+    />
 
-    <link rel="stylesheet" href="/globals.css" />
-    <link rel="stylesheet" href="/css/transition.css" />
-    <link rel="stylesheet" href="/css/menu.css" />
-    <link rel="stylesheet" href="/css/work.css" />
+    <link rel="stylesheet" href="./globals.css" />
+    <link rel="stylesheet" href="./css/preloader.css" />
+    <link rel="stylesheet" href="./css/transition.css" />
+    <link rel="stylesheet" href="./css/menu.css" />
+    <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/pixelated-text.css" />
+    <link rel="stylesheet" href="./css/film.css" />
+    <link rel="stylesheet" href="./css/footer.css" />
   </head>
   <body>
-    <!-- page transition -->
+    <div class="overlay">
+      <div class="projects">
+        <div class="projects-header"></div>
+      </div>
+      <div class="loader" aria-hidden="true">
+        <span class="logo-line-1">DIVINO</span>
+        <span class="logo-line-2">DIVINO</span>
+      </div>
+      <div class="locations">
+        <div class="locations-header"></div>
+      </div>
+    </div>
+
     <div class="transition">
       <div class="transition-overlay"></div>
     </div>
 
-    <!-- menu -->
     <nav>
       <div class="container">
-        <div class="logo">
-          <div class="logo-container">
-            <a href="/"><span></span>DIVINO DIVINO</a>
+        <div class="nav-left">
+          <div class="logo">
+            <div class="logo-container">
+              <a href="./"><img src="./logo-dd.png" alt="DIVINO DIVINO" style="height: 4.5rem; width: auto;" /></a>
+            </div>
           </div>
-        </div>
 
+        </div>
         <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
             <p>Menu</p>
@@ -36,75 +57,179 @@
       </div>
     </nav>
 
-    <div class="nav-overlay">
+    <div class="nav-overlay dark-nav">
+      <div class="nav-close-btn">✕</div>
       <div class="nav-items">
         <div class="nav-item">
-          <a href="/">Index</a>
+          <a href="./">Index</a>
         </div>
-       
+        <div class="nav-item active">
+          <a href="./work.html">Work</a>
+        </div>
         <div class="nav-item">
-          <a href="/contact">Contact</a>
+          <a href="./contact.html">Contact</a>
+        </div>
+        <div class="nav-item">
+          <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link">Instagram</a>
         </div>
       </div>
 
       <div class="nav-footer">
         <div class="container">
           <div class="nav-footer-item">
-            <a href="https://www.instagram.com/codegridweb/" target="_blank"
-              >Instagram</a
-            >
-            <a href="https://www.youtube.com/@codegrid" target="_blank"
-              >Linkedin</a
-            >
+            <a href="https://bel-en-s.com/" target="_blank">belu</a>
           </div>
-
-          <div class="nav-footer-item">
-            <a href="/contact">[ &nbsp;Drop a line &nbsp; ]</a>
+          <div class="nav-footer-item nav-footer-buttons">
+            <a
+              href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
+              class="scramble-hover"
+            >
+              [ &nbsp;hablemos de tu proyecto&nbsp; ]
+            </a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- work: slider -->
-    <div class="page work">
-      <div class="slider">
-        <canvas></canvas>
+    <style>
+      .work-reel-section {
+        height: 100vh;
+        background: #fff;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+      }
+      .work-reel-star {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        padding-top: 2rem;
+      }
+      .work-reel {
+        flex: 1;
+        overflow: hidden;
+        min-height: 0;
+        perspective: 1200px;
+      }
+      .work-reel-inner {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        gap: 0;
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+      .work-reel video {
+        height: auto;
+        max-height: 100%;
+        width: calc(100vw / 3);
+        flex-shrink: 0;
+        object-fit: cover;
+      }
+    </style>
 
-        <div class="slider-content">
-          <div class="slide-title">
-            <h1>Gilded Noise</h1>
+    <section class="work-reel-section">
+      <div class="work-reel-star">
+        <span class="work-star" style="font-size: 8vw; color: #000; line-height: 1;">&#10041;</span>
+      </div>
+      <div class="work-reel">
+        <div class="work-reel-inner">
+          <video src="./work-videos/AWK.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/Filoza.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/cartografias.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/despierta.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/divino.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/lisboa.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/nerd.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/rauw.mp4" autoplay muted loop playsinline></video>
+          <video src="./work-videos/velasco.mp4" autoplay muted loop playsinline></video>
+        </div>
+      </div>
+    </section>
+
+    <footer style="z-index:1">
+      <div class="footer-row form">
+        <div class="container">
+          <div class="footer-name big-mark" data-reveal>
+            <span class="row"><span>DIVINO</span></span>
+            <span class="row"><span>DIVINO</span></span>
           </div>
 
-          <div class="slide-description">
+          <div class="footer-form-copy">
             <p>
-              Heat, gold, and the sharp glint of teeth caught in a half-lit
-              confession.
+              Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.
             </p>
-
-            <div class="slide-info">
-              <p>Type. Still</p>
-              <p>Field. Cinematic</p>
-              <p>Date. 2025</p>
-            </div>
-
-            <div class="slide-link">
-              <a href="/film" class="scramble-hover">[ View Full Project ]</a>
-            </div>
           </div>
-        </div>
 
-        <div class="slide-footer">
-          <div class="container">
-            <p>Selected Works</p>
-            <p>[ &nbsp;Click Through&nbsp; ]</p>
+          <div class="footer-submit-btn">
+            <a href="./contact.html" class="scramble-hover">
+              [ &nbsp;Hablemos de tu proyecto&nbsp; ]
+            </a>
           </div>
         </div>
       </div>
-    </div>
 
-    <script type="module" src="/scripts/transition.js"></script>
-    <script type="module" src="/scripts/menu.js"></script>
-    <script type="module" src="/scripts/work.js"></script>
-    <script type="module" src="/scripts/hover.js"></script>
+      <div class="footer-row meta">
+        <div class="container">
+          <div class="footer-meta-row">
+            <div class="footer-info">
+              <a href="https://www.instagram.com/divinodivino_/" target="_blank" class="footer-social-link">
+                <svg width="20" height="20" viewBox="0 0 35 35" fill="none">
+                  <rect x="2.5" y="2.5" width="30" height="30" rx="8" stroke="currentColor" stroke-width="2.5"></rect>
+                  <circle cx="17.5" cy="17.5" r="7.5" stroke="currentColor" stroke-width="2.5"></circle>
+                  <circle cx="26" cy="9" r="1.5" fill="currentColor"></circle>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Instagram
+              </a>
+              <a href="mailto:holadivinodivino@gmail.com" class="footer-social-link" style="margin-top: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
+                  <polyline points="22,5 12,13 2,5"></polyline>
+                </svg>
+                holadivinodivino@gmail.com
+              </a>
+            </div>
+          </div>
+
+          <div class="footer-meta-row">
+            <p>Developed by DIVINO DIVINO</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./scripts/film.js"></script>
+    <script>
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to(".work-star", {
+        rotate: 360,
+        duration: 6,
+        ease: "none",
+        repeat: -1,
+      });
+
+      const reel = document.querySelector(".work-reel-inner");
+      if (reel) {
+        const videos = reel.querySelectorAll("video");
+        const totalWidth = (videos.length / 3 - 1) * window.innerWidth;
+        gsap.to(reel, {
+          x: -totalWidth,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".work-reel-section",
+            start: "top top",
+            end: "+=" + (videos.length / 3) * window.innerHeight,
+            scrub: 1,
+            pin: true,
+          },
+        });
+      }
+    </script>
   </body>
 </html>
