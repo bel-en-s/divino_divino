@@ -17,8 +17,6 @@
     <link rel="stylesheet" href="./css/transition.css" />
     <link rel="stylesheet" href="./css/menu.css" />
     <link rel="stylesheet" href="./css/home.css" />
-    <link rel="stylesheet" href="./css/pixelated-text.css" />
-    <link rel="stylesheet" href="./css/film.css" />
     <link rel="stylesheet" href="./css/footer.css" />
   </head>
   <body>
@@ -47,8 +45,8 @@
               <a href="./"><img src="./logo-dd.png" alt="DIVINO DIVINO" style="height: 4.5rem; width: auto;" /></a>
             </div>
           </div>
-
         </div>
+        <div class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-right: 0.75rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;" title="Toggle sound">sound on</div>
         <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
             <p>Menu</p>
@@ -92,56 +90,127 @@
     </div>
 
     <style>
-      .work-reel-section {
+      .work-hero {
         height: 100vh;
-        background: #fff;
+        background: #E3E4D8;
         display: flex;
         flex-direction: column;
         overflow: hidden;
       }
-      .work-reel-star {
+      .work-hero-footer {
+        position: absolute;
+        bottom: 30%;
+        left: 50%;
+        transform: translate(-50%, 50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 2;
+        min-height: 120px;
+        justify-content: center;
+      }
+      .work-project-name {
+        font-family: "Cossette Titre", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 0.5rem;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .work-info {
         display: flex;
         justify-content: center;
-        align-items: center;
+        gap: 1vw;
+        padding: 0 2rem;
         flex-shrink: 0;
-        padding-top: 2rem;
+        z-index: 2;
+        min-height: 3.6rem;
+        align-items: flex-start;
+      }
+      .work-info-col {
+        max-width: 220px;
+        font-family: "Cossette Titre", sans-serif;
+        font-size: 0.9rem;
+        line-height: 1.5;
+        color: #333;
+        text-align: left;
+      }
+      .work-see-link {
+        display: inline-block;
+        margin-top: 0.4rem;
+        font-size: 0.8rem;
+        color: #000;
+        text-decoration: none;
+        border-bottom: 1px solid #000;
+        transition: opacity 0.2s;
+      }
+      .work-see-link:hover {
+        opacity: 0.6;
       }
       .work-reel {
         flex: 1;
+        position: relative;
         overflow: hidden;
-        min-height: 0;
-      }
-      .work-reel-inner {
-        display: flex;
-        height: 100%;
-        align-items: center;
-        gap: 4vw;
-        will-change: transform;
       }
       .work-reel video {
+        position: absolute;
+        top: 120%;
+        left: 50%;
+        width: calc(100vw / 5);
         height: auto;
-        max-height: 100%;
-        width: calc(100vw / 3);
-        flex-shrink: 0;
         object-fit: cover;
+        transform: translate(-50%, -50%);
+        border-radius: 4px;
+        transition: filter 0.3s;
+      }
+      .work-reel video.is-center {
+        z-index: 10;
+      }
+      .work-reel video:not(.is-center) {
+        filter: brightness(0.35);
+        pointer-events: none;
+      }
+      @media (max-width: 768px) {
+        .work-reel video {
+          width: calc(100vw / 2.5);
+        }
+        .work-info {
+          gap: 3vw;
+          padding: 0.5rem 1rem 0;
+        }
+        .work-info-col {
+          font-size: 0.75rem;
+          max-width: 140px;
+        }
+      }
+      @media (min-width: 769px) {
+        .work-reel video {
+          width: calc(100vw / 3.5);
+        }
       }
     </style>
 
-    <section class="work-reel-section">
-      <div class="work-reel-star">
-        <span class="work-star" style="font-size: 8vw; color: #000; line-height: 1;">&#10041;</span>
-      </div>
+    <section class="work-hero">
       <div class="work-reel">
-        <div class="work-reel-inner">
-          <video src="./work-videos/AWK.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/Filoza.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/cartografias.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/despierta.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/divino.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/lisboa.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/nerd.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/rauw.mp4" autoplay muted loop playsinline></video>
-          <video src="./work-videos/velasco.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/AWK.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/Filoza.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/cartografias.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/despierta.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/divino.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/lisboa.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/nerd.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/rauw.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/velasco.mp4" autoplay muted loop playsinline></video>
+      </div>
+      <div class="work-hero-footer">
+        <span class="work-star" style="font-size: 5vw; color: #000; line-height: 1;">&#10041;</span>
+        <div class="work-project-name"></div>
+        <div class="work-info">
+          <div class="work-info-col work-info-left"></div>
+          <div class="work-info-col work-info-right">
+            <a href="#" target="_blank" class="work-see-link">See work ↗</a>
+          </div>
         </div>
       </div>
     </section>
@@ -201,7 +270,6 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script type="module" src="/src/main.js"></script>
-    <script type="module" src="./scripts/film.js"></script>
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
@@ -212,21 +280,173 @@
         repeat: -1,
       });
 
-      const reel = document.querySelector(".work-reel-inner");
-      if (reel) {
-        const totalWidth = reel.scrollWidth - window.innerWidth;
-        gsap.to(reel, {
-          x: -totalWidth,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".work-reel-section",
-            start: "top top",
-            end: "+=" + (reel.scrollWidth / window.innerWidth) * window.innerHeight,
-            scrub: 1,
-            pin: true,
-          },
-        });
+      const reel = document.querySelector(".work-reel");
+      const nameEl = document.querySelector(".work-project-name");
+      const infoLeft = document.querySelector(".work-info-left");
+      const infoRight = document.querySelector(".work-info-right");
+      const videos = reel.querySelectorAll("video");
+      const count = videos.length;
+      const radiusX = window.innerWidth * (window.innerWidth <= 768 ? 0.65 : 0.65);
+      const radiusY = window.innerHeight * 0.95;
+      let currentCenter = 0;
+
+      const projectNames = {
+        "AWK.mp4": "CREATIVE WEB DESIGN",
+        "Filoza.mp4": "E-COMMERCE & WEB",
+        "cartografias.mp4": "3D INTERACTIVE SITE",
+        "despierta.mp4": "VISUAL IDENTITY & WEB",
+        "divino.mp4": "CREATIVE WEB DESIGN",
+        "lisboa.mp4": "3D INTERACTIVE SITE",
+        "nerd.mp4": "VISUAL IDENTITY & WEB",
+        "rauw.mp4": "3D INTERACTIVE SITE",
+        "velasco.mp4": "E-COMMERCE & WEB",
+      };
+
+      const projectColors = {
+        "AWK.mp4": "#87CEEB",
+        "Filoza.mp4": "#c00000",
+        "cartografias.mp4": "#f5e6d3",
+        "despierta.mp4": "#87CEEB",
+        "divino.mp4": "#c00000",
+        "lisboa.mp4": "#f5e6d3",
+        "nerd.mp4": "#87CEEB",
+        "rauw.mp4": "#c00000",
+        "velasco.mp4": "#f5e6d3",
+      };
+
+      const projectDesc = {
+        "AWK.mp4": {
+          left: "AWK es una agencia enfocada en motion design, explorando texturas visuales y ritmos cinéticos. Cada pieza construye una identidad en movimiento.",
+          url: "https://www.awk.agency/",
+        },
+        "Filoza.mp4": {
+          left: "Filoza trabaja la joyería artesanal con una mirada contemporánea. La identidad visual refleja lo hecho a mano y lo atemporal.",
+          url: "https://filozajoyas.com/",
+        },
+        "cartografias.mp4": {
+          left: "Cartografías mapea territorios visuales y cruces narrativos. Un proyecto editorial que transforma datos e imágenes en historias.",
+          url: "https://www.behance.net/gallery/214474755/webgl-image-visualizator",
+        },
+        "despierta.mp4": {
+          left: "Campaña visual que explora la conexión entre imagen, sonido y emoción. Cada frame construye una atmósfera inmersiva y sensorial.",
+          url: "https://www.behance.net/gallery/233510093/Brand-Web-Ayurbeda",
+        },
+        "divino.mp4": {
+          left: "Pieza que condensa la identidad del estudio en una narrativa visual. Movimiento, ritmo y dirección creativa en estado puro.",
+          url: "https://divinodivino.com.ar/",
+        },
+        "lisboa.mp4": {
+          left: "Serie visual inspirada en Lisboa: sus luces, calles y textura cinematográfica. Un viaje sensorial entre lo real y lo soñado.",
+          url: "https://www.behance.net/gallery/215992165/webGL-inmersive-landing-Tienda-Lizboa",
+        },
+        "nerd.mp4": {
+          left: "Nerd cruza cultura digital, gaming y estética glitch. Contenido visual que juega con lo analógico y lo post-digital.",
+          url: "https://nerd-studios.shop/",
+        },
+        "rauw.mp4": {
+          left: "Visuales y loops para Rauw, explorando ritmos latinos con una mirada contemporánea. Color, corte y pulso en cada secuencia.",
+          url: "https://www.behance.net/gallery/228985437/Landing-page-scenography-Raw-Alejandro",
+        },
+        "velasco.mp4": {
+          left: "Retrato audiovisual entre lo documental y lo poético. Velasco captura la esencia autoral con sensibilidad y oficio.",
+          url: "https://velascodeautores.com.ar/",
+        },
+      };
+
+      function getVideoName(video) {
+        const src = video.getAttribute("src");
+        const filename = src.split("/").pop();
+        return projectNames[filename] || filename;
       }
+
+      function getVideoColor(video) {
+        const src = video.getAttribute("src");
+        const filename = src.split("/").pop();
+        return projectColors[filename] || "#fff";
+      }
+
+      function getVideoDesc(video) {
+        const src = video.getAttribute("src");
+        const filename = src.split("/").pop();
+        return projectDesc[filename] || { left: "", right: "", url: "" };
+      }
+
+      function updateProjectInfo(video) {
+        const name = getVideoName(video);
+        const desc = getVideoDesc(video);
+        if (nameEl) nameEl.textContent = name;
+        if (infoLeft) infoLeft.textContent = desc.left;
+        if (infoRight) {
+          const link = infoRight.querySelector("a");
+          if (link) link.href = desc.url;
+        }
+      }
+
+      function positionVideos(offsetAngle) {
+        let bestIdx = 0;
+        let bestDist = Infinity;
+        videos.forEach((video, i) => {
+          const angle = (360 / count) * i + offsetAngle;
+          const rad = (angle * Math.PI) / 180;
+          const x = Math.cos(rad) * radiusX;
+          const y = Math.sin(rad) * radiusY;
+          video.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+
+          const distToCenter = Math.abs(Math.sin(rad) + 1) + Math.abs(Math.cos(rad));
+          if (distToCenter < bestDist) {
+            bestDist = distToCenter;
+            bestIdx = i;
+          }
+        });
+
+        if (bestIdx !== currentCenter) {
+          videos[currentCenter]?.classList.remove("is-center");
+          videos[bestIdx]?.classList.add("is-center");
+          currentCenter = bestIdx;
+          updateProjectInfo(videos[bestIdx]);
+          if (soundOn) {
+            snapSound.currentTime = 0;
+            snapSound.play();
+          }
+        }
+      }
+
+      const snapSound = new Audio("./freesound_gamestudio-material-gold-394476.mp3");
+      snapSound.volume = 0.4;
+      let soundOn = true;
+
+      const soundBtn = document.querySelector(".sound-toggle-btn");
+      soundBtn.addEventListener("click", () => {
+        soundOn = !soundOn;
+        soundBtn.textContent = soundOn ? "sound on" : "sound off";
+      });
+
+      const step = 360 / count;
+      const totalAngle = 360 - step;
+      const startAngle = 270;
+
+      videos[0].classList.add("is-center");
+      updateProjectInfo(videos[0]);
+      positionVideos(startAngle);
+
+      const fullRotations = 50;
+      const scrollPerRotation = window.innerHeight * 8;
+
+      gsap.to({ val: startAngle }, {
+        val: startAngle + 360 * fullRotations,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".work-hero",
+          start: "top top",
+          end: "+=" + scrollPerRotation * fullRotations,
+          scrub: 0.5,
+          pin: true,
+        },
+        onUpdate() {
+          const obj = this.targets()[0];
+          positionVideos(obj.val);
+        },
+      });
     </script>
   </body>
 </html>
