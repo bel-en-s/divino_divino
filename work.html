@@ -46,7 +46,7 @@
             </div>
           </div>
         </div>
-        <div class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-right: 0.75rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;" title="Toggle sound">sound on</div>
+        <div class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.75rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;" title="Toggle sound">sound on</div>
         <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
             <p>Menu</p>
@@ -99,39 +99,35 @@
       }
       .work-hero-footer {
         position: absolute;
-        bottom: 30%;
+        bottom: 20%;
         left: 50%;
         transform: translate(-50%, 50%);
         display: flex;
         flex-direction: column;
         align-items: center;
         z-index: 2;
-        min-height: 120px;
-        justify-content: center;
       }
       .work-project-name {
         font-family: "Cossette Titre", sans-serif;
-        font-size: 2rem;
+        font-size: 1.2rem;
         font-weight: 700;
         color: #000;
-        margin-bottom: 0.5rem;
-        text-align: center;
-        flex-shrink: 0;
+        margin-bottom: 0.1rem;
+        line-height: 1;
+        text-align: left;
       }
       .work-info {
         display: flex;
         justify-content: center;
-        gap: 1vw;
+        gap: 6vw;
         padding: 0 2rem;
         flex-shrink: 0;
         z-index: 2;
-        min-height: 3.6rem;
-        align-items: flex-start;
       }
       .work-info-col {
         max-width: 220px;
         font-family: "Cossette Titre", sans-serif;
-        font-size: 0.9rem;
+        font-size: 0.5rem;
         line-height: 1.5;
         color: #333;
         text-align: left;
@@ -139,7 +135,7 @@
       .work-see-link {
         display: inline-block;
         margin-top: 0.4rem;
-        font-size: 0.8rem;
+        font-size: 0.55rem;
         color: #000;
         text-decoration: none;
         border-bottom: 1px solid #000;
@@ -147,6 +143,21 @@
       }
       .work-see-link:hover {
         opacity: 0.6;
+      }
+      .work-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.3rem;
+        margin-top: 0.5rem;
+      }
+      .work-tag {
+        background: #000;
+        color: #fff;
+        font-family: "Cossette Titre", sans-serif;
+        font-size: 0.65rem;
+        padding: 4px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
       }
       .work-reel {
         flex: 1;
@@ -171,17 +182,40 @@
         filter: brightness(0.35);
         pointer-events: none;
       }
+      @media (max-width: 1000px) {
+        a, p {
+          font-size: .725rem;
+        }
+      }
       @media (max-width: 768px) {
         .work-reel video {
-          width: calc(100vw / 2.5);
+          width: calc(100vw / 2);
+          top: 50%;
+        }
+        .work-hero-footer {
+          align-items: flex-start;
+          left: 1.5rem;
+          transform: translate(0, 50%);
+        }
+        .work-project-name {
+          font-size: 0.6rem;
+          text-align: left;
         }
         .work-info {
+          justify-content: flex-start;
           gap: 3vw;
-          padding: 0.5rem 1rem 0;
+          padding: 0;
         }
         .work-info-col {
-          font-size: 0.75rem;
+          font-size: 0.35rem;
           max-width: 140px;
+        }
+        .work-tag {
+          font-size: 0.4rem;
+          padding: 1px 6px;
+        }
+        .work-see-link {
+        font-size: 0.65rem;
         }
       }
       @media (min-width: 769px) {
@@ -202,14 +236,18 @@
         <video src="./work-videos/nerd.mp4" autoplay muted loop playsinline></video>
         <video src="./work-videos/rauw.mp4" autoplay muted loop playsinline></video>
         <video src="./work-videos/velasco.mp4" autoplay muted loop playsinline></video>
+        <video src="./work-videos/sam.mov" autoplay muted loop playsinline></video>
       </div>
       <div class="work-hero-footer">
         <span class="work-star" style="font-size: 5vw; color: #000; line-height: 1;">&#10041;</span>
-        <div class="work-project-name"></div>
         <div class="work-info">
-          <div class="work-info-col work-info-left"></div>
+          <div class="work-info-col work-info-left">
+            <div class="work-project-name"></div>
+            <p class="work-desc"></p>
+          </div>
           <div class="work-info-col work-info-right">
             <a href="#" target="_blank" class="work-see-link">See work ↗</a>
+            <div class="work-tags"></div>
           </div>
         </div>
       </div>
@@ -282,11 +320,12 @@
 
       const reel = document.querySelector(".work-reel");
       const nameEl = document.querySelector(".work-project-name");
-      const infoLeft = document.querySelector(".work-info-left");
-      const infoRight = document.querySelector(".work-info-right");
+      const descEl = document.querySelector(".work-desc");
+      const tagsEl = document.querySelector(".work-tags");
+      const seeLink = document.querySelector(".work-see-link");
       const videos = reel.querySelectorAll("video");
       const count = videos.length;
-      const radiusX = window.innerWidth * (window.innerWidth <= 768 ? 0.65 : 0.65);
+      const radiusX = window.innerWidth * (window.innerWidth <= 768 ? 1.2 : 0.65);
       const radiusY = window.innerHeight * 0.95;
       let currentCenter = 0;
 
@@ -299,7 +338,8 @@
         "lisboa.mp4": "3D INTERACTIVE SITE",
         "nerd.mp4": "VISUAL IDENTITY & WEB",
         "rauw.mp4": "3D INTERACTIVE SITE",
-        "velasco.mp4": "E-COMMERCE & WEB",
+        "velasco.mp4": "WORDPRESS E-COMMERCE",
+        "sam.mov": "CREATIVE WEB DESIGN",
       };
 
       const projectColors = {
@@ -312,44 +352,59 @@
         "nerd.mp4": "#87CEEB",
         "rauw.mp4": "#c00000",
         "velasco.mp4": "#f5e6d3",
+        "sam.mov": "#87CEEB",
       };
 
       const projectDesc = {
         "AWK.mp4": {
           left: "AWK es una agencia enfocada en motion design, explorando texturas visuales y ritmos cinéticos. Cada pieza construye una identidad en movimiento.",
           url: "https://www.awk.agency/",
+          tags: ["Gsap", "React", "Astro"],
         },
         "Filoza.mp4": {
           left: "Filoza trabaja la joyería artesanal con una mirada contemporánea. La identidad visual refleja lo hecho a mano y lo atemporal.",
           url: "https://filozajoyas.com/",
+          tags: ["Woocommerce", "Wordpress"],
         },
         "cartografias.mp4": {
           left: "Cartografías mapea territorios visuales y cruces narrativos. Un proyecto editorial que transforma datos e imágenes en historias.",
           url: "https://www.behance.net/gallery/214474755/webgl-image-visualizator",
+          tags: ["WebGL", "Three.js"],
         },
         "despierta.mp4": {
           left: "Campaña visual que explora la conexión entre imagen, sonido y emoción. Cada frame construye una atmósfera inmersiva y sensorial.",
           url: "https://www.behance.net/gallery/233510093/Brand-Web-Ayurbeda",
+          tags: ["Wordpress", "Photoshop"],
         },
         "divino.mp4": {
           left: "Pieza que condensa la identidad del estudio en una narrativa visual. Movimiento, ritmo y dirección creativa en estado puro.",
           url: "https://divinodivino.com.ar/",
+          tags: ["Shaders", "WebGL", "Gsap"],
         },
         "lisboa.mp4": {
           left: "Serie visual inspirada en Lisboa: sus luces, calles y textura cinematográfica. Un viaje sensorial entre lo real y lo soñado.",
           url: "https://www.behance.net/gallery/215992165/webGL-inmersive-landing-Tienda-Lizboa",
+          tags: ["Three.js", "WebGL", "Blender"],
         },
         "nerd.mp4": {
           left: "Nerd cruza cultura digital, gaming y estética glitch. Contenido visual que juega con lo analógico y lo post-digital.",
           url: "https://nerd-studios.shop/",
+          tags: ["Photoshop", "Gsap", "Shopify"],
         },
         "rauw.mp4": {
           left: "Visuales y loops para Rauw, explorando ritmos latinos con una mirada contemporánea. Color, corte y pulso en cada secuencia.",
           url: "https://www.behance.net/gallery/228985437/Landing-page-scenography-Raw-Alejandro",
+          tags: ["Spline", "Blender", "HTML", "JS"],
         },
         "velasco.mp4": {
           left: "Retrato audiovisual entre lo documental y lo poético. Velasco captura la esencia autoral con sensibilidad y oficio.",
           url: "https://velascodeautores.com.ar/",
+          tags: ["E-commerce", "Wordpress", "JS", "HTML"],
+        },
+        "sam.mov": {
+          left: "Proyecto visual para Sam, explorando ritmo, textura y una estética cinematográfica contemporánea.",
+          url: "https://sscorpiomag.com/",
+          tags: ["Wordpress", "E-commerce"],
         },
       };
 
@@ -368,31 +423,46 @@
       function getVideoDesc(video) {
         const src = video.getAttribute("src");
         const filename = src.split("/").pop();
-        return projectDesc[filename] || { left: "", right: "", url: "" };
+        return projectDesc[filename] || { left: "", url: "", tags: [] };
       }
 
       function updateProjectInfo(video) {
         const name = getVideoName(video);
         const desc = getVideoDesc(video);
         if (nameEl) nameEl.textContent = name;
-        if (infoLeft) infoLeft.textContent = desc.left;
-        if (infoRight) {
-          const link = infoRight.querySelector("a");
-          if (link) link.href = desc.url;
-        }
+        if (descEl) descEl.textContent = desc.left;
+        if (tagsEl) tagsEl.innerHTML = desc.tags.map(t => `<span class="work-tag">${t}</span>`).join("");
+        if (seeLink) seeLink.href = desc.url;
       }
 
       function positionVideos(offsetAngle) {
         let bestIdx = 0;
         let bestDist = Infinity;
-        videos.forEach((video, i) => {
-          const angle = (360 / count) * i + offsetAngle;
-          const rad = (angle * Math.PI) / 180;
-          const x = Math.cos(rad) * radiusX;
-          const y = Math.sin(rad) * radiusY;
-          video.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+        const isMobile = window.innerWidth <= 768;
+        const stepAngle = 360 / count;
 
-          const distToCenter = Math.abs(Math.sin(rad) + 1) + Math.abs(Math.cos(rad));
+        videos.forEach((video, i) => {
+          let distToCenter;
+
+          if (isMobile) {
+            const virtualIndex = ((offsetAngle / stepAngle) % count + count) % count;
+            let rawDist = i - virtualIndex;
+            if (rawDist > count / 2) rawDist -= count;
+            if (rawDist < -count / 2) rawDist += count;
+            const y = rawDist * (window.innerHeight * 0.45);
+            video.style.top = '50%';
+            video.style.left = '50%';
+            video.style.transform = `translate(-50%, ${y}px)`;
+            distToCenter = Math.abs(y);
+          } else {
+            const angle = stepAngle * i + offsetAngle;
+            const rad = (angle * Math.PI) / 180;
+            const x = Math.cos(rad) * radiusX;
+            const y = Math.sin(rad) * radiusY;
+            video.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+            distToCenter = Math.abs(Math.sin(rad) + 1) + Math.abs(Math.cos(rad));
+          }
+
           if (distToCenter < bestDist) {
             bestDist = distToCenter;
             bestIdx = i;
@@ -415,30 +485,26 @@
       snapSound.volume = 0.4;
       let soundOn = true;
 
-      const soundBtn = document.querySelector(".sound-toggle-btn");
-      soundBtn.addEventListener("click", () => {
-        soundOn = !soundOn;
-        soundBtn.textContent = soundOn ? "sound on" : "sound off";
-      });
+      const nerdVideo = reel.querySelector('video[src$="nerd.mp4"]');
+      if (nerdVideo) {
+        nerdVideo.addEventListener("loadedmetadata", () => {
+          nerdVideo.currentTime = 3;
+        });
+      }
 
-      const step = 360 / count;
-      const totalAngle = 360 - step;
       const startAngle = 270;
 
       videos[0].classList.add("is-center");
       updateProjectInfo(videos[0]);
       positionVideos(startAngle);
 
-      const fullRotations = 50;
-      const scrollPerRotation = window.innerHeight * 8;
-
       gsap.to({ val: startAngle }, {
-        val: startAngle + 360 * fullRotations,
+        val: startAngle + 3600,
         ease: "none",
         scrollTrigger: {
           trigger: ".work-hero",
           start: "top top",
-          end: "+=" + scrollPerRotation * fullRotations,
+          end: "+=" + window.innerHeight * 15,
           scrub: 0.5,
           pin: true,
         },
