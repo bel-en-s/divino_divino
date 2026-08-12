@@ -1,6 +1,6 @@
 # DIVINO DIVINO
 
-> DIVINO DIVINO es un estudio de diseño web creativo y posicionamiento SEO con sede en Buenos Aires, Argentina. Fundado y operado por Bel (directora de arte interactiva) y Dani (estrategia de contenido y SEO). Hacen sitios web, e-commerce y experiencias digitales para pymes y estudios en Argentina y el resto del mundo.
+> DIVINO DIVINO es un estudio de diseño web creativo white label con sede en Buenos Aires, Argentina. Es el partner de diseño y desarrollo web de estudios de branding, agencias de diseño y marcas premium que quieren terciarizar su producción digital. Fundado y operado por Bel (directora de arte interactiva). Hacen diseño web creativo, motion design 2D/3D, identidad visual y SEO, trabajando con marcas en Argentina y en todo el mundo.
 
 ## Datos clave
 
@@ -9,32 +9,33 @@
 - Sitio oficial: https://divinodivino.com.ar/
 - Idiomas de atención: Español (principal), Inglés
 - Zona de servicio: Argentina y trabajo remoto a nivel mundial
-- Email: belen.seoane.palmieri@gmail.com
-- WhatsApp: +54 9 11 6918 8741
+- Email: holadivinodivino@gmail.com
 - WhatsApp: +54 9 11 6918 8741
 
 ## Equipo
 
 - **Bel** — Directora de arte interactiva. Artista multimedia. Experta en diseño web premium, animación web y desarrollo de producto. Portfolio personal: https://bel-en-s.com/
 
-
 ## Servicios
 
+- **Diseño web white label**: producción de diseño y desarrollo web para estudios de branding y agencias, bajo su marca.
 - **Diseño web creativo**: sitios web, landing pages y experiencias digitales inmersivas con animaciones e interacciones complejas.
-- **Posicionamiento SEO**: visibilidad orgánica en Google, Google Maps y chatbots/LLMs para pymes y estudios en Argentina.
-- **E-commerce**: tiendas online propias sin comisiones por venta, con hosting incluido y facturación automática.
-- **Dirección de arte y branding**: análisis de brandbook, rediseño visual y sistemas de marca digitales.
-- **Edición de reels y contenido**: animaciones, subtítulos, posteos para redes sociales.
+- **Motion design 2D y 3D**: animación, shaders y experiencias interactivas.
+- **Identidad visual**: dirección de arte, branding y sistemas de identidad digital.
+- **SEO y posicionamiento**: visibilidad orgánica en Google y optimización técnica.
 - **Email marketing**: para mantener a la audiencia enganchada.
 
 ## Clientes ideales
 
-- Pymes argentinas que quieren una presencia digital alineada al nivel de su negocio.
-- Estudios y marcas premium que buscan web con animaciones complejas y dirección de arte.
+- Estudios de branding que quieren ofrecer web sin montar un área de desarrollo.
+- Agencias de diseño que terciarizan su producción web.
+- Marcas premium que buscan web con animaciones complejas y dirección de arte.
 
 ## Páginas principales
 
 - [Inicio](https://divinodivino.com.ar/)
+- [White Label](https://divinodivino.com.ar/white-label)
+- [Work](https://divinodivino.com.ar/work)
 - [Contacto](https://divinodivino.com.ar/contact)
 
 ## Proyectos relacionados

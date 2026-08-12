@@ -198,6 +198,13 @@ nav .logo a .logo-word {
   user-select: none;
 }
 
+.nav-overlay .nav-items .nav-item-small a {
+  font-size: 2.5vw;
+  line-height: 1;
+  color: var(--tone-300);
+  letter-spacing: 0.05em;
+}
+
 .nav-overlay .nav-items .nav-item.active a {
   color: var(--tone-500);
 }
@@ -269,6 +276,10 @@ nav .logo a .logo-word {
 
   .nav-overlay .nav-items .nav-item a {
     font-size: 15vw;
+  }
+
+  .nav-overlay .nav-items .nav-item-small a {
+    font-size: 8vw;
   }
 }
 

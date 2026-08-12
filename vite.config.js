@@ -12,6 +12,7 @@ export default defineConfig({
         directors: resolve(__dirname, "directors.html"),
         contact: resolve(__dirname, "contact.html"),
         draw: resolve(__dirname, "draw.html"),
+        "white-label": resolve(__dirname, "white-label.html"),
       },
     },
     assetsInclude: ["**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.svg", "**/*.gif", "**/*.mp4", "**/*.webp", "**/*.hdr"],

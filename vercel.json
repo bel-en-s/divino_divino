@@ -9,6 +9,7 @@
     { "source": "/culture.html", "destination": "/culture", "permanent": true },
     { "source": "/directors.html", "destination": "/directors", "permanent": true },
     { "source": "/contact.html", "destination": "/contact", "permanent": true },
+    { "source": "/white-label.html", "destination": "/white-label", "permanent": true },
     { "source": "/film.html", "destination": "/film", "permanent": true }
   ],
   "rewrites": [
@@ -16,6 +17,7 @@
     { "source": "/culture", "destination": "/culture.html" },
     { "source": "/directors", "destination": "/directors.html" },
     { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/white-label", "destination": "/white-label.html" },
     { "source": "/film", "destination": "/film.html" }
   ],
   "headers": [
