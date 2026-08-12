@@ -162,9 +162,12 @@ transform:none;
 </div>
 </div>
 
+<div class="nav-right">
+<span class="lang-toggle">SWITCH LANGUAGE</span>
 <div class="menu-toggle-btn">
 <div class="menu-toggle-btn-wrapper">
-<p>Menu</p>
+<p data-i18n="menu-btn">Menu</p>
+</div>
 </div>
 </div>
 
@@ -175,15 +178,15 @@ transform:none;
 <div class="nav-items">
 
 <div class="nav-item">
-<a href="./">Index</a>
+<a href="./" data-i18n="nav-index">Index</a>
 </div>
 
 <div class="nav-item">
-<a href="./work.html">Work</a>
+<a href="./work.html" data-i18n="nav-work">Work</a>
 </div>
 
 <div class="nav-item">
-<a href="./contact.html">Contact</a>
+<a href="./contact.html" data-i18n="nav-contact">Contact</a>
 </div>
 
 </div>
@@ -519,6 +522,7 @@ new PixelDraw();
 <script type="module" src="/scripts/menu.js"></script>
 <script type="module" src="/scripts/transition.js"></script>
 <script type="module" src="/scripts/lenis-scroll.js"></script>
+<script type="module" src="/scripts/i18n.js"></script>
 
 </body>
 </html>

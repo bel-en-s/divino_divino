@@ -46,11 +46,14 @@
             </div>
           </div>
         </div>
-        <div class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.75rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;" title="Toggle sound">sound on</div>
-        <div class="menu-toggle-btn">
+        <div class="nav-right">
+          <span class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.5rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">sound on</span>
+          <span class="lang-toggle">SWITCH LANGUAGE</span>
+          <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
-            <p>Menu</p>
+            <p data-i18n="menu-btn">Menu</p>
           </div>
+        </div>
         </div>
       </div>
     </nav>
@@ -59,28 +62,28 @@
       <div class="nav-close-btn">✕</div>
       <div class="nav-items">
         <div class="nav-item">
-          <a href="./">Index</a>
+          <a href="./" data-i18n="nav-index">Index</a>
         </div>
         <div class="nav-item active">
-          <a href="./work.html">Work</a>
+          <a href="./work.html" data-i18n="nav-work">Work</a>
         </div>
         <div class="nav-item">
-          <a href="./contact.html">Contact</a>
+          <a href="./contact.html" data-i18n="nav-contact">Contact</a>
         </div>
         <div class="nav-item">
-          <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link">Instagram</a>
+          <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link" data-i18n="nav-instagram">Instagram</a>
         </div>
       </div>
 
       <div class="nav-footer">
         <div class="container">
           <div class="nav-footer-item">
-            <a href="https://bel-en-s.com/" target="_blank">belu</a>
+            <a href="https://bel-en-s.com/" target="_blank" data-i18n="nav-belu">belu</a>
           </div>
           <div class="nav-footer-item nav-footer-buttons">
             <a
               href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
-              class="scramble-hover"
+              class="scramble-hover" data-i18n="nav-cta"
             >
               [ &nbsp;hablemos de tu proyecto&nbsp; ]
             </a>
@@ -262,13 +265,13 @@
           </div>
 
           <div class="footer-form-copy">
-            <p>
+            <p data-i18n="footer-desc">
               Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.
             </p>
           </div>
 
           <div class="footer-submit-btn">
-            <a href="./contact.html" class="scramble-hover">
+            <a href="./contact.html" class="scramble-hover" data-i18n="footer-cta">
               [ &nbsp;Hablemos de tu proyecto&nbsp; ]
             </a>
           </div>
@@ -308,6 +311,7 @@
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./scripts/i18n.js"></script>
     <script>
       gsap.registerPlugin(ScrollTrigger);
 
