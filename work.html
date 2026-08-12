@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="nav-right">
-          <span class="sound-toggle-btn" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.5rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">sound on</span>
+          <span class="sound-toggle-btn" data-i18n="sound-on" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.5rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">sound on</span>
           <span class="lang-toggle">SWITCH LANGUAGE</span>
           <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
@@ -130,10 +130,10 @@
       .work-info-col {
         max-width: 220px;
         font-family: "Cossette Titre", sans-serif;
-        font-size: 0.5rem;
+        font-size: 0.35rem;
         line-height: 1.5;
         color: #333;
-        text-align: left;
+        text-align: center;
       }
       .work-see-link {
         display: inline-block;
@@ -199,10 +199,15 @@
           align-items: flex-start;
           left: 1.5rem;
           transform: translate(0, 50%);
+          width: calc(100% - 3rem);
         }
         .work-project-name {
-          font-size: 0.6rem;
+          font-size: 1rem;
           text-align: left;
+        }
+        .work-star {
+          font-size: 10vw !important;
+          align-self: flex-start;
         }
         .work-info {
           justify-content: flex-start;
@@ -210,15 +215,16 @@
           padding: 0;
         }
         .work-info-col {
-          font-size: 0.35rem;
+          font-size: 0.3rem;
           max-width: 140px;
+          text-align: left;
         }
         .work-tag {
           font-size: 0.4rem;
           padding: 1px 6px;
         }
         .work-see-link {
-        font-size: 0.65rem;
+          font-size: 0.65rem;
         }
       }
       @media (min-width: 769px) {
@@ -242,14 +248,11 @@
         <video src="./work-videos/sam.mov" autoplay muted loop playsinline></video>
       </div>
       <div class="work-hero-footer">
+        <div class="work-project-name"></div>
         <span class="work-star" style="font-size: 5vw; color: #000; line-height: 1;">&#10041;</span>
         <div class="work-info">
-          <div class="work-info-col work-info-left">
-            <div class="work-project-name"></div>
-            <p class="work-desc"></p>
-          </div>
           <div class="work-info-col work-info-right">
-            <a href="#" target="_blank" class="work-see-link">See work ↗</a>
+            <a href="#" target="_blank" class="work-see-link" data-i18n="see-work-link">See work ↗</a>
             <div class="work-tags"></div>
           </div>
         </div>
@@ -324,7 +327,6 @@
 
       const reel = document.querySelector(".work-reel");
       const nameEl = document.querySelector(".work-project-name");
-      const descEl = document.querySelector(".work-desc");
       const tagsEl = document.querySelector(".work-tags");
       const seeLink = document.querySelector(".work-see-link");
       const videos = reel.querySelectorAll("video");
@@ -361,52 +363,62 @@
 
       const projectDesc = {
         "AWK.mp4": {
-          left: "AWK es una agencia enfocada en motion design, explorando texturas visuales y ritmos cinéticos. Cada pieza construye una identidad en movimiento.",
+          es: "AWK es una agencia enfocada en motion design, explorando texturas visuales y ritmos cinéticos. Cada pieza construye una identidad en movimiento.",
+          en: "AWK is an agency focused on motion design, exploring visual textures and kinetic rhythms. Each piece builds an identity in motion.",
           url: "https://www.awk.agency/",
           tags: ["Gsap", "React", "Astro"],
         },
         "Filoza.mp4": {
-          left: "Filoza trabaja la joyería artesanal con una mirada contemporánea. La identidad visual refleja lo hecho a mano y lo atemporal.",
+          es: "Filoza trabaja la joyería artesanal con una mirada contemporánea. La identidad visual refleja lo hecho a mano y lo atemporal.",
+          en: "Filoza approaches artisanal jewelry with a contemporary perspective. The visual identity reflects the handmade and the timeless.",
           url: "https://filozajoyas.com/",
           tags: ["Woocommerce", "Wordpress"],
         },
         "cartografias.mp4": {
-          left: "Cartografías mapea territorios visuales y cruces narrativos. Un proyecto editorial que transforma datos e imágenes en historias.",
+          es: "Cartografías mapea territorios visuales y cruces narrativos. Un proyecto editorial que transforma datos e imágenes en historias.",
+          en: "Cartografías maps visual territories and narrative crossroads. An editorial project that transforms data and images into stories.",
           url: "https://www.behance.net/gallery/214474755/webgl-image-visualizator",
           tags: ["WebGL", "Three.js"],
         },
         "despierta.mp4": {
-          left: "Campaña visual que explora la conexión entre imagen, sonido y emoción. Cada frame construye una atmósfera inmersiva y sensorial.",
+          es: "Campaña visual que explora la conexión entre imagen, sonido y emoción. Cada frame construye una atmósfera inmersiva y sensorial.",
+          en: "Visual campaign exploring the connection between image, sound, and emotion. Each frame builds an immersive, sensory atmosphere.",
           url: "https://www.behance.net/gallery/233510093/Brand-Web-Ayurbeda",
           tags: ["Wordpress", "Photoshop"],
         },
         "divino.mp4": {
-          left: "Pieza que condensa la identidad del estudio en una narrativa visual. Movimiento, ritmo y dirección creativa en estado puro.",
+          es: "Pieza que condensa la identidad del estudio en una narrativa visual. Movimiento, ritmo y dirección creativa en estado puro.",
+          en: "A piece that condenses the studio's identity into a visual narrative. Movement, rhythm, and creative direction in their purest form.",
           url: "https://divinodivino.com.ar/",
           tags: ["Shaders", "WebGL", "Gsap"],
         },
         "lisboa.mp4": {
-          left: "Serie visual inspirada en Lisboa: sus luces, calles y textura cinematográfica. Un viaje sensorial entre lo real y lo soñado.",
+          es: "Serie visual inspirada en Lisboa: sus luces, calles y textura cinematográfica. Un viaje sensorial entre lo real y lo soñado.",
+          en: "Visual series inspired by Lisbon: its lights, streets, and cinematic texture. A sensory journey between the real and the imagined.",
           url: "https://www.behance.net/gallery/215992165/webGL-inmersive-landing-Tienda-Lizboa",
           tags: ["Three.js", "WebGL", "Blender"],
         },
         "nerd.mp4": {
-          left: "Nerd cruza cultura digital, gaming y estética glitch. Contenido visual que juega con lo analógico y lo post-digital.",
+          es: "Nerd cruza cultura digital, gaming y estética glitch. Contenido visual que juega con lo analógico y lo post-digital.",
+          en: "Nerd crosses digital culture, gaming, and glitch aesthetics. Visual content that plays with the analog and the post-digital.",
           url: "https://nerd-studios.shop/",
           tags: ["Photoshop", "Gsap", "Shopify"],
         },
         "rauw.mp4": {
-          left: "Visuales y loops para Rauw, explorando ritmos latinos con una mirada contemporánea. Color, corte y pulso en cada secuencia.",
+          es: "Visuales y loops para Rauw, explorando ritmos latinos con una mirada contemporánea. Color, corte y pulso en cada secuencia.",
+          en: "Visuals and loops for Rauw, exploring Latin rhythms with a contemporary lens. Color, cut, and pulse in every sequence.",
           url: "https://www.behance.net/gallery/228985437/Landing-page-scenography-Raw-Alejandro",
           tags: ["Spline", "Blender", "HTML", "JS"],
         },
         "velasco.mp4": {
-          left: "Retrato audiovisual entre lo documental y lo poético. Velasco captura la esencia autoral con sensibilidad y oficio.",
+          es: "Retrato audiovisual entre lo documental y lo poético. Velasco captura la esencia autoral con sensibilidad y oficio.",
+          en: "Audiovisual portrait between documentary and poetry. Velasco captures authorial essence with sensitivity and craft.",
           url: "https://velascodeautores.com.ar/",
-          tags: ["E-commerce", "Wordpress", "JS", "HTML"],
+          tags: ["E-commerce", "Wordpress", "JS"],
         },
         "sam.mov": {
-          left: "Proyecto visual para Sam, explorando ritmo, textura y una estética cinematográfica contemporánea.",
+          es: "Proyecto visual para Sam, explorando ritmo, textura y una estética cinematográfica contemporánea.",
+          en: "Visual project for Sam, exploring rhythm, texture, and a contemporary cinematic aesthetic.",
           url: "https://sscorpiomag.com/",
           tags: ["Wordpress", "E-commerce"],
         },
@@ -427,14 +439,13 @@
       function getVideoDesc(video) {
         const src = video.getAttribute("src");
         const filename = src.split("/").pop();
-        return projectDesc[filename] || { left: "", url: "", tags: [] };
+        return projectDesc[filename] || { es: "", en: "", url: "", tags: [] };
       }
 
       function updateProjectInfo(video) {
         const name = getVideoName(video);
         const desc = getVideoDesc(video);
         if (nameEl) nameEl.textContent = name;
-        if (descEl) descEl.textContent = desc.left;
         if (tagsEl) tagsEl.innerHTML = desc.tags.map(t => `<span class="work-tag">${t}</span>`).join("");
         if (seeLink) seeLink.href = desc.url;
       }
@@ -488,6 +499,17 @@
       const snapSound = new Audio("./freesound_gamestudio-material-gold-394476.mp3");
       snapSound.volume = 0.4;
       let soundOn = true;
+
+      const soundBtn = document.querySelector(".sound-toggle-btn");
+      if (soundBtn) {
+        soundBtn.addEventListener("click", () => {
+          soundOn = !soundOn;
+          const lang = window.currentLang || localStorage.getItem("lang") || "es";
+          const key = soundOn ? "sound-on" : "sound-off";
+          const label = (translations?.[lang]?.[key]) || (soundOn ? "sound on" : "sound off");
+          soundBtn.textContent = label;
+        });
+      }
 
       const nerdVideo = reel.querySelector('video[src$="nerd.mp4"]');
       if (nerdVideo) {

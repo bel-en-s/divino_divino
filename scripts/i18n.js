@@ -36,6 +36,9 @@ const translations = {
     "contact-email": "Email",
     "contact-message": "Mensaje",
     "contact-send": "Enviar",
+    "see-work-link": "See work",
+    "sound-on": "sound on",
+    "sound-off": "sound off",
   },
   en: {
     "lang-label": "EN",
@@ -74,6 +77,9 @@ const translations = {
     "contact-email": "Email",
     "contact-message": "Message",
     "contact-send": "Send",
+    "see-work-link": "See work",
+    "sound-on": "sound on",
+    "sound-off": "sound off",
   },
 };
 
@@ -136,6 +142,7 @@ function initLangToggle() {
 function boot() {
   translate();
   initLangToggle();
+  window.translations = translations;
 }
 
 if (document.readyState === "loading") {
