@@ -39,6 +39,13 @@ const translations = {
     "see-work-link": "See work",
     "sound-on": "sound on",
     "sound-off": "sound off",
+    "services-offer-heading": "Servicios",
+    "service-identidad": "Identidad visual",
+    "service-web": "Diseño web & desarrollo all in one",
+    "service-seo": "SEO y posicionamiento",
+    "service-email": "Email marketing",
+    "service-motion": "Motion & animations",
+    "service-design": "2D & 3D design",
   },
   en: {
     "lang-label": "EN",
@@ -80,6 +87,13 @@ const translations = {
     "see-work-link": "See work",
     "sound-on": "sound on",
     "sound-off": "sound off",
+    "services-offer-heading": "Services",
+    "service-identidad": "Visual identity",
+    "service-web": "Web design & development all in one",
+    "service-seo": "SEO & positioning",
+    "service-email": "Email marketing",
+    "service-motion": "Motion & animations",
+    "service-design": "2D & 3D design",
   },
 };
 

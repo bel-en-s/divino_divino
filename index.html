@@ -413,6 +413,24 @@
       </div>
     </section>
 
+    <section class="workflow services-offer" data-reveal>
+      <div class="container">
+        <span class="service-star h1 service-star-red services-offer-star">
+          <span class="service-star-icon">✷</span>
+        </span>
+        <h2 class="workflow-title" data-i18n="services-offer-heading">Servicios</h2>
+
+        <div class="services-offer-grid">
+          <span class="services-offer-pill" data-i18n="service-identidad">Identidad visual</span>
+          <span class="services-offer-pill" data-i18n="service-web">Diseño web & desarrollo all in one</span>
+          <span class="services-offer-pill" data-i18n="service-seo">SEO y posicionamiento</span>
+          <span class="services-offer-pill" data-i18n="service-email">Email marketing</span>
+          <span class="services-offer-pill services-offer-pill-tight" data-i18n="service-motion">Motion & animations</span>
+          <span class="services-offer-pill" data-i18n="service-design">2D & 3D design</span>
+        </div>
+      </div>
+    </section>
+
     <section class="nosotras" data-reveal data-nav-label="quienes somos?">
       <div class="container">
         <span class="service-star h1 service-star-black nosotras-star">
@@ -545,6 +563,23 @@
         const deg = window.scrollY * 0.1;
         stars.forEach(s => s.style.transform = `rotate(${deg}deg)`);
       });
+
+      const pills = document.querySelectorAll('.services-offer-pill');
+      const intensities = [6, 14, 10, 18, 8, 16];
+      function tiltPills() {
+        const vh = window.innerHeight;
+        pills.forEach((pill, i) => {
+          const rect = pill.getBoundingClientRect();
+          const center = rect.top + rect.height / 2;
+          const dist = center - vh / 2;
+          const t = Math.max(-1, Math.min(1, dist / (vh / 2)));
+          const dir = i % 2 === 0 ? 1 : -1;
+          const max = intensities[i % intensities.length] || 12;
+          pill.style.transform = `rotate(${t * max * dir}deg)`;
+        });
+      }
+      window.addEventListener('scroll', tiltPills);
+      tiltPills();
     </script>
   </body>
 </html>
