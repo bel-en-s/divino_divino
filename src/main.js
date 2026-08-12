@@ -1,4 +1,5 @@
 import "../globals.css";
+import { inject } from '@vercel/analytics';
 
 import "../css/preloader.css";
 import "../css/transition.css";
@@ -54,3 +55,5 @@ function initHeroVideo() {
 document.addEventListener("DOMContentLoaded", () => {
   initHeroVideo();
 });
+
+inject();
