@@ -48,7 +48,7 @@
         </div>
         <div class="nav-right">
           <span class="sound-toggle-btn" data-i18n="sound-on" style="cursor: pointer; font-size: 0.75rem; margin-left: auto; margin-right: 0.5rem; user-select: none; font-family: 'Cossette Titre', sans-serif; background: rgba(255,255,255,0.1); padding: 2px 6px; border-radius: 3px;">sound on</span>
-          <span class="lang-toggle">SWITCH LANGUAGE</span>
+          <span class="lang-toggle" style="display: none;">SWITCH LANGUAGE</span>
           <div class="menu-toggle-btn">
           <div class="menu-toggle-btn-wrapper">
             <p data-i18n="menu-btn">Menu</p>
@@ -119,6 +119,15 @@
         line-height: 1;
         text-align: left;
       }
+      .work-project-client {
+        font-family: "Cossette Titre", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: #333;
+        margin-bottom: 0.1rem;
+        line-height: 1.2;
+        text-align: left;
+      }
       .work-info {
         display: flex;
         justify-content: center;
@@ -136,13 +145,20 @@
         text-align: center;
       }
       .work-see-link {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
         margin-top: 0.4rem;
-        font-size: 0.55rem;
+        font-size: 1rem;
         color: #000;
         text-decoration: none;
         border-bottom: 1px solid #000;
         transition: opacity 0.2s;
+      }
+      .work-see-link svg {
+        width: 0.9em;
+        height: 0.9em;
+        flex-shrink: 0;
       }
       .work-see-link:hover {
         opacity: 0.6;
@@ -192,7 +208,7 @@
       }
       @media (max-width: 768px) {
         .work-reel video {
-          width: calc(100vw / 2);
+          width: calc(100vw - 3rem);
           top: 50%;
         }
         .work-hero-footer {
@@ -224,7 +240,7 @@
           padding: 1px 6px;
         }
         .work-see-link {
-          font-size: 0.65rem;
+          font-size: 1.1rem;
         }
       }
       @media (min-width: 769px) {
@@ -249,10 +265,17 @@
       </div>
       <div class="work-hero-footer">
         <div class="work-project-name"></div>
+        <div class="work-project-client"></div>
         <span class="work-star" style="font-size: 5vw; color: #000; line-height: 1;">&#10041;</span>
         <div class="work-info">
           <div class="work-info-col work-info-right">
-            <a href="#" target="_blank" class="work-see-link" data-i18n="see-work-link">See work ↗</a>
+            <a href="#" target="_blank" class="work-see-link">
+              <span data-i18n="see-work-link">See work</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="7" y1="17" x2="17" y2="7"></line>
+                <polyline points="7 7 17 7 17 17"></polyline>
+              </svg>
+            </a>
             <div class="work-tags"></div>
           </div>
         </div>
@@ -327,6 +350,7 @@
 
       const reel = document.querySelector(".work-reel");
       const nameEl = document.querySelector(".work-project-name");
+      const clientEl = document.querySelector(".work-project-client");
       const tagsEl = document.querySelector(".work-tags");
       const seeLink = document.querySelector(".work-see-link");
       const videos = reel.querySelectorAll("video");
@@ -366,60 +390,70 @@
           es: "AWK es una agencia enfocada en motion design, explorando texturas visuales y ritmos cinéticos. Cada pieza construye una identidad en movimiento.",
           en: "AWK is an agency focused on motion design, exploring visual textures and kinetic rhythms. Each piece builds an identity in motion.",
           url: "https://www.awk.agency/",
+          client: "for AWK Agency",
           tags: ["Gsap", "React", "Astro"],
         },
         "Filoza.mp4": {
           es: "Filoza trabaja la joyería artesanal con una mirada contemporánea. La identidad visual refleja lo hecho a mano y lo atemporal.",
           en: "Filoza approaches artisanal jewelry with a contemporary perspective. The visual identity reflects the handmade and the timeless.",
           url: "https://filozajoyas.com/",
+          client: "for Filoza",
           tags: ["Woocommerce", "Wordpress"],
         },
         "cartografias.mp4": {
           es: "Cartografías mapea territorios visuales y cruces narrativos. Un proyecto editorial que transforma datos e imágenes en historias.",
           en: "Cartografías maps visual territories and narrative crossroads. An editorial project that transforms data and images into stories.",
           url: "https://www.behance.net/gallery/214474755/webgl-image-visualizator",
+          client: "for Cartografías",
           tags: ["WebGL", "Three.js"],
         },
         "despierta.mp4": {
           es: "Campaña visual que explora la conexión entre imagen, sonido y emoción. Cada frame construye una atmósfera inmersiva y sensorial.",
           en: "Visual campaign exploring the connection between image, sound, and emotion. Each frame builds an immersive, sensory atmosphere.",
           url: "https://www.behance.net/gallery/233510093/Brand-Web-Ayurbeda",
+          client: "for Ayurbeda",
           tags: ["Wordpress", "Photoshop"],
         },
         "divino.mp4": {
           es: "Pieza que condensa la identidad del estudio en una narrativa visual. Movimiento, ritmo y dirección creativa en estado puro.",
           en: "A piece that condenses the studio's identity into a visual narrative. Movement, rhythm, and creative direction in their purest form.",
           url: "https://divinodivino.com.ar/",
+          client: "for DIVINO DIVINO",
           tags: ["Shaders", "WebGL", "Gsap"],
         },
         "lisboa.mp4": {
           es: "Serie visual inspirada en Lisboa: sus luces, calles y textura cinematográfica. Un viaje sensorial entre lo real y lo soñado.",
           en: "Visual series inspired by Lisbon: its lights, streets, and cinematic texture. A sensory journey between the real and the imagined.",
           url: "https://www.behance.net/gallery/215992165/webGL-inmersive-landing-Tienda-Lizboa",
+          client: "for Lisboa",
           tags: ["Three.js", "WebGL", "Blender"],
         },
         "nerd.mp4": {
           es: "Nerd cruza cultura digital, gaming y estética glitch. Contenido visual que juega con lo analógico y lo post-digital.",
           en: "Nerd crosses digital culture, gaming, and glitch aesthetics. Visual content that plays with the analog and the post-digital.",
           url: "https://nerd-studios.shop/",
+          client: "for Nerd Studios",
           tags: ["Photoshop", "Gsap", "Shopify"],
         },
         "rauw.mp4": {
           es: "Visuales y loops para Rauw, explorando ritmos latinos con una mirada contemporánea. Color, corte y pulso en cada secuencia.",
           en: "Visuals and loops for Rauw, exploring Latin rhythms with a contemporary lens. Color, cut, and pulse in every sequence.",
           url: "https://www.behance.net/gallery/228985437/Landing-page-scenography-Raw-Alejandro",
+          client: "for Rauw Alejandro",
           tags: ["Spline", "Blender", "HTML", "JS"],
         },
         "velasco.mp4": {
           es: "Retrato audiovisual entre lo documental y lo poético. Velasco captura la esencia autoral con sensibilidad y oficio.",
           en: "Audiovisual portrait between documentary and poetry. Velasco captures authorial essence with sensitivity and craft.",
           url: "https://velascodeautores.com.ar/",
+          client: "for Velasco de Autores",
           tags: ["E-commerce", "Wordpress", "JS"],
         },
         "sam.mov": {
           es: "Proyecto visual para Sam, explorando ritmo, textura y una estética cinematográfica contemporánea.",
           en: "Visual project for Sam, exploring rhythm, texture, and a contemporary cinematic aesthetic.",
           url: "https://sscorpiomag.com/",
+          client: "for SScorpio",
           tags: ["Wordpress", "E-commerce"],
         },
       };
@@ -439,13 +473,14 @@
       function getVideoDesc(video) {
         const src = video.getAttribute("src");
         const filename = src.split("/").pop();
-        return projectDesc[filename] || { es: "", en: "", url: "", tags: [] };
+        return projectDesc[filename] || { es: "", en: "", url: "", client: "", tags: [] };
       }
 
       function updateProjectInfo(video) {
         const name = getVideoName(video);
         const desc = getVideoDesc(video);
         if (nameEl) nameEl.textContent = name;
+        if (clientEl) clientEl.textContent = desc.client || "";
         if (tagsEl) tagsEl.innerHTML = desc.tags.map(t => `<span class="work-tag">${t}</span>`).join("");
         if (seeLink) seeLink.href = desc.url;
       }
@@ -464,10 +499,10 @@
             let rawDist = i - virtualIndex;
             if (rawDist > count / 2) rawDist -= count;
             if (rawDist < -count / 2) rawDist += count;
-            const y = rawDist * (window.innerHeight * 0.45);
+            const y = rawDist * (window.innerHeight * 0.95);
             video.style.top = '50%';
             video.style.left = '50%';
-            video.style.transform = `translate(-50%, ${y}px)`;
+            video.style.transform = `translate(-50%, calc(-50% + ${y}px))`;
             distToCenter = Math.abs(y);
           } else {
             const angle = stepAngle * i + offsetAngle;
@@ -518,19 +553,25 @@
         });
       }
 
-      const startAngle = 270;
+      const isMobileView = window.innerWidth <= 768;
+      const velascoIndex = Array.from(videos).findIndex(v => (v.getAttribute("src") || "").includes("velasco.mp4"));
+      const startIndex = isMobileView && velascoIndex >= 0 ? velascoIndex : 0;
+      const startAngle = isMobileView && velascoIndex >= 0 ? velascoIndex * (360 / count) : 270;
+      const totalRotation = 3600;
+      const scrollDistance = isMobileView ? window.innerHeight * 100 : window.innerHeight * 15;
 
-      videos[0].classList.add("is-center");
-      updateProjectInfo(videos[0]);
+      videos[startIndex].classList.add("is-center");
+      updateProjectInfo(videos[startIndex]);
+      currentCenter = startIndex;
       positionVideos(startAngle);
 
       gsap.to({ val: startAngle }, {
-        val: startAngle + 3600,
+        val: startAngle + totalRotation,
         ease: "none",
         scrollTrigger: {
           trigger: ".work-hero",
           start: "top top",
-          end: "+=" + window.innerHeight * 15,
+          end: "+=" + scrollDistance,
           scrub: 0.5,
           pin: true,
         },

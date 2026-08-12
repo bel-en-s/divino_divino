@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     smoothWheel: !isMobileLike,
     syncTouch: false,
     touchMultiplier: 1,
-    lerp: isMobileLike ? 1 : 0.1,
+    lerp: isMobileLike ? 0.06 : 0.1,
     duration: isMobileLike ? 0 : 1.2,
     autoRaf: true,
   });
