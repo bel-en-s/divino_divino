@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Suscripción | DIVINO DIVINO — Web dominio + hosting</title>
+    <link rel="icon" href="./estrella-favicon.png">
+    <meta name="theme-color" content="#000000" />
+    <meta name="author" content="DIVINO DIVINO" />
+    <meta
+      name="description"
+      content="Completá tus datos para suscribirte al plan Web Dominio + Hosting de DIVINO DIVINO. Pago mensual automático con Mercado Pago."
+    />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <link rel="stylesheet" href="/globals.css" />
+    <link rel="stylesheet" href="/css/transition.css" />
+    <link rel="stylesheet" href="/css/menu.css" />
+    <link rel="stylesheet" href="/css/care.css" />
+
+    <script type="module" src="/scripts/analytics.js"></script>
+  </head>
+
+  <body>
+    <div class="transition">
+      <div class="transition-overlay"></div>
+    </div>
+
+    <nav>
+      <div class="container">
+        <div class="nav-left">
+          <div class="logo">
+            <div class="logo-container">
+              <a href="./"><span class="logo-word logo-word-left">DIVINO</span><span class="logo-star"></span><span class="logo-word logo-word-right">DIVINO</span></a>
+            </div>
+          </div>
+          <div class="nav-section-label" aria-live="polite"></div>
+        </div>
+        <div class="nav-right">
+          <span class="lang-toggle">SWITCH LANGUAGE</span>
+          <div class="menu-toggle-btn">
+            <div class="menu-toggle-btn-wrapper">
+              <p data-i18n="menu-btn">Menu</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="nav-overlay dark-nav">
+      <div class="nav-close-btn">✕</div>
+      <div class="nav-items">
+        <div class="nav-item">
+          <a href="./" data-i18n="nav-index">Index</a>
+        </div>
+        <div class="nav-item">
+          <a href="./work.html" data-i18n="nav-work">Work</a>
+        </div>
+        <div class="nav-item">
+          <a href="./contact.html" data-i18n="nav-contact">Contact</a>
+        </div>
+        <div class="nav-item active">
+          <a href="./care.html" data-i18n="nav-care">Suscripciones</a>
+        </div>
+        <div class="nav-item">
+          <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link" data-i18n="nav-instagram">Instagram</a>
+        </div>
+        <div class="nav-item nav-item-small">
+          <a href="./white-label.html" data-i18n="nav-white-label">White Label</a>
+        </div>
+      </div>
+
+      <div class="nav-footer">
+        <div class="container">
+          <div class="nav-footer-item">
+            <a href="https://bel-en-s.com/" target="_blank" data-i18n="nav-belu">belu</a>
+          </div>
+          <div class="nav-footer-item nav-footer-buttons">
+            <a
+              href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
+              class="scramble-hover" data-i18n="nav-cta"
+            >
+              [ &nbsp;hablemos de tu proyecto&nbsp; ]
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="care-form-wrap">
+      <div class="container">
+        <span class="service-star h1 care-star">
+          <span class="service-star-icon">✷</span>
+        </span>
+
+        <h1 class="care-form-title">Suscripción</h1>
+        <p class="care-form-plan"><strong>Web Dominio + Hosting</strong></p>
+        <p class="care-form-price" id="planPrice">$15.000 ARS / mes</p>
+
+        <!-- AR -->
+        <div id="formAr" style="width:100%; max-width:550px; margin:0 auto;">
+          <div class="care-pay-methods">
+            <span class="care-pay-method">Crédito</span>
+            <span class="care-pay-method">Débito</span>
+            <span class="care-pay-method">Dinero en cuenta</span>
+          </div>
+
+          <p id="result" class="resultado" style="font-family:'Cossette Titre',sans-serif;"></p>
+
+          <form id="careForm" class="formulario-divino">
+            <input type="text" name="name" placeholder="Nombre y apellido" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <input type="text" name="domain" placeholder="Dominio deseado (opcional)" />
+            <input type="text" name="phone" placeholder="WhatsApp (opcional)" />
+            <button type="submit" class="submit-btn">Iniciar pago con Mercado Pago</button>
+          </form>
+        </div>
+
+        <!-- Internacional -->
+        <div id="formIntl" style="width:100%; max-width:550px; margin:0 auto; display:none;">
+          <p class="care-form-soon">
+            El pago internacional está en camino. Por ahora escribinos a
+            <a href="mailto:holadivinodivino@gmail.com">holadivinodivino@gmail.com</a>
+            o por <a href="https://wa.me/5491169188741" target="_blank" rel="noopener">WhatsApp</a>
+            y te armamos la suscripción.
+          </p>
+        </div>
+
+        <a class="care-form-back" href="./care.html">[ &nbsp;volver a los planes&nbsp; ]</a>
+      </div>
+    </section>
+
+    <footer style="z-index:1">
+      <div class="container">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; padding:2rem 0; flex-wrap:wrap;">
+          <p>&copy; <span id="year"></span> DIVINO DIVINO</p>
+          <a href="mailto:holadivinodivino@gmail.com" style="color:var(--tone-100);">holadivinodivino@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const params = new URLSearchParams(window.location.search);
+      const region = params.get("region") || "ar";
+      const plan = params.get("plan") || "web";
+
+      // Precio según región
+      const priceEl = document.getElementById("planPrice");
+      if (priceEl) {
+        priceEl.textContent = region === "intl" ? "$10 USD / mes" : "$15.000 ARS / mes";
+      }
+
+      // Mostrar formulario según región
+      const formAr = document.getElementById("formAr");
+      const formIntl = document.getElementById("formIntl");
+      if (region === "intl") {
+        if (formAr) formAr.style.display = "none";
+        if (formIntl) formIntl.style.display = "block";
+      }
+
+      // Retorno desde Mercado Pago (back_url)
+      const mpStatus = params.get("status");
+      const preapprovalId = params.get("preapproval_id");
+      const resultEl = document.getElementById("result");
+      if (preapprovalId || mpStatus) {
+        if (resultEl) {
+          resultEl.textContent = "¡Gracias! Tu suscripción quedó registrada. Te contactamos para terminar de configurar tu web.";
+          resultEl.style.color = "var(--tone-500)";
+        }
+      }
+
+      // Envío a Mercado Pago (Argentina)
+      const careForm = document.getElementById("careForm");
+      if (careForm) {
+        careForm.addEventListener("submit", async function (e) {
+          e.preventDefault();
+          const btn = careForm.querySelector(".submit-btn");
+          btn.disabled = true;
+          btn.textContent = "Redirigiendo...";
+
+          const formData = new FormData(careForm);
+          const payload = {
+            name: formData.get("name"),
+            email: formData.get("email"),
+            domain: formData.get("domain"),
+            phone: formData.get("phone"),
+            plan: plan,
+          };
+
+          try {
+            const res = await fetch("/api/mercadopago", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(payload),
+            });
+            const data = await res.json();
+
+            if (data.init_point) {
+              window.location.href = data.init_point;
+            } else {
+              btn.disabled = false;
+              btn.textContent = "Iniciar pago con Mercado Pago";
+              resultEl.textContent = "Hubo un error al iniciar el pago. Intentá de nuevo o escribinos.";
+              resultEl.style.color = "red";
+            }
+          } catch (err) {
+            btn.disabled = false;
+            btn.textContent = "Iniciar pago con Mercado Pago";
+            resultEl.textContent = "Error de conexión. Intentá de nuevo.";
+            resultEl.style.color = "red";
+          }
+        });
+      }
+    </script>
+    <script>document.getElementById("year").textContent = new Date().getFullYear()</script>
+    <script>
+      const stars = document.querySelectorAll('.care-star');
+      window.addEventListener('scroll', () => {
+        const deg = window.scrollY * 0.1;
+        stars.forEach(s => s.style.transform = `rotate(${deg}deg)`);
+      });
+    </script>
+    <script type="module" src="/scripts/lenis-scroll.js"></script>
+    <script type="module" src="/scripts/transition.js"></script>
+    <script type="module" src="/scripts/menu.js"></script>
+    <script type="module" src="/scripts/i18n.js"></script>
+  </body>
+</html>

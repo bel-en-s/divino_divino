@@ -11,6 +11,7 @@ const translations = {
     "nav-work": "Work",
     "nav-white-label": "White Label",
     "nav-contact": "Contact",
+    "nav-care": "Suscripciones",
     "nav-instagram": "Instagram",
     "nav-belu": "belu",
 
@@ -60,6 +61,7 @@ const translations = {
     "nav-work": "Work",
     "nav-white-label": "White Label",
     "nav-contact": "Contact",
+    "nav-care": "Subscriptions",
     "nav-instagram": "Instagram",
     "nav-belu": "belu",
 

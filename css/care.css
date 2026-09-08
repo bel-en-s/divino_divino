@@ -1,0 +1,343 @@
+/* CARE — SUSCRIPCIONES */
+
+.care {
+  min-height: 100svh;
+  padding: 9rem 0 6rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.care .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.care-star {
+  display: block;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.care-star .service-star-icon {
+  color: var(--tone-500);
+}
+
+.care-title {
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--tone-100);
+  text-decoration: underline;
+  text-decoration-color: #c00000;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  margin-bottom: 2rem;
+}
+
+.care-sub {
+  max-width: 560px;
+  margin: 0 auto 5rem;
+  opacity: 0.6;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.care-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+.care-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 2rem;
+  background: transparent;
+  border: 1px solid var(--tone-100);
+  border-radius: 8px;
+}
+
+.care-card.is-active {
+  border-color: var(--tone-500);
+  border-width: 2px;
+}
+
+.care-card.is-soon {
+  opacity: 0.55;
+  border-style: dashed;
+}
+
+.care-card-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--tone-500);
+  color: #fff;
+  font-family: "Cossette Titre", sans-serif;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  padding: 4px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.care-card-name {
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.care-card-price {
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--tone-500);
+  margin-bottom: 0.5rem;
+}
+
+.care-card-price span {
+  font-size: 1rem;
+  color: var(--tone-100);
+}
+
+.care-card-price-usd {
+  font-size: 1.25rem;
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.care-card-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.care-card-list li {
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.care-card-list li::before {
+  content: "→ ";
+  color: var(--tone-500);
+}
+
+.care-card-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  width: 100%;
+}
+
+.care-btn {
+  display: inline-block;
+  font-family: "Cossette Titre", sans-serif;
+  text-transform: uppercase;
+  font-size: 1rem;
+  line-height: 1.1;
+  padding: 0.9rem 1.5rem;
+  border-radius: 40px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.care-btn:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.care-btn-ar {
+  background: var(--tone-500);
+  color: #fff;
+}
+
+.care-btn-intl {
+  background: var(--tone-100);
+  color: var(--tone-400);
+}
+
+.care-btn.is-disabled {
+  background: transparent;
+  color: var(--tone-100);
+  border: 1px solid var(--tone-100);
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.care-soon-label {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  margin-bottom: 1rem;
+  padding: 2rem 0;
+}
+
+/* CARE FORM */
+
+.care-form-wrap {
+  min-height: 100svh;
+  padding: 9rem 0 6rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.care-form-wrap .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.care-form-title {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--tone-100);
+  text-decoration: underline;
+  text-decoration-color: #c00000;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+  margin-bottom: 1.5rem;
+}
+
+.care-form-plan {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.care-form-price {
+  font-size: 1.1rem;
+  opacity: 0.7;
+  margin-bottom: 2.5rem;
+}
+
+.care-form-plan strong {
+  color: var(--tone-500);
+}
+
+.formulario-divino {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  max-width: 550px;
+  margin: auto;
+  width: 100%;
+}
+
+.formulario-divino input {
+  background-color: transparent;
+  color: black;
+  font-family: "Cossette Titre", sans-serif;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 7px;
+  border: 1px solid black;
+  text-transform: uppercase;
+}
+
+.formulario-divino input::placeholder {
+  color: black;
+  opacity: 0.7;
+}
+
+.formulario-divino .resultado {
+  margin-top: 10px;
+  min-height: 1.5rem;
+}
+
+.formulario-divino .submit-btn {
+  font-family: "Cossette Titre", sans-serif;
+  padding: 12px;
+  border-radius: 40px;
+  background: var(--tone-500);
+  border: 1px solid var(--tone-500);
+  text-transform: uppercase;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.formulario-divino .submit-btn:hover {
+  opacity: 0.85;
+}
+
+.care-pay-methods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.care-pay-method {
+  background: #000;
+  color: #fff;
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.8rem;
+  padding: 8px 16px;
+  border-radius: 40px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.care-form-back {
+  display: inline-block;
+  margin-top: 2rem;
+  color: var(--tone-100);
+  font-size: 0.9rem;
+}
+
+.care-form-back:hover {
+  color: var(--tone-500);
+}
+
+.care-form-soon {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.75;
+}
+
+.care-form-soon a {
+  color: var(--tone-500);
+  text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .care {
+    padding: 7rem 0 4rem;
+  }
+
+  .care-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 480px;
+  }
+
+  .care-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .care-card-price {
+    font-size: 3rem;
+  }
+}

@@ -13,6 +13,8 @@ export default defineConfig({
         contact: resolve(__dirname, "contact.html"),
         draw: resolve(__dirname, "draw.html"),
         "white-label": resolve(__dirname, "white-label.html"),
+        care: resolve(__dirname, "care.html"),
+        "care-form": resolve(__dirname, "care-form.html"),
       },
     },
     assetsInclude: ["**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.svg", "**/*.gif", "**/*.mp4", "**/*.webp", "**/*.hdr"],

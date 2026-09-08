@@ -10,7 +10,9 @@
     { "source": "/directors.html", "destination": "/directors", "permanent": true },
     { "source": "/contact.html", "destination": "/contact", "permanent": true },
     { "source": "/white-label.html", "destination": "/white-label", "permanent": true },
-    { "source": "/film.html", "destination": "/film", "permanent": true }
+    { "source": "/film.html", "destination": "/film", "permanent": true },
+    { "source": "/care.html", "destination": "/care", "permanent": true },
+    { "source": "/care-form.html", "destination": "/care-form", "permanent": true }
   ],
   "rewrites": [
     { "source": "/work", "destination": "/work.html" },
@@ -18,7 +20,9 @@
     { "source": "/directors", "destination": "/directors.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/white-label", "destination": "/white-label.html" },
-    { "source": "/film", "destination": "/film.html" }
+    { "source": "/film", "destination": "/film.html" },
+    { "source": "/care", "destination": "/care.html" },
+    { "source": "/care-form", "destination": "/care-form.html" }
   ],
   "headers": [
     {
