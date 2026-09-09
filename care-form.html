@@ -94,7 +94,7 @@
         </span>
 
         <h1 class="care-form-title">Suscripción</h1>
-        <p class="care-form-plan"><strong>Web Dominio + Hosting</strong></p>
+        <p class="care-form-plan"><strong id="planName">Web Dominio + Hosting</strong></p>
         <p class="care-form-price" id="planPrice">$15.000 ARS / mes</p>
 
         <!-- AR -->
@@ -144,10 +144,20 @@
       const region = params.get("region") || "ar";
       const plan = params.get("plan") || "web";
 
-      // Precio según región
+      const plans = {
+        web: { name: "Web Dominio + Hosting", ar: "$15.000 ARS / mes", usd: "$10 USD / mes" },
+        hosting: { name: "Solo Hosting", ar: "$10.000 ARS / mes", usd: "$7 USD / mes" },
+      };
+      const currentPlan = plans[plan] || plans.web;
+
+      // Nombre y precio según plan y región
+      const nameEl = document.getElementById("planName");
+      if (nameEl) nameEl.textContent = currentPlan.name;
+      document.title = "Suscripción | DIVINO DIVINO — " + currentPlan.name;
+
       const priceEl = document.getElementById("planPrice");
       if (priceEl) {
-        priceEl.textContent = region === "intl" ? "$10 USD / mes" : "$15.000 ARS / mes";
+        priceEl.textContent = region === "intl" ? currentPlan.usd : currentPlan.ar;
       }
 
       // Mostrar formulario según región
@@ -193,14 +203,31 @@
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify(payload),
             });
-            const data = await res.json();
 
-            if (data.init_point) {
+            let data;
+            try {
+              data = await res.json();
+            } catch (e) {
+              data = null;
+            }
+
+            if (data && data.init_point) {
               window.location.href = data.init_point;
             } else {
               btn.disabled = false;
               btn.textContent = "Iniciar pago con Mercado Pago";
-              resultEl.textContent = "Hubo un error al iniciar el pago. Intentá de nuevo o escribinos.";
+              const detail =
+                data && data.detail && data.detail.message
+                  ? data.detail.message
+                  : data && data.detail
+                  ? JSON.stringify(data.detail)
+                  : data && data.error
+                  ? data.error
+                  : "";
+              resultEl.textContent =
+                "Hubo un error al iniciar el pago." +
+                (detail ? ` (${detail})` : "") +
+                " Intentá de nuevo o escribinos.";
               resultEl.style.color = "red";
             }
           } catch (err) {
