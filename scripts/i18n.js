@@ -48,6 +48,56 @@ const translations = {
     "service-email": "Email marketing",
     "service-motion": "Motion & animations",
     "service-design": "2D & 3D design",
+
+    "care-title": "Suscripciones",
+    "care-sub": "Tu web con dominio y hosting incluidos, pago mensual automático. Elegí el plan para tu mundo digital.",
+    "care-badge": "Disponible",
+    "care-plan-web-name": "Web Dominio + Hosting",
+    "care-per-month-ars": "ARS / mes",
+    "care-price-web-usd": "o $10 USD / mes",
+    "care-web-1": "Dominio .com.ar o .com incluido",
+    "care-web-2": "Hosting con certificado SSL",
+    "care-web-3": "Diseño y desarrollo web",
+    "care-web-4": "Mantenimiento y soporte",
+    "care-web-5": "Débito automático mensual",
+    "care-plan-hosting-name": "Solo Hosting",
+    "care-price-hosting-usd": "o $7 USD / mes",
+    "care-hosting-1": "Hosting con certificado SSL",
+    "care-hosting-2": "Ideal si ya tenés tu dominio",
+    "care-hosting-3": "Mantenimiento y soporte",
+    "care-hosting-4": "Débito automático mensual",
+    "care-btn-ar": "Pago en Argentina",
+    "care-btn-intl": "Pago Internacional",
+    "care-soon": "Próximamente",
+    "care-seo-1": "Todo lo del plan Web",
+    "care-seo-2": "SEO y posicionamiento",
+    "care-seo-3": "Analytics y reportes",
+    "care-ecommerce-1": "Todo lo del plan Web + SEO",
+    "care-ecommerce-2": "Tienda online",
+    "care-ecommerce-3": "Pasarela de pagos",
+
+    "care-form-title": "Suscripción",
+    "care-form-plan-web": "Web Dominio + Hosting",
+    "care-form-plan-hosting": "Solo Hosting",
+    "care-form-price-web-ar": "$15.000 ARS / mes",
+    "care-form-price-web-usd": "$10 USD / mes",
+    "care-form-price-hosting-ar": "$10.000 ARS / mes",
+    "care-form-price-hosting-usd": "$7 USD / mes",
+    "care-pay-credit": "Crédito",
+    "care-pay-debit": "Débito",
+    "care-pay-cash": "Dinero en cuenta",
+    "care-form-name": "Nombre y apellido",
+    "care-form-email": "Email",
+    "care-form-domain": "Dominio deseado (opcional)",
+    "care-form-domain-web": "Dominio deseado (una o varias opciones)",
+    "care-form-phone": "WhatsApp (opcional)",
+    "care-form-submit": "Iniciar pago con Mercado Pago",
+    "care-form-redirecting": "Redirigiendo...",
+    "care-form-success": "¡Gracias! Tu suscripción quedó registrada. Te contactamos para terminar de configurar tu web.",
+    "care-form-error": "Hubo un error al iniciar el pago.",
+    "care-form-conn-error": "Error de conexión. Intentá de nuevo.",
+    "care-form-soon": "El pago internacional está en camino. Por ahora escribinos a <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> o por <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> y te armamos la suscripción.",
+    "care-form-back": "[ \u00a0volver a los planes\u00a0 ]",
   },
   en: {
     "lang-label": "EN",
@@ -98,6 +148,56 @@ const translations = {
     "service-email": "Email marketing",
     "service-motion": "Motion & animations",
     "service-design": "2D & 3D design",
+
+    "care-title": "Subscriptions",
+    "care-sub": "Your website with domain and hosting included, automatic monthly payment. Choose the plan for your digital world.",
+    "care-badge": "Available",
+    "care-plan-web-name": "Web Domain + Hosting",
+    "care-per-month-ars": "ARS / month",
+    "care-price-web-usd": "or $10 USD / month",
+    "care-web-1": ".com.ar or .com domain included",
+    "care-web-2": "Hosting with SSL certificate",
+    "care-web-3": "Web design and development",
+    "care-web-4": "Maintenance and support",
+    "care-web-5": "Automatic monthly debit",
+    "care-plan-hosting-name": "Hosting Only",
+    "care-price-hosting-usd": "or $7 USD / month",
+    "care-hosting-1": "Hosting with SSL certificate",
+    "care-hosting-2": "Ideal if you already have your domain",
+    "care-hosting-3": "Maintenance and support",
+    "care-hosting-4": "Automatic monthly debit",
+    "care-btn-ar": "Pay in Argentina",
+    "care-btn-intl": "International Payment",
+    "care-soon": "Coming soon",
+    "care-seo-1": "Everything in the Web plan",
+    "care-seo-2": "SEO and positioning",
+    "care-seo-3": "Analytics and reports",
+    "care-ecommerce-1": "Everything in the Web + SEO plan",
+    "care-ecommerce-2": "Online store",
+    "care-ecommerce-3": "Payment gateway",
+
+    "care-form-title": "Subscription",
+    "care-form-plan-web": "Web Domain + Hosting",
+    "care-form-plan-hosting": "Hosting Only",
+    "care-form-price-web-ar": "$15,000 ARS / month",
+    "care-form-price-web-usd": "$10 USD / month",
+    "care-form-price-hosting-ar": "$10,000 ARS / month",
+    "care-form-price-hosting-usd": "$7 USD / month",
+    "care-pay-credit": "Credit",
+    "care-pay-debit": "Debit",
+    "care-pay-cash": "Money in account",
+    "care-form-name": "Full name",
+    "care-form-email": "Email",
+    "care-form-domain": "Desired domain (optional)",
+    "care-form-domain-web": "Desired domain (one or several options)",
+    "care-form-phone": "WhatsApp (optional)",
+    "care-form-submit": "Start payment with Mercado Pago",
+    "care-form-redirecting": "Redirecting...",
+    "care-form-success": "Thank you! Your subscription has been registered. We will contact you to finish setting up your website.",
+    "care-form-error": "There was an error starting the payment.",
+    "care-form-conn-error": "Connection error. Please try again.",
+    "care-form-soon": "International payment is on its way. For now email us at <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> or reach out via <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> and we will set up your subscription.",
+    "care-form-back": "[ \u00a0back to plans\u00a0 ]",
   },
 };
 
@@ -108,6 +208,11 @@ function getLang() {
 function setLang(lang) {
   localStorage.setItem("lang", lang);
   location.reload();
+}
+
+function t(key) {
+  const lang = getLang();
+  return translations[lang]?.[key] ?? translations.es?.[key] ?? key;
 }
 
 function translate() {
@@ -161,6 +266,7 @@ function boot() {
   translate();
   initLangToggle();
   window.translations = translations;
+  window.t = t;
 }
 
 if (document.readyState === "loading") {

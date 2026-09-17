@@ -3,6 +3,14 @@ import { resolve } from "path";
 
 export default defineConfig({
   base: "./",
+  server: {
+    proxy: {
+      "/api": {
+        target: process.env.VITE_API_PROXY || "https://divinodivino.com.ar",
+        changeOrigin: true,
+      },
+    },
+  },
   build: {
     rollupOptions: {
       input: {

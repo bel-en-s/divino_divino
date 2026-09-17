@@ -65,9 +65,6 @@
         <div class="nav-item">
           <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link" data-i18n="nav-instagram">Instagram</a>
         </div>
-        <div class="nav-item nav-item-small">
-          <a href="./white-label.html" data-i18n="nav-white-label">White Label</a>
-        </div>
       </div>
 
       <div class="nav-footer">
@@ -93,32 +90,32 @@
           <span class="service-star-icon">✷</span>
         </span>
 
-        <h1 class="care-form-title">Suscripción</h1>
-        <p class="care-form-plan"><strong id="planName">Web Dominio + Hosting</strong></p>
-        <p class="care-form-price" id="planPrice">$15.000 ARS / mes</p>
+        <h1 class="care-form-title" data-i18n="care-form-title">Suscripción</h1>
+        <p class="care-form-plan"><strong id="planName" data-i18n="care-form-plan-web">Web Dominio + Hosting</strong></p>
+        <p class="care-form-price" id="planPrice" data-i18n="care-form-price-web-ar">$15.000 ARS / mes</p>
 
         <!-- AR -->
         <div id="formAr" style="width:100%; max-width:550px; margin:0 auto;">
           <div class="care-pay-methods">
-            <span class="care-pay-method">Crédito</span>
-            <span class="care-pay-method">Débito</span>
-            <span class="care-pay-method">Dinero en cuenta</span>
+            <span class="care-pay-method" data-i18n="care-pay-credit">Crédito</span>
+            <span class="care-pay-method" data-i18n="care-pay-debit">Débito</span>
+            <span class="care-pay-method" data-i18n="care-pay-cash">Dinero en cuenta</span>
           </div>
 
           <p id="result" class="resultado" style="font-family:'Cossette Titre',sans-serif;"></p>
 
           <form id="careForm" class="formulario-divino">
-            <input type="text" name="name" placeholder="Nombre y apellido" required />
-            <input type="email" name="email" placeholder="Email" required />
-            <input type="text" name="domain" placeholder="Dominio deseado (opcional)" />
-            <input type="text" name="phone" placeholder="WhatsApp (opcional)" />
-            <button type="submit" class="submit-btn">Iniciar pago con Mercado Pago</button>
+            <input type="text" name="name" data-i18n-placeholder="care-form-name" placeholder="Nombre y apellido" required />
+            <input type="email" name="email" data-i18n-placeholder="care-form-email" placeholder="Email" required />
+            <input type="text" name="domain" data-i18n-placeholder="care-form-domain" placeholder="Dominio deseado (opcional)" />
+            <input type="text" name="phone" data-i18n-placeholder="care-form-phone" placeholder="WhatsApp (opcional)" />
+            <button type="submit" class="submit-btn" data-i18n="care-form-submit">Iniciar pago con Mercado Pago</button>
           </form>
         </div>
 
         <!-- Internacional -->
         <div id="formIntl" style="width:100%; max-width:550px; margin:0 auto; display:none;">
-          <p class="care-form-soon">
+          <p class="care-form-soon" data-i18n-html="care-form-soon">
             El pago internacional está en camino. Por ahora escribinos a
             <a href="mailto:holadivinodivino@gmail.com">holadivinodivino@gmail.com</a>
             o por <a href="https://wa.me/5491169188741" target="_blank" rel="noopener">WhatsApp</a>
@@ -126,7 +123,7 @@
           </p>
         </div>
 
-        <a class="care-form-back" href="./care.html">[ &nbsp;volver a los planes&nbsp; ]</a>
+        <a class="care-form-back" href="./care.html" data-i18n="care-form-back">[ &nbsp;volver a los planes&nbsp; ]</a>
       </div>
     </section>
 
@@ -152,11 +149,16 @@
 
       // Nombre y precio según plan y región
       const nameEl = document.getElementById("planName");
-      if (nameEl) nameEl.textContent = currentPlan.name;
+      if (nameEl) {
+        nameEl.setAttribute("data-i18n", "care-form-plan-" + (plan === "hosting" ? "hosting" : "web"));
+        nameEl.textContent = currentPlan.name;
+      }
       document.title = "Suscripción | DIVINO DIVINO — " + currentPlan.name;
 
       const priceEl = document.getElementById("planPrice");
       if (priceEl) {
+        const regionKey = region === "intl" ? "usd" : "ar";
+        priceEl.setAttribute("data-i18n", "care-form-price-" + (plan === "hosting" ? "hosting" : "web") + "-" + regionKey);
         priceEl.textContent = region === "intl" ? currentPlan.usd : currentPlan.ar;
       }
 
@@ -168,12 +170,22 @@
         if (formIntl) formIntl.style.display = "block";
       }
 
+      // Campo de dominio: solo en plan Web (con una o varias opciones)
+      const domainField = document.querySelector('input[name="domain"]');
+      if (plan === "hosting") {
+        if (domainField) domainField.remove();
+      } else if (domainField) {
+        domainField.setAttribute("data-i18n-placeholder", "care-form-domain-web");
+        domainField.placeholder = "Dominio deseado (una o varias opciones)";
+      }
+
       // Retorno desde Mercado Pago (back_url)
       const mpStatus = params.get("status");
       const preapprovalId = params.get("preapproval_id");
       const resultEl = document.getElementById("result");
       if (preapprovalId || mpStatus) {
         if (resultEl) {
+          resultEl.setAttribute("data-i18n", "care-form-success");
           resultEl.textContent = "¡Gracias! Tu suscripción quedó registrada. Te contactamos para terminar de configurar tu web.";
           resultEl.style.color = "var(--tone-500)";
         }
@@ -182,11 +194,41 @@
       // Envío a Mercado Pago (Argentina)
       const careForm = document.getElementById("careForm");
       if (careForm) {
+        function tOr(key, fallback) {
+          return (typeof window.t === "function" && window.t(key)) || fallback;
+        }
+
+        function notifyOwner(payload, amount) {
+          const fd = new FormData();
+          fd.append("access_key", "79647389-1e07-49c9-b7cc-7a4a64acfb94");
+          fd.append("subject", "Nueva suscripción — " + currentPlan.name);
+          fd.append("from_name", "DIVINO DIVINO — Suscripciones");
+          fd.append("name", payload.name || "");
+          fd.append("email", payload.email || "");
+          fd.append(
+            "message",
+            "Nueva suscripción al plan " + currentPlan.name + ".\n\n" +
+              "Nombre: " + (payload.name || "-") + "\n" +
+              "Email: " + (payload.email || "-") + "\n" +
+              "Dominio deseado: " + (payload.domain || "-") + "\n" +
+              "WhatsApp: " + (payload.phone || "-") + "\n" +
+              "Monto: " + amount + "\n" +
+              "Región: Argentina (Mercado Pago)"
+          );
+          try {
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              body: fd,
+              keepalive: true,
+            });
+          } catch (e) {}
+        }
+
         careForm.addEventListener("submit", async function (e) {
           e.preventDefault();
           const btn = careForm.querySelector(".submit-btn");
           btn.disabled = true;
-          btn.textContent = "Redirigiendo...";
+          btn.textContent = tOr("care-form-redirecting", "Redirigiendo...");
 
           const formData = new FormData(careForm);
           const payload = {
@@ -212,10 +254,11 @@
             }
 
             if (data && data.init_point) {
+              notifyOwner(payload, currentPlan.ar);
               window.location.href = data.init_point;
             } else {
               btn.disabled = false;
-              btn.textContent = "Iniciar pago con Mercado Pago";
+              btn.textContent = tOr("care-form-submit", "Iniciar pago con Mercado Pago");
               const detail =
                 data && data.detail && data.detail.message
                   ? data.detail.message
@@ -225,15 +268,14 @@
                   ? data.error
                   : "";
               resultEl.textContent =
-                "Hubo un error al iniciar el pago." +
-                (detail ? ` (${detail})` : "") +
-                " Intentá de nuevo o escribinos.";
+                tOr("care-form-error", "Hubo un error al iniciar el pago.") +
+                (detail ? ` (${detail})` : "");
               resultEl.style.color = "red";
             }
           } catch (err) {
             btn.disabled = false;
-            btn.textContent = "Iniciar pago con Mercado Pago";
-            resultEl.textContent = "Error de conexión. Intentá de nuevo.";
+            btn.textContent = tOr("care-form-submit", "Iniciar pago con Mercado Pago");
+            resultEl.textContent = tOr("care-form-conn-error", "Error de conexión. Intentá de nuevo.");
             resultEl.style.color = "red";
           }
         });

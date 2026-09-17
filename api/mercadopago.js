@@ -1,8 +1,6 @@
 const { sql } = require("@vercel/postgres");
 
 const SITE_URL = process.env.PUBLIC_SITE_URL || "https://divinodivino.com.ar";
-const WEB3FORMS_KEY =
-  process.env.WEB3FORMS_ACCESS_KEY || "79647389-1e07-49c9-b7cc-7a4a64acfb94";
 
 const PLANS = {
   web: {
@@ -52,35 +50,6 @@ async function saveSubscription({ name, email, domain, phone, mpId, amount }) {
     `;
   } catch (e) {
     console.error("[mercadopago] error guardando en DB:", e);
-  }
-}
-
-async function notifyByEmail({ name, email, domain, phone, mpId, planName, amount }) {
-  try {
-    await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        access_key: WEB3FORMS_KEY,
-        subject: `Nueva suscripción — ${planName}`,
-        from_name: "DIVINO DIVINO — Suscripciones",
-        name: name || "",
-        email,
-        domain: domain || "",
-        whatsapp: phone || "",
-        mp_subscription_id: mpId,
-        message:
-          `Nueva suscripción al plan ${planName}.\n\n` +
-          `Nombre: ${name || "-"}\n` +
-          `Email: ${email}\n` +
-          `Dominio deseado: ${domain || "-"}\n` +
-          `WhatsApp: ${phone || "-"}\n` +
-          `ID suscripción Mercado Pago: ${mpId}\n` +
-          `Monto: ${amount}`,
-      }),
-    });
-  } catch (e) {
-    console.error("[mercadopago] error enviando email:", e);
   }
 }
 
@@ -155,7 +124,6 @@ module.exports = async function handler(req, res) {
 
   await Promise.allSettled([
     saveSubscription({ name, email, domain, phone, mpId, amount: plan.amount }),
-    notifyByEmail({ name, email, domain, phone, mpId, planName: plan.reason, amount: plan.amount }),
   ]);
 
   return json(res, 200, { init_point: data.init_point, id: mpId });
