@@ -52,7 +52,7 @@
         <div class="nav-left">
           <div class="logo">
             <div class="logo-container">
-              <a href="./"><span class="logo-word logo-word-left">DIVINO</span><span class="logo-star"></span><span class="logo-word logo-word-right">DIVINO</span></a>
+              <a href="./"><img src="./logo-dd.png" alt="DIVINO DIVINO" style="height: 4.5rem; width: auto;" /></a>
             </div>
           </div>
           <div class="nav-section-label" aria-live="polite"></div>
@@ -113,90 +113,50 @@
         </span>
 
         <h1 class="care-title" data-i18n="care-title">Suscripciones</h1>
-        <p class="care-sub" data-i18n="care-sub">
-          Tu web con dominio y hosting incluidos, pago mensual automático. Elegí el plan para tu mundo digital.
-        </p>
 
-        <div class="care-grid">
-          <!-- Plan 1: activo -->
-          <div class="care-card is-active">
-            <span class="care-card-badge" data-i18n="care-badge">Disponible</span>
-            <h3 class="care-card-name" data-i18n="care-plan-web-name">Web Dominio + Hosting</h3>
-            <div class="care-card-price">$15.000 <span data-i18n="care-per-month-ars">ARS / mes</span></div>
-            <div class="care-card-price-usd" data-i18n="care-price-web-usd">o $10 USD / mes</div>
-            <ul class="care-card-list">
-              <li data-i18n="care-web-1">Dominio .com.ar o .com incluido</li>
-              <li data-i18n="care-web-2">Hosting con certificado SSL</li>
-              <li data-i18n="care-web-3">Diseño y desarrollo web</li>
-              <li data-i18n="care-web-4">Mantenimiento y soporte</li>
-              <li data-i18n="care-web-5">Débito automático mensual</li>
-            </ul>
-            <div class="care-card-actions">
-              <a class="care-btn care-btn-ar" href="./care-form.html?plan=web&region=ar" data-i18n="care-btn-ar">
-                Pago en Argentina
-              </a>
-              <a class="care-btn care-btn-intl" href="./care-form.html?plan=web&region=intl" data-i18n="care-btn-intl">
-                Pago Internacional
-              </a>
-            </div>
+        <div class="care-steps">
+          <!-- Paso 1: elegir región -->
+          <div class="care-step care-step-region" data-step="region">
+            <button type="button" class="care-pill care-pill-ar" data-region="ar" data-i18n="care-btn-ar">
+              Argentina &amp; latam
+            </button>
+            <button type="button" class="care-pill care-pill-intl" data-region="intl" data-i18n="care-btn-intl">
+              International
+            </button>
           </div>
 
-          <!-- Plan 2: activo -->
-          <div class="care-card is-active">
-            <span class="care-card-badge" data-i18n="care-badge">Disponible</span>
-            <h3 class="care-card-name" data-i18n="care-plan-hosting-name">Solo Hosting</h3>
-            <div class="care-card-price">$10.000 <span data-i18n="care-per-month-ars">ARS / mes</span></div>
-            <div class="care-card-price-usd" data-i18n="care-price-hosting-usd">o $7 USD / mes</div>
-            <ul class="care-card-list">
-              <li data-i18n="care-hosting-1">Hosting con certificado SSL</li>
-              <li data-i18n="care-hosting-2">Ideal si ya tenés tu dominio</li>
-              <li data-i18n="care-hosting-3">Mantenimiento y soporte</li>
-              <li data-i18n="care-hosting-4">Débito automático mensual</li>
-            </ul>
-            <div class="care-card-actions">
-              <a class="care-btn care-btn-ar" href="./care-form.html?plan=hosting&region=ar" data-i18n="care-btn-ar">
-                Pago en Argentina
-              </a>
-              <a class="care-btn care-btn-intl" href="./care-form.html?plan=hosting&region=intl" data-i18n="care-btn-intl">
-                Pago Internacional
-              </a>
-            </div>
+          <!-- Paso 2a: planes Argentina -->
+          <div class="care-step care-step-ar" data-step="ar" hidden>
+            <a class="care-pill care-pill-ar" href="./care-form.html?plan=web&region=ar" data-i18n="care-plan-web-name">
+              Web Dominio + Hosting
+            </a>
+            <a class="care-pill care-pill-ar" href="./care-form.html?plan=hosting&region=ar" data-i18n="care-plan-hosting-name">
+              Solo Hosting
+            </a>
           </div>
 
-          <!-- Plan 3: próximo -->
-          <div class="care-card is-soon">
-            <h3 class="care-card-name">Web + SEO</h3>
-            <div class="care-soon-label" data-i18n="care-soon">Próximamente</div>
-            <ul class="care-card-list">
-              <li data-i18n="care-seo-1">Todo lo del plan Web</li>
-              <li data-i18n="care-seo-2">SEO y posicionamiento</li>
-              <li data-i18n="care-seo-3">Analytics y reportes</li>
-            </ul>
-            <div class="care-card-actions">
-              <span class="care-btn is-disabled" data-i18n="care-soon">Próximamente</span>
-            </div>
+          <!-- Paso 2b: Internacional -->
+          <div class="care-step care-step-intl" data-step="intl" hidden>
+            <form id="intlForm" class="formulario-divino" style="max-width: 420px;">
+              <input type="text" name="name" data-i18n-placeholder="care-form-name" placeholder="Nombre y apellido" required />
+              <input type="email" name="email" data-i18n-placeholder="care-form-email" placeholder="Email" required />
+              <input type="text" name="domain" data-i18n-placeholder="care-form-domain-web" placeholder="Dominio deseado (opcional)" />
+              <input type="text" name="phone" data-i18n-placeholder="care-form-phone" placeholder="WhatsApp (opcional)" />
+            </form>
+            <p id="intlResult" class="care-soon-note" data-i18n="care-form-success" style="display:none;"></p>
+            <div id="paypal-button-container-P-1LY42344K16322315NKWUCFY" class="paypal-container"></div>
           </div>
 
-          <!-- Plan 4: próximo -->
-          <div class="care-card is-soon">
-            <h3 class="care-card-name">E-commerce</h3>
-            <div class="care-soon-label" data-i18n="care-soon">Próximamente</div>
-            <ul class="care-card-list">
-              <li data-i18n="care-ecommerce-1">Todo lo del plan Web + SEO</li>
-              <li data-i18n="care-ecommerce-2">Tienda online</li>
-              <li data-i18n="care-ecommerce-3">Pasarela de pagos</li>
-            </ul>
-            <div class="care-card-actions">
-              <span class="care-btn is-disabled" data-i18n="care-soon">Próximamente</span>
-            </div>
-          </div>
+          <button type="button" class="care-back" data-i18n="care-back" hidden>
+            [ &nbsp;volver&nbsp; ]
+          </button>
         </div>
       </div>
     </section>
 
-    <footer style="z-index:1">
+    <footer style="z-index:1; position:absolute; bottom:0; left:0; width:100%;">
       <div class="container">
-        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; padding:2rem 0; flex-wrap:wrap;">
+        <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; padding:1rem 0; flex-wrap:wrap;">
           <p>&copy; <span id="year"></span> DIVINO DIVINO</p>
           <a href="mailto:holadivinodivino@gmail.com" style="color:var(--tone-100);">holadivinodivino@gmail.com</a>
         </div>
@@ -210,6 +170,113 @@
         const deg = window.scrollY * 0.1;
         stars.forEach(s => s.style.transform = `rotate(${deg}deg)`);
       });
+    </script>
+    <script>
+      (function () {
+        const steps = {
+          region: document.querySelector('[data-step="region"]'),
+          ar: document.querySelector('[data-step="ar"]'),
+          intl: document.querySelector('[data-step="intl"]'),
+        };
+        const backBtn = document.querySelector('.care-back');
+
+        function showStep(name) {
+          Object.keys(steps).forEach((k) => {
+            if (steps[k]) steps[k].hidden = k !== name;
+          });
+          if (backBtn) backBtn.hidden = name === 'region';
+          if (name === 'intl') loadPayPal();
+        }
+
+        document.querySelectorAll('[data-region]').forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const r = btn.getAttribute('data-region');
+            showStep(r === 'ar' ? 'ar' : 'intl');
+          });
+        });
+
+        if (backBtn) backBtn.addEventListener('click', () => showStep('region'));
+
+        const PAYPAL_PLAN_ID = 'P-1LY42344K16322315NKWUCFY';
+        const PAYPAL_CLIENT_ID = 'BAA1YFy1BAnEfmSwGt7fKvgDcdtF_QBvhX4vFQYRjWDjB7WAnLXEqemIvr6av1iXbt1-KyKo5Sl0x9P9XM';
+        let paypalRendered = false;
+
+        function notifyOwnerIntl(payload, subscriptionID) {
+          const fd = new FormData();
+          fd.append('access_key', '79647389-1e07-49c9-b7cc-7a4a64acfb94');
+          fd.append('subject', 'Nueva suscripción Internacional (PayPal)');
+          fd.append('from_name', 'DIVINO DIVINO — Suscripciones');
+          fd.append('name', payload.name || '');
+          fd.append('email', payload.email || '');
+          fd.append(
+            'message',
+            'Nueva suscripción internacional al plan Web Dominio + Hosting.\n\n' +
+              'Nombre: ' + (payload.name || '-') + '\n' +
+              'Email: ' + (payload.email || '-') + '\n' +
+              'Dominio deseado: ' + (payload.domain || '-') + '\n' +
+              'WhatsApp: ' + (payload.phone || '-') + '\n' +
+              'PayPal subscription ID: ' + (subscriptionID || '-') + '\n' +
+              'Región: Internacional (PayPal)'
+          );
+          fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: fd,
+            keepalive: true,
+          }).catch(() => {});
+        }
+
+        function readIntlForm() {
+          const form = document.getElementById('intlForm');
+          if (!form) return { name: '', email: '', domain: '', phone: '' };
+          const fd = new FormData(form);
+          return {
+            name: fd.get('name') || '',
+            email: fd.get('email') || '',
+            domain: fd.get('domain') || '',
+            phone: fd.get('phone') || '',
+          };
+        }
+
+        function renderPayPal() {
+          if (paypalRendered || !window.paypal) return;
+          const container = document.getElementById('paypal-button-container-' + PAYPAL_PLAN_ID);
+          if (!container) return;
+          paypalRendered = true;
+          paypal.Buttons({
+            style: {
+              shape: 'pill',
+              color: 'black',
+              layout: 'vertical',
+              label: 'subscribe',
+            },
+            createSubscription: function (data, actions) {
+              return actions.subscription.create({ plan_id: PAYPAL_PLAN_ID });
+            },
+            onApprove: function (data, actions) {
+              notifyOwnerIntl(readIntlForm(), data.subscriptionID);
+              const result = document.getElementById('intlResult');
+              if (result) {
+                result.style.display = 'block';
+                result.style.color = 'var(--tone-500)';
+              }
+            },
+          }).render('#' + container.id);
+        }
+
+        function loadPayPal() {
+          if (window.paypal) {
+            renderPayPal();
+            return;
+          }
+          const s = document.createElement('script');
+          s.src = 'https://www.paypal.com/sdk/js?client-id=' + PAYPAL_CLIENT_ID + '&vault=true&intent=subscription';
+          s.setAttribute('data-sdk-integration-source', 'button-factory');
+          s.onload = renderPayPal;
+          document.head.appendChild(s);
+        }
+
+        showStep('region');
+      })();
     </script>
     <script type="module" src="/scripts/lenis-scroll.js"></script>
     <script type="module" src="/scripts/transition.js"></script>

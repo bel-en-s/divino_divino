@@ -1,17 +1,24 @@
 /* CARE — SUSCRIPCIONES */
 
 .care {
-  min-height: 100svh;
-  padding: 9rem 0 6rem;
+  height: 100svh;
+  max-height: 100svh;
+  padding: 6rem 2rem 6rem;
   text-align: center;
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .care .container {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  height: auto;
 }
 
 .care-star {
@@ -42,6 +49,97 @@
   opacity: 0.6;
   font-size: 1rem;
   line-height: 1.4;
+}
+
+.care-steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+.care-step {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  max-width: 880px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.care-step-intl {
+  flex-direction: column;
+  align-items: center;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.care-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Cossette Titre", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.25rem;
+  line-height: 1.1;
+  padding: 0.6rem 3rem;
+  border-radius: 999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border: 1px solid transparent;
+  min-width: 240px;
+  text-align: center;
+}
+
+.care-pill:hover {
+  transform: translateY(-2px);
+  opacity: 0.85;
+}
+
+.care-pill-ar {
+  background: var(--tone-500);
+  color: #fff;
+}
+
+.care-pill-intl {
+  background: var(--tone-100);
+  color: var(--tone-400);
+}
+
+.care-soon-note {
+  max-width: 480px;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  opacity: 0.75;
+  text-transform: uppercase;
+}
+
+.paypal-container {
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+.care-back {
+  display: inline-block;
+  background: transparent;
+  border: none;
+  color: var(--tone-100);
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s ease, opacity 0.2s ease;
+}
+
+.care-back:hover {
+  color: var(--tone-500);
+  opacity: 0.8;
 }
 
 .care-grid {
@@ -140,7 +238,9 @@
 .care-card-actions {
   margin-top: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 0.9rem;
   width: 100%;
 }
@@ -324,7 +424,15 @@
 
 @media (max-width: 1000px) {
   .care {
-    padding: 7rem 0 4rem;
+    height: 100svh;
+    max-height: 100svh;
+    padding: 5rem 1rem 5rem;
+  }
+
+  .care-pill {
+    font-size: 1.05rem;
+    padding: 0.6rem 2rem;
+    min-width: 200px;
   }
 
   .care-grid {
