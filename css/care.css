@@ -329,6 +329,14 @@
   margin-bottom: 2.5rem;
 }
 
+.care-intl-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--tone-500);
+  margin-bottom: 1.5rem;
+}
+
 .care-form-plan strong {
   color: var(--tone-500);
 }

@@ -100,6 +100,7 @@ const translations = {
     "care-form-conn-error": "Error de conexión. Intentá de nuevo.",
     "care-form-soon": "El pago internacional está en camino. Por ahora escribinos a <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> o por <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> y te armamos la suscripción.",
     "care-form-back": "[ \u00a0volver a los planes\u00a0 ]",
+    "care-intl-plan-name": "Hosting + Renovación de Dominio",
   },
   en: {
     "lang-label": "EN",
@@ -202,6 +203,7 @@ const translations = {
     "care-form-conn-error": "Connection error. Please try again.",
     "care-form-soon": "International payment is on its way. For now email us at <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> or reach out via <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> and we will set up your subscription.",
     "care-form-back": "[ \u00a0back to plans\u00a0 ]",
+    "care-intl-plan-name": "Hosting + Domain Renewal",
   },
 };
 

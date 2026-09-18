@@ -75,13 +75,13 @@
           <a href="./" data-i18n="nav-index">Index</a>
         </div>
         <div class="nav-item">
-          <a href="./work.html" data-i18n="nav-work">Work</a>
+          <a href="./work" data-i18n="nav-work">Work</a>
         </div>
         <div class="nav-item">
-          <a href="./contact.html" data-i18n="nav-contact">Contact</a>
+          <a href="./contact" data-i18n="nav-contact">Contact</a>
         </div>
         <div class="nav-item active">
-          <a href="./care.html" data-i18n="nav-care">Suscripciones</a>
+          <a href="./care" data-i18n="nav-care">Suscripciones</a>
         </div>
         <div class="nav-item">
           <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="nav-social-link" data-i18n="nav-instagram">Instagram</a>
@@ -127,16 +127,17 @@
 
           <!-- Paso 2a: planes Argentina -->
           <div class="care-step care-step-ar" data-step="ar" hidden>
-            <a class="care-pill care-pill-ar" href="./care-form.html?plan=web&region=ar" data-i18n="care-plan-web-name">
+            <a class="care-pill care-pill-ar" href="./care-form?plan=web&region=ar" data-i18n="care-plan-web-name">
               Web Dominio + Hosting
             </a>
-            <a class="care-pill care-pill-ar" href="./care-form.html?plan=hosting&region=ar" data-i18n="care-plan-hosting-name">
+            <a class="care-pill care-pill-ar" href="./care-form?plan=hosting&region=ar" data-i18n="care-plan-hosting-name">
               Solo Hosting
             </a>
           </div>
 
           <!-- Paso 2b: Internacional -->
           <div class="care-step care-step-intl" data-step="intl" hidden>
+            <h2 class="care-intl-title" data-i18n="care-intl-plan-name">Hosting + Domain Renewal</h2>
             <form id="intlForm" class="formulario-divino" style="max-width: 420px;">
               <input type="text" name="name" data-i18n-placeholder="care-form-name" placeholder="Nombre y apellido" required />
               <input type="email" name="email" data-i18n-placeholder="care-form-email" placeholder="Email" required />
@@ -210,7 +211,7 @@
           fd.append('email', payload.email || '');
           fd.append(
             'message',
-            'Nueva suscripción internacional al plan Web Dominio + Hosting.\n\n' +
+            'Nueva suscripción internacional al plan Hosting + Domain Renewal.\n\n' +
               'Nombre: ' + (payload.name || '-') + '\n' +
               'Email: ' + (payload.email || '-') + '\n' +
               'Dominio deseado: ' + (payload.domain || '-') + '\n' +

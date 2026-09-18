@@ -93,7 +93,7 @@ module.exports = async function handler(req, res) {
     reason,
     auto_recurring: plan.auto_recurring,
     payer_email: email,
-    back_url: `${SITE_URL}/care-form.html?plan=${planKey || "web"}&region=ar`,
+    back_url: `${SITE_URL}/care-form?plan=${planKey || "web"}&region=ar`,
     external_reference: `${planKey || "web"}-${Date.now()}`,
     status: "pending",
   };
