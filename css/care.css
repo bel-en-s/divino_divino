@@ -142,6 +142,14 @@
   opacity: 0.8;
 }
 
+.care-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
 .care-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -432,9 +440,16 @@
 
 @media (max-width: 1000px) {
   .care {
-    height: 100svh;
-    max-height: 100svh;
-    padding: 5rem 1rem 5rem;
+    height: auto;
+    max-height: none;
+    min-height: 100svh;
+    overflow: visible;
+    padding: 5rem 1rem 7rem;
+  }
+
+  .care-footer {
+    position: relative;
+    bottom: auto;
   }
 
   .care-pill {

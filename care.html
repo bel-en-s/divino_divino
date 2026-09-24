@@ -141,8 +141,6 @@
             <form id="intlForm" class="formulario-divino" style="max-width: 420px;">
               <input type="text" name="name" data-i18n-placeholder="care-form-name" placeholder="Nombre y apellido" required />
               <input type="email" name="email" data-i18n-placeholder="care-form-email" placeholder="Email" required />
-              <input type="text" name="domain" data-i18n-placeholder="care-form-domain-web" placeholder="Dominio deseado (opcional)" />
-              <input type="text" name="phone" data-i18n-placeholder="care-form-phone" placeholder="WhatsApp (opcional)" />
             </form>
             <p id="intlResult" class="care-soon-note" data-i18n="care-form-success" style="display:none;"></p>
             <div id="paypal-button-container-P-1LY42344K16322315NKWUCFY" class="paypal-container"></div>
@@ -155,7 +153,7 @@
       </div>
     </section>
 
-    <footer style="z-index:1; position:absolute; bottom:0; left:0; width:100%;">
+    <footer class="care-footer">
       <div class="container">
         <div style="display:flex; justify-content:space-between; align-items:flex-end; gap:2rem; padding:1rem 0; flex-wrap:wrap;">
           <p>&copy; <span id="year"></span> DIVINO DIVINO</p>
@@ -214,8 +212,6 @@
             'Nueva suscripción internacional al plan Hosting + Domain Renewal.\n\n' +
               'Nombre: ' + (payload.name || '-') + '\n' +
               'Email: ' + (payload.email || '-') + '\n' +
-              'Dominio deseado: ' + (payload.domain || '-') + '\n' +
-              'WhatsApp: ' + (payload.phone || '-') + '\n' +
               'PayPal subscription ID: ' + (subscriptionID || '-') + '\n' +
               'Región: Internacional (PayPal)'
           );
@@ -228,13 +224,11 @@
 
         function readIntlForm() {
           const form = document.getElementById('intlForm');
-          if (!form) return { name: '', email: '', domain: '', phone: '' };
+          if (!form) return { name: '', email: '' };
           const fd = new FormData(form);
           return {
             name: fd.get('name') || '',
             email: fd.get('email') || '',
-            domain: fd.get('domain') || '',
-            phone: fd.get('phone') || '',
           };
         }
 
