@@ -15,9 +15,9 @@ const translations = {
     "nav-instagram": "Instagram",
     "nav-belu": "belu",
 
-    "seo-description": "DIVINO DIVINO es un estudio de diseño web creativo white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Buenos Aires, trabajando con marcas en todo el mundo.",
+    "seo-description": "Diseño y desarrollo web white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Terciarizá tu web y destacá.",
 
-    "hero-heading": "Dirección, Diseño y Estrategia",
+    "hero-heading": "Diseño web<br />creativo",
     "hero-sub": "para TU MUNDO DIGITAL",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Diseño web creativo",
@@ -118,9 +118,9 @@ const translations = {
     "nav-instagram": "Instagram",
     "nav-belu": "belu",
 
-    "seo-description": "DIVINO DIVINO is a white label creative web design studio for branding studios, agencies and premium brands. 2D/3D motion, visual identity and SEO. Buenos Aires, working with brands worldwide.",
+    "seo-description": "White label web design and development for branding studios, agencies and premium brands. 2D/3D motion, visual identity and SEO. Based in Buenos Aires, working worldwide.",
 
-    "hero-heading": "Direction, Design <br />& Strategy",
+    "hero-heading": "Creative<br />web design",
     "hero-sub": "for YOUR DIGITAL WORLD",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Creative Web Design",
