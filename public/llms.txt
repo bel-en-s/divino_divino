@@ -6,7 +6,7 @@
 
 - Nombre: DIVINO DIVINO
 - Ubicación: Buenos Aires, CABA, Argentina
-- Sitio oficial: https://divinodivino.com.ar/
+- Sitio oficial: https://www.divinodivino.com.ar/
 - Idiomas de atención: Español (principal), Inglés
 - Zona de servicio: Argentina y trabajo remoto a nivel mundial
 - Email: holadivinodivino@gmail.com
@@ -33,11 +33,11 @@
 
 ## Páginas principales
 
-- [Inicio](https://divinodivino.com.ar/)
-- [White Label](https://divinodivino.com.ar/white-label)
-- [Work](https://divinodivino.com.ar/work)
-- [Contacto](https://divinodivino.com.ar/contact)
-- [Suscripciones](https://divinodivino.com.ar/care)
+- [Inicio](https://www.divinodivino.com.ar/)
+- [White Label](https://www.divinodivino.com.ar/white-label)
+- [Work](https://www.divinodivino.com.ar/work)
+- [Contacto](https://www.divinodivino.com.ar/contact)
+- [Suscripciones](https://www.divinodivino.com.ar/care)
 
 ## Proyectos relacionados
 
