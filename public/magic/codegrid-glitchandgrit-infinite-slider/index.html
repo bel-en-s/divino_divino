@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GlitchAndGrit Infinite Slider | Codegrid</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg
+      aria-hidden="true"
+      style="position: absolute; width: 0; height: 0; pointer-events: none"
+    >
+      <defs>
+        <filter id="blur-matrix" x="-50%" y="-50%" width="200%" height="200%">
+          <feColorMatrix
+            in="SourceGraphic"
+            type="matrix"
+            values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 255 -140"
+          />
+        </filter>
+      </defs>
+    </svg>
+
+    <section class="slider">
+      <div class="column left"></div>
+      <div class="column right"></div>
+    </section>
+
+    <!-- <div class="logo">
+      <img src="assets/logo-dd.png" alt="Divino Divino" />
+    </div> -->
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
