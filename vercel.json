@@ -2,7 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
     { "source": "/index.html", "destination": "/", "permanent": true },
     { "source": "/work.html", "destination": "/work", "permanent": true },
@@ -12,7 +11,15 @@
     { "source": "/white-label.html", "destination": "/white-label", "permanent": true },
     { "source": "/film.html", "destination": "/film", "permanent": true },
     { "source": "/care.html", "destination": "/care", "permanent": true },
-    { "source": "/care-form.html", "destination": "/care-form", "permanent": true }
+    { "source": "/care-form.html", "destination": "/care-form", "permanent": true },
+    { "source": "/work/", "destination": "/work", "permanent": true },
+    { "source": "/culture/", "destination": "/culture", "permanent": true },
+    { "source": "/directors/", "destination": "/directors", "permanent": true },
+    { "source": "/contact/", "destination": "/contact", "permanent": true },
+    { "source": "/white-label/", "destination": "/white-label", "permanent": true },
+    { "source": "/film/", "destination": "/film", "permanent": true },
+    { "source": "/care/", "destination": "/care", "permanent": true },
+    { "source": "/care-form/", "destination": "/care-form", "permanent": true }
   ],
   "rewrites": [
     { "source": "/work", "destination": "/work.html" },
