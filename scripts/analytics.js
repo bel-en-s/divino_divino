@@ -8,16 +8,8 @@ const GA_ID = "G-76CNMYSWKB";
 const CONSENT_KEY = "ga_consent";
 
 const COPY = {
-  es: {
-    text: "Usamos cookies de Google Analytics para medir el tráfico de nuestro sitio.",
-    accept: "Aceptar",
-    reject: "Rechazar",
-  },
-  en: {
-    text: "We use Google Analytics cookies to measure our site traffic.",
-    accept: "Accept",
-    reject: "Reject",
-  },
+  es: { accept: "Aceptar cookies" },
+  en: { accept: "Accept cookies" },
 };
 
 function currentLang() {
@@ -43,10 +35,6 @@ function grantConsent() {
   loadGA();
 }
 
-function denyConsent() {
-  localStorage.setItem(CONSENT_KEY, "denied");
-}
-
 function injectBannerStyles() {
   const style = document.createElement("style");
   style.textContent = `
@@ -65,16 +53,12 @@ function injectBannerStyles() {
       flex-wrap: wrap;
       gap: 1rem;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       padding: 0.9rem 2rem;
       font-size: 0.8rem;
       line-height: 1.4;
       letter-spacing: 0.01em;
       border-top: 1px solid rgba(0, 0, 0, 0.08);
-    }
-    .cookie-banner__text {
-      margin: 0;
-      max-width: 60ch;
     }
     .cookie-banner__actions {
       display: flex;
@@ -108,24 +92,6 @@ function injectBannerStyles() {
       background: transparent;
       color: #222222;
     }
-    .cookie-banner .cookie-banner__reject {
-      border: none;
-      padding: 0.4rem 0;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-    .cookie-banner .cookie-banner__reject:hover {
-      background: transparent;
-      color: #222222;
-      opacity: 0.6;
-    }
-    @media (max-width: 600px) {
-      .cookie-banner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
-      }
-    }
   `;
   document.head.appendChild(style);
 }
@@ -140,10 +106,6 @@ function showConsentBanner() {
   banner.setAttribute("role", "dialog");
   banner.setAttribute("aria-label", "Cookie consent");
 
-  const text = document.createElement("p");
-  text.className = "cookie-banner__text";
-  text.textContent = copy.text;
-
   const actions = document.createElement("div");
   actions.className = "cookie-banner__actions";
 
@@ -155,16 +117,8 @@ function showConsentBanner() {
     banner.remove();
   });
 
-  const reject = document.createElement("button");
-  reject.className = "cookie-banner__reject";
-  reject.textContent = copy.reject;
-  reject.addEventListener("click", () => {
-    denyConsent();
-    banner.remove();
-  });
-
-  actions.append(accept, reject);
-  banner.append(text, actions);
+  actions.append(accept);
+  banner.append(actions);
   document.body.appendChild(banner);
 }
 
