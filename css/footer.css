@@ -31,7 +31,7 @@ footer {
 
 .big-mark {
   text-align: center;
-  font-size: clamp(32px, 7vw, 100px);
+  font-size: clamp(24px, 3vw, 48px);
   font-weight: 500;
   line-height: 0.85;
   letter-spacing: -0.04em;
