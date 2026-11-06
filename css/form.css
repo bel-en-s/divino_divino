@@ -23,12 +23,23 @@
 }
 
 .contact-form-intro {
-  max-width: 620px;
+  max-width: 680px;
   margin: 0 auto 3rem;
-  font-size: 0.95rem;
+  font-size: 1.3rem;
   line-height: 1.5;
   color: var(--tone-300);
   text-transform: none;
+  text-align: center;
+}
+
+.services-copy-info .contact-form-intro {
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .contact-form-intro {
+    text-align: center;
+  }
 }
 
 .formulario-landing {
@@ -163,11 +174,11 @@
   font-family: "Cossette Titre", sans-serif;
   font-size: 1rem;
   padding: 14px 32px;
-  background: transparent;
-  border: 1px solid var(--tone-100);
-  color: var(--tone-100);
+  background: var(--tone-500);
+  border: 1px solid var(--tone-500);
+  color: #fff;
   cursor: pointer;
-  align-self: flex-start;
+  align-self: center;
   transition: background 0.2s ease, color 0.2s ease;
   text-transform: none;
 }

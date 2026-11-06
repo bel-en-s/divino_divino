@@ -29,15 +29,22 @@
   width: 100%;
   height: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   pointer-events: none;
 }
 
+.hero .hero-cta {
+  margin-top: 2rem;
+  pointer-events: auto;
+  background: lightblue;
+}
+
 .hero .hero-content .hero-header {
   width: 85%;
   text-align: center;
-  color: var(--tone-500);
+  color: var(--tone-100);
 }
 
 .hero .hero-content .hero-footer {

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Diseño Web White Label para Estudios y Marcas | DIVINO DIVINO</title>
-    <link rel="icon" href="./estrella-favicon.png">
-    <link rel="apple-touch-icon" href="./estrella-favicon.png">
+    <link rel="icon" href="./estrella-favicon.png" />
+    <link rel="apple-touch-icon" href="./estrella-favicon.png" />
 
     <meta name="theme-color" content="#000000" />
     <meta name="author" content="DIVINO DIVINO" />
@@ -62,128 +62,339 @@
     <link rel="stylesheet" href="./css/split-element.css" />
     <link rel="stylesheet" href="./css/draw.css" />
 
-    <style>
-      .services-copy .container > p,
-      .about-callout-copy p:first-child {
-        display: inline;
-        text-decoration: underline;
-        text-decoration-color: #c00000;
-        text-decoration-thickness: 2px;
-        text-underline-offset: 6px;
-      }
-    </style>
+    <script>
+      (function () {
+        const WORK_VIDEOS = [
+          'AWK.mp4',
+          'Filoza.mp4',
+          'cartografias.mp4',
+          'lisboa.mp4',
+          'nerd.mp4',
+          'rauw.mp4',
+          'sam.mov'
+        ];
+
+        function initDDCarousel() {
+          const carousel = document.getElementById('dd-carousel');
+          if (!carousel || carousel.dataset.initialized === 'true') return;
+
+          const track = carousel.querySelector('.dd-carousel__track');
+          if (!track) return;
+
+          if (!track.children.length) {
+            const pagination = carousel.querySelector('.dd-carousel__pagination');
+            let itemsHtml = '';
+            let dotsHtml = '';
+            WORK_VIDEOS.forEach(function (name) {
+              const src = './work-videos/' + encodeURI(name);
+              itemsHtml +=
+                '<figure class="dd-carousel__item"><video src="' + src + '" muted loop autoplay playsinline preload="metadata" aria-label="' + name + '"></video></figure>';
+              dotsHtml += '<span class="dd-carousel__dot"></span>';
+            });
+            track.innerHTML = itemsHtml;
+            if (pagination) pagination.innerHTML = dotsHtml;
+          }
+
+          const items = Array.from(carousel.querySelectorAll('.dd-carousel__item'));
+          const dots = Array.from(carousel.querySelectorAll('.dd-carousel__dot'));
+
+          if (!items.length) return;
+
+          carousel.dataset.initialized = 'true';
+
+          let maxTravel = 0;
+          let travel = 0;
+          let currentIndex = -1;
+          let playing = false;
+          let hovering = false;
+          let lastTime = 0;
+          let rafId = null;
+
+          function measure() {
+            maxTravel = Math.max(0, track.scrollWidth - carousel.clientWidth);
+            if (travel > maxTravel) travel = maxTravel;
+            render();
+            if (!hovering) play();
+          }
+
+          function render() {
+            track.style.transform = 'translate3d(' + -travel + 'px, 0, 0)';
+
+            if (dots.length > 0 && maxTravel > 0) {
+              const index = Math.min(
+                dots.length - 1,
+                Math.round((travel / maxTravel) * (dots.length - 1))
+              );
+
+              if (index !== currentIndex) {
+                currentIndex = index;
+                dots.forEach(function (dot, i) {
+                  dot.classList.toggle('is-active', i === index);
+                });
+              }
+            }
+          }
+
+          function loop(time) {
+            if (!playing) return;
+
+            if (lastTime === 0) lastTime = time;
+            const delta = (time - lastTime) / 1000;
+            lastTime = time;
+
+            const speed =
+              parseFloat(
+                getComputedStyle(carousel).getPropertyValue('--carousel-speed')
+              ) || 120;
+
+            travel += speed * delta;
+
+            if (travel >= maxTravel) {
+              travel = 0;
+            }
+
+            render();
+
+            rafId = window.requestAnimationFrame(loop);
+          }
+
+          function play() {
+            if (playing || maxTravel <= 0) return;
+            playing = true;
+            lastTime = 0;
+            rafId = window.requestAnimationFrame(loop);
+          }
+
+          function pause() {
+            playing = false;
+            if (rafId) {
+              window.cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+            lastTime = 0;
+          }
+
+          const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          if (canHover) {
+            carousel.addEventListener('mouseenter', function () { hovering = true; pause(); });
+            carousel.addEventListener('mouseleave', function () { hovering = false; play(); });
+          }
+
+          const media = carousel.querySelectorAll('video, img');
+          media.forEach(function (el) {
+            const isVideo = el.tagName === 'VIDEO';
+            if ((isVideo && el.readyState >= 1) || (!isVideo && el.complete)) return;
+            const event = isVideo ? 'loadedmetadata' : 'load';
+            el.addEventListener(event, measure, { once: true });
+            el.addEventListener('error', measure, { once: true });
+          });
+
+          window.addEventListener('resize', measure);
+
+          if ('ResizeObserver' in window) {
+            const observer = new ResizeObserver(measure);
+            observer.observe(carousel);
+            observer.observe(track);
+          }
+
+          const lightbox = document.createElement('div');
+          lightbox.id = 'dd-lightbox';
+          lightbox.innerHTML =
+            '<button class="dd-lightbox__close" type="button" aria-label="Cerrar">×</button>' +
+            '<button class="dd-lightbox__arrow dd-lightbox__arrow--prev" type="button" aria-label="Anterior">❮</button>' +
+            '<video controls autoplay playsinline></video>' +
+            '<button class="dd-lightbox__arrow dd-lightbox__arrow--next" type="button" aria-label="Siguiente">❯</button>' +
+            '<span class="dd-lightbox__counter"></span>';
+          document.body.appendChild(lightbox);
+
+          const lightboxVideo = lightbox.querySelector('video');
+          const lightboxCounter = lightbox.querySelector('.dd-lightbox__counter');
+          const lightboxClose = lightbox.querySelector('.dd-lightbox__close');
+          const lightboxPrev = lightbox.querySelector('.dd-lightbox__arrow--prev');
+          const lightboxNext = lightbox.querySelector('.dd-lightbox__arrow--next');
+
+          let lightboxIndex = 0;
+
+          function openLightbox(index) {
+            lightboxIndex = index;
+            updateLightbox();
+            lightbox.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          }
+
+          function updateLightbox() {
+            const video = items[lightboxIndex].querySelector('video');
+            const src = video ? video.getAttribute('src') : '';
+            lightboxVideo.src = src;
+            if (src) lightboxVideo.load();
+            lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + items.length;
+          }
+
+          function closeLightbox() {
+            lightbox.classList.remove('is-open');
+            lightboxVideo.pause();
+            lightboxVideo.removeAttribute('src');
+            lightboxVideo.load();
+            document.body.style.overflow = '';
+          }
+
+          function showPrev() {
+            lightboxIndex = (lightboxIndex - 1 + items.length) % items.length;
+            updateLightbox();
+          }
+
+          function showNext() {
+            lightboxIndex = (lightboxIndex + 1) % items.length;
+            updateLightbox();
+          }
+
+          items.forEach(function (item, i) {
+            const media = item.querySelector('video, img');
+            if (media) {
+              media.addEventListener('click', function () {
+                openLightbox(i);
+              });
+            }
+          });
+
+          lightboxClose.addEventListener('click', closeLightbox);
+          lightboxPrev.addEventListener('click', showPrev);
+          lightboxNext.addEventListener('click', showNext);
+
+          lightbox.addEventListener('click', function (e) {
+            if (e.target === lightbox) closeLightbox();
+          });
+
+          document.addEventListener('keydown', function (e) {
+            if (!lightbox.classList.contains('is-open')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') showPrev();
+            if (e.key === 'ArrowRight') showNext();
+          });
+
+          measure();
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initDDCarousel);
+        } else {
+          initDDCarousel();
+        }
+
+        window.addEventListener('load', initDDCarousel);
+      })();
+    </script>
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": ["ProfessionalService", "Organization"],
-          "@id": "https://www.divinodivino.com.ar/#organization",
-          "name": "DIVINO DIVINO",
-          "alternateName": "Divino Divino",
-          "description": "Estudio de diseño web creativo white label para estudios de branding, agencias de diseño y marcas premium. Diseño y desarrollo web, motion design 2D/3D, identidad visual y SEO para marcas que quieren destacar.",
-          "url": "https://www.divinodivino.com.ar/",
-          "logo": "https://www.divinodivino.com.ar/site-icon.jpg",
-          "image": "https://www.divinodivino.com.ar/site-icon.jpg",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Buenos Aires",
-            "addressRegion": "CABA",
-            "addressCountry": "AR"
-          },
-          "contactPoint": [
-            {
-              "@type": "ContactPoint",
-              "contactType": "customer service",
-              "email": "belen.seoane.palmieri@gmail.com",
-              "areaServed": "AR",
-              "availableLanguage": ["Spanish", "English"]
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": ["ProfessionalService", "Organization"],
+            "@id": "https://www.divinodivino.com.ar/#organization",
+            "name": "DIVINO DIVINO",
+            "alternateName": "Divino Divino",
+            "description": "Estudio de diseño web creativo white label para estudios de branding, agencias de diseño y marcas premium. Diseño y desarrollo web, motion design 2D/3D, identidad visual y SEO para marcas que quieren destacar.",
+            "url": "https://www.divinodivino.com.ar/",
+            "logo": "https://www.divinodivino.com.ar/site-icon.jpg",
+            "image": "https://www.divinodivino.com.ar/site-icon.jpg",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Buenos Aires",
+              "addressRegion": "CABA",
+              "addressCountry": "AR"
             },
-            {
-              "@type": "ContactPoint",
-              "contactType": "sales",
-              "telephone": "+54-9-11-6918-8741",
-              "url": "https://wa.me/5491169188741",
-              "areaServed": "AR",
-              "availableLanguage": ["Spanish"]
-            }
-          ],
-          "sameAs": [
-            "https://bel-en-s.com/",
-                    "https://balvaneralab.com.ar/"
-          ],
-          "areaServed": [
-            { "@type": "Country", "name": "Argentina" },
-            { "@type": "Place", "name": "Worldwide" }
-          ],
-          "knowsLanguage": ["es", "en"],
-          "slogan": "Dirección, diseño y estrategia para tu mundo digital.",
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Servicios DIVINO DIVINO",
-            "itemListElement": [
+            "contactPoint": [
               {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Diseño web creativo white label",
-                  "description": "Diseño y desarrollo web creativo para estudios de branding, agencias y estudios de diseño que terciarizan su producción digital. Sitios web, landing pages y experiencias digitales inmersivas.",
-                  "areaServed": "AR"
-                }
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "email": "belen.seoane.palmieri@gmail.com",
+                "areaServed": "AR",
+                "availableLanguage": ["Spanish", "English"]
               },
               {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Identidad visual",
-                  "description": "Dirección de arte, branding y sistemas de identidad visual digital para marcas premium.",
-                  "areaServed": "AR"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Motion design 2D y 3D",
-                  "description": "Animación 2D/3D, shaders y experiencias interactivas para sitios web y campañas digitales.",
-                  "areaServed": "AR"
-                }
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "SEO y posicionamiento",
-                  "description": "Visibilidad orgánica en Google y optimización técnica para sitios web de alto nivel.",
-                  "areaServed": "AR"
-                }
+                "@type": "ContactPoint",
+                "contactType": "sales",
+                "telephone": "+54-9-11-6918-8741",
+                "url": "https://wa.me/5491169188741",
+                "areaServed": "AR",
+                "availableLanguage": ["Spanish"]
               }
+            ],
+            "sameAs": [
+              "https://bel-en-s.com/",
+              "https://balvaneralab.com.ar/"
+            ],
+            "areaServed": [
+              { "@type": "Country", "name": "Argentina" },
+              { "@type": "Place", "name": "Worldwide" }
+            ],
+            "knowsLanguage": ["es", "en"],
+            "slogan": "Dirección, diseño y estrategia para tu mundo digital.",
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Servicios DIVINO DIVINO",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Diseño web creativo white label",
+                    "description": "Diseño y desarrollo web creativo para estudios de branding, agencias y estudios de diseño que terciarizan su producción digital. Sitios web, landing pages y experiencias digitales inmersivas.",
+                    "areaServed": "AR"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Identidad visual",
+                    "description": "Dirección de arte, branding y sistemas de identidad visual digital para marcas premium.",
+                    "areaServed": "AR"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Motion design 2D y 3D",
+                    "description": "Animación 2D/3D, shaders y experiencias interactivas para sitios web y campañas digitales.",
+                    "areaServed": "AR"
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "SEO y posicionamiento",
+                    "description": "Visibilidad orgánica en Google y optimización técnica para sitios web de alto nivel.",
+                    "areaServed": "AR"
+                  }
+                }
+              ]
+            },
+            "founder": [
+              { "@id": "https://www.divinodivino.com.ar/#bel" }
             ]
           },
-          "founder": [
-            { "@id": "https://www.divinodivino.com.ar/#bel" },
-      
-          ]
-        },
-        {
-          "@type": "WebSite",
-          "@id": "https://www.divinodivino.com.ar/#website",
-          "url": "https://www.divinodivino.com.ar/",
-          "name": "DIVINO DIVINO",
-          "inLanguage": "es-AR",
-          "publisher": { "@id": "https://www.divinodivino.com.ar/#organization" }
-        },
-        {
-          "@type": "Person",
-          "@id": "https://www.divinodivino.com.ar/#bel",
-          "name": "Bel",
-          "url": "https://bel-en-s.com/",
-          "jobTitle": "Directora de arte interactiva",
-          "worksFor": { "@id": "https://www.divinodivino.com.ar/#organization" }
-        },
-      ]
-    }
+          {
+            "@type": "WebSite",
+            "@id": "https://www.divinodivino.com.ar/#website",
+            "url": "https://www.divinodivino.com.ar/",
+            "name": "DIVINO DIVINO",
+            "inLanguage": "es-AR",
+            "publisher": { "@id": "https://www.divinodivino.com.ar/#organization" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.divinodivino.com.ar/#bel",
+            "name": "Bel",
+            "url": "https://bel-en-s.com/",
+            "jobTitle": "Directora de arte interactiva",
+            "worksFor": { "@id": "https://www.divinodivino.com.ar/#organization" }
+          }
+        ]
+      }
     </script>
 
     <script type="module" src="/scripts/analytics.js"></script>
@@ -212,22 +423,21 @@
         <div class="nav-left">
           <div class="logo">
             <div class="logo-container">
-             <a href="./"><img src="./logo-dd.png" alt="DIVINO DIVINO" style="height: 4.5rem; width: auto;" /></a>
+              <a href="./">
+                <img src="./logo-dd.png" alt="DIVINO DIVINO" style="height: 4.5rem; width: auto;" />
+              </a>
             </div>
           </div>
           <div class="nav-section-label" aria-live="polite"></div>
         </div>
         <div class="nav-right">
-          <span class="lang-toggle">SWITCH LANGUAGE</span>
+          <!-- <span class="lang-toggle">SWITCH LANGUAGE</span> -->
           <div class="menu-toggle-btn">
-          
-              <div class="menu-toggle-btn-wrapper">
+            <div class="menu-toggle-btn-wrapper">
               <p data-i18n="menu-btn">Menu</p>
-          
+            </div>
           </div>
         </div>
-        </div>
-
       </div>
     </nav>
 
@@ -250,19 +460,18 @@
 
       <div class="nav-footer">
         <div class="container">
-        
           <div class="nav-footer-item">
             <a href="https://bel-en-s.com/" target="_blank" data-i18n="nav-belu">belu</a>
           </div>
           <div class="nav-footer-item nav-footer-buttons">
-   
             <a
-              href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
-              class="scramble-hover" data-i18n="nav-cta"
+              href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!"
+              target="_blank"
+              class="scramble-hover"
+              data-i18n="nav-cta"
             >
               [ &nbsp;hablemos de tu proyecto&nbsp; ]
             </a>
-          
           </div>
         </div>
       </div>
@@ -273,28 +482,29 @@
         <source src="./hero/hero.mp4" type="video/mp4" />
       </video>
 
-      <a
-    href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
-    class="scramble-hover services-cta hero-cta"
-    data-i18n="nav-cta"
-  >
-    [ &nbsp;Inquire&nbsp; ]
-  </a>
-
       <div class="hero-content">
         <div class="hero-header">
           <div class="container">
-            <h2 class="hero-subtitle" data-i18n="hero-sub">★Brand & Web★ </h2>
-            <h1 data-i18n-html="hero-heading">design for the <br/>outstanding ones</h1>
- 
+            <h2 class="hero-subtitle" data-i18n-html="hero-sub">
+              <span class="star">★</span>
+              <span class="hero-subtitle-text">Brand & Web</span>
+              <span class="star">★</span>
+            </h2>
+            <h1 data-i18n-html="hero-heading">design for the <br />outstanding ones</h1>
           </div>
-
         </div>
+
+        <a
+          href="mailto:holadivinodivino@gmail.com"
+          class="scramble-hover services-cta hero-cta"
+          data-i18n="nav-cta"
+        >
+          [ &nbsp;Inquire&nbsp; ]
+        </a>
 
         <div class="hero-footer">
           <div class="container">
             <p>Buenos Aires/ Worldwide</p>
-         
             <p data-i18n="hero-scroll">[ &nbsp;Scroll to Continue&nbsp; ]</p>
           </div>
         </div>
@@ -304,197 +514,67 @@
     <section class="services-copy">
       <div class="container">
         <span class="service-star h1">
-          <span class="service-star-icon">✷</span>
           <a
-            href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
+            href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!"
+            target="_blank"
             class="service-star-cta"
           >hey!!!</a>
         </span>
 
-      <div class="services-copy-info">
-
-  <div class="services-column">
-    <section class="about-copy">
-      <div class="container">
-        
-
-        <div class="about-copy-info">
-          <p data-i18n="services-desc">
-          <p data-i18n="services-heading">Hello! We are your friendly design studio known for experimental, but approachable and functional design.
-            <br/> <br/>  We design the way a brand exists online, 
-           translating somehow a luxury store experience into the digital. working within the <span class="about-copy-bold">arts & entretainment</span> industry.
-           
-          </p>
-           <h3 data-i18n="services-heading"> Want to hear more?? </h3>
-
-
-          
-        </h3>
-          <a
-  href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
-  class="scramble-hover services-cta"
-  style="cursor:pointer; display:inline-block; position:relative; z-index:10; font-size: 20px;"
-  data-i18n="nav-cta"
->
-  [ &nbsp;book a free 30 min discovery call&nbsp; ]
-</a>
-
+        <div class="services-copy-info">
+          <div class="services-column">
+            <section class="about-copy">
+              <div class="container">
+                <p class="about-intro" data-i18n-html="about-intro">
+                  <span class="about-intro-text">We are your friendly design studio known for experimental, but approachable and functional design. We craft the way a brand exists online, translating somehow a luxury store experience into the digital.</span>
+                  <a href="https://calendly.com/holadivinodivino/30min" target="_blank" class="about-intro-cta">[ &nbsp;book a free 30 min discovery call&nbsp; ]</a>
+                </p>
+              </div>
+            </section>
+          </div>
         </div>
       </div>
-      
     </section>
-    <!-- <h3 class="services-column-title">ESTOS SON Nuestros PRINCIPALES Servicios</h3> -->
 
-    <!-- <div class="product-cards">
-      <div class="product-card">
-        <h4 class="product-card-title">Diseño web</h4>
-        <ul class="product-card-list">
-          <li>Tu web es el espacio donde tu marca cobra vida.</li>
-          <li>Creamos experiencias digitales que comunican lo que realmente querés transmitir: sitios visualmente atractivos, intuitivos y fáciles de usar.</li>
-          
-        </ul>
-      </div>
-      <div class="product-card">
-        <h4 class="product-card-title">Desarrollo Web</h4>
-        <ul class="product-card-list">
-          <li>Si ya tenés un diseño, lo hacemos realidad: Te ayudamos a definir la mejor forma de hacerlo.</li>
-          <li>Trabajamos con enfoque MVP para lanzar rápido una primera versión funcional, validar resultados y crecer paso a paso con nuevas funcionalidades.</li>
-        </ul>
-      </div>
-      <div class="product-card">
-        <h4 class="product-card-title">Desarrollo de producto</h4>
-        <ul class="product-card-list">
-          <li>Pensamos diseño y desarrollo, uniendo nuestros dos skills más grandes: el diseño web creativo, y las soluciones digitales.</li>
-          <li>Realizamos mantenimiento y reingeniería de productos digitales.</li>
-          <li>Te ayudamos a optimizar tu producto digital para mejorar su rendimiento y experiencia de usuario.</li>
-        </ul>
-      </div>
-    </div> -->
-  </div>
-<!-- 
-  <div class="services-column">
-    <h3 class="services-column-title">si querés diseño custom, página creativa que impacte</h3>
-
-    <div class="services-list">
-      <div class="service-item service-cta-item">
-        <a
-          href="/contact.html"
-          class="scramble-hover"
-      
-        >
-          → [ &nbsp;ESCRIBINOS&nbsp; ]
-        </a>
-      </div>
+    <!-- DIVINO DIVINO CAROUSEL -->
+    <div class="dd-carousel" id="dd-carousel">
+      <div class="dd-carousel__track"></div>
+      <div class="dd-carousel__pagination" aria-hidden="true"></div>
     </div>
-  </div> -->
 
-</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="workflow" data-reveal>
-      <div class="container">
-        <span class="service-star h1 service-star-celeste workflow-star">
-          <span class="service-star-icon">✷</span>
-        </span>
-        <h2 class="workflow-title" data-i18n="workflow-heading">but,how does it work?</h2>
-
-        <div class="workflow-grid">
-          <div class="workflow-item">
-            <span class="workflow-num">1.</span>
-            <p data-i18n="workflow-1-title">Descubrimos tu esencia</p>
-            <p class="workflow-detail" data-i18n="workflow-1-desc">Entendemos quién sos, qué querés comunicar y hacia dónde va tu proyecto.</p>
-          </div>
-          <div class="workflow-item">
-            <span class="workflow-num">2.</span>
-            <p data-i18n="workflow-2-title">Diseñamos tu mundo digital</p>
-            <p class="workflow-detail" data-i18n="workflow-2-desc">Creamos una experiencia que ordena tus ideas y transforma tu identidad en una presencia digital clara, funcional y memorable.</p>
-          </div>
-          <div class="workflow-item">
-            <span class="workflow-num">3.</span>
-            <p data-i18n="workflow-3-title">Ganás tranquilidad</p>
-            <p class="workflow-detail" data-i18n="workflow-3-desc">Dejás de preocuparte por la parte técnica y empezás a disfrutar de una web que te representa, conecta con tu audiencia y acompaña el crecimiento de tu marca.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="workflow services-offer" data-reveal>
-      <div class="container">
-        <span class="service-star h1 service-star-red services-offer-star">
-          <span class="service-star-icon">✷</span>
-        </span>
-        <h2 class="workflow-title" data-i18n="services-offer-heading">Servicios</h2>
-
-        <div class="services-offer-grid">
-          <span class="services-offer-pill" data-i18n="service-identidad">Identidad visual</span>
-          <span class="services-offer-pill" data-i18n="service-web">Diseño web & desarrollo all in one</span>
-          <span class="services-offer-pill" data-i18n="service-seo">SEO y posicionamiento</span>
-          <span class="services-offer-pill" data-i18n="service-email">Email marketing</span>
-          <span class="services-offer-pill services-offer-pill-tight" data-i18n="service-motion">Motion & animations</span>
-          <span class="services-offer-pill" data-i18n="service-design">2D & 3D design</span>
-        </div>
-      </div>
-    </section>
-
-    
+    <div class="work-cta">
+      <a href="./work" class="scramble-hover services-cta work-cta-btn">[ &nbsp;see full work&nbsp; ]</a>
+    </div>
+    <!-- END CAROUSEL -->
 
     <section class="about" data-reveal data-nav-label="quienes somos?">
       <div class="container">
-        <span class="service-star h1 service-star-black nosotras-star">
+        <span class="service-star h1 service-star-lightblue services-offer-star">
           <span class="service-star-icon">✷</span>
         </span>
         <h2 class="nosotras-title" data-i18n="nosotras-title">Meet your designer</h2>
 
-        <div class="nosotras-grid">
-          <div class="nosotras-item">
-            <div style="display:none" class="nosotras-portrait" data-label="01 · BEL">
-              <div class="red-spot"></div>
-            </div>
-            <img src="./bel-portrait.jpg" alt="Bel, directora de arte interactivo" class="nosotras-portrait" data-label="01 · BEL" />
-  
-            <div class="nav-footer-item">
-<a href="./work" data-i18n="see-more">
-                 [ &nbsp;ver más&nbsp; ]
-              </a>
-            </div>
-            <br />
-            <p data-i18n-html="nosotras-tagline">
-              Dirección de arte interactivo. Diseño digital.<br> Branding & Visual Diseño web premium.
-            </p>
-          </div>
-
-          <div  class="nosotras-item">
-            <div style="display:none" class="nosotras-portrait" data-label="02 · ">
-              <div class="red-spot"></div>
-            </div>
-          
-            <div class="nav-footer-item">
-   
-            </div>
-            <br />
-   
-          </div>
+        <img src="./about/about-photo.png" alt="Divino Divino studio" class="about-copy-photo" />
+        <div class="nav-footer-item">
+          <a href="https://belenseoanepalmieri.com/" target="_blank" rel="noopener">
+            [ &nbsp;personal website here&nbsp; ]
+          </a>
         </div>
+
+        <section class="container services-copy-info">
+          <p class="contact-form-intro" data-i18n="form-intro">
+            Hi!! I'm Bel, a multimedia artist. I live in Buenos Aires, I studied visual arts at UNA and then multimedia arts. I've been working independently for over 8 years, though I spent some time in studios on a full-time basis.
+            <br /><br />
+            I love using technology as a medium of expression for my work, and my job is to help your project use it creatively to communicate too. I believe that today, more than ever, whoever manages to be original and authentic stands out.
+          </p>
+        </section>
       </div>
     </section>
-
-    <!-- <section class="about-callout">
-      <span style='display:none' class="about-cloudr h1">☁</span>
-      <div class="container">
-        <div class="about-callout-copy">
-          <p>Construimos tu vidriera digital</p>
-        </div>
-      </div>
-    </section> -->
-
-    <!-- <section class="pixelated-text about-header"></section> -->
 
     <section class="contact-form-section" data-reveal data-nav-label="contact">
       <div class="container">
         <p class="contact-form-eyebrow">Buenos Aires / Worldwide</p>
-        <h2 class="contact-form-title">lets make something<br />cool together.</h2>
+        <h2 class="contact-form-title">let's make something<br />cool together.</h2>
 
         <p class="contact-form-intro" data-i18n="form-intro">
           If you're feeling ready to take this step, frustrated with not having
@@ -579,32 +659,18 @@
       </div>
     </section>
 
-    <section class="still-doubting" data-reveal>
-      <div class="container still-doubting-inner">
-        <h2 class="still-doubting-title">Still doubting?</h2>
-        <div class="still-doubting-cta">
-          <a href="./work" class="still-doubting-link">Lets crack the case</a>
-          <a href="./work" class="still-doubting-sub">/ view case studies</a>
-        </div>
-      </div>
-    </section>
-
-    <footer style="z-index:1">
+    <footer style="z-index: 1">
       <div class="footer-row form">
         <div class="container">
-
-          <div class="footer-name big-mark" data-reveal>
-            <span class="row"><span>DIVINO</span></span>
-            <span class="row"><span>DIVINO</span></span>
+          <div class="footer-instagram" data-reveal>
+            <behold-widget feed-id="pjbaJg7HaUNvVetNdDBs"></behold-widget>
           </div>
-
 
           <div class="footer-form-copy">
             <p data-i18n="footer-desc">
-             Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.
+              Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.
             </p>
           </div>
-          
 
           <div class="footer-submit-btn">
             <a href="./contact" class="scramble-hover" data-i18n="footer-cta">
@@ -617,45 +683,33 @@
       <div class="footer-row meta">
         <div class="container">
           <div class="footer-meta-row">
-            <div class="meta-info">
-            </div>
+            <div class="meta-info"></div>
 
             <div class="meta-info" style="display: flex; flex-direction: column; align-items: flex-start;">
-  <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="footer-social-link">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-    </svg>
-    Instagram
-  </a>
-  <a href="mailto:holadivinodivino@gmail.com" class="footer-social-link" style="margin-top: 0.5rem;">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
-      <polyline points="22,5 12,13 2,5"></polyline>
-    </svg>
-    holadivinodivino@gmail.com
-  </a>
-</div>
-
-          </div>
-
-          <div class="footer-meta-row">
-            <p>Developed by DIVINO DIVINO</p>
+              <a href="https://www.instagram.com/divinodivino_/" target="_blank" rel="noopener" class="footer-social-link">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+                Instagram
+              </a>
+              <a href="mailto:holadivinodivino@gmail.com" class="footer-social-link" style="margin-top: 0.5rem;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="3" width="20" height="18" rx="2" ry="2"></rect>
+                  <polyline points="22,5 12,13 2,5"></polyline>
+                </svg>
+                holadivinodivino@gmail.com
+              </a>
+            </div>
           </div>
         </div>
-
-        <p>
-          
-        </p>
       </div>
     </footer>
 
     <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
     <script type="module" src="/src/main.js"></script>
-    <script type="module" src="./scripts/i18n.js"></script>
-    
-
+    <!-- <script type="module" src="./scripts/i18n.js"></script> -->
 
     <script type="module" src="/scripts/lenis-scroll.js"></script>
     <script type="module" src="/scripts/transition.js"></script>
@@ -663,11 +717,13 @@
     <script type="module" src="/scripts/pixelated-video.js"></script>
     <script type="module" src="/scripts/contact.js"></script>
     <script type="module" src="/scripts/footer.js"></script>
+    <script type="module" src="https://w.behold.so/widget.js"></script>
+
     <script>
       const stars = document.querySelectorAll('.service-star');
       window.addEventListener('scroll', () => {
         const deg = window.scrollY * 0.1;
-        stars.forEach(s => s.style.transform = `rotate(${deg}deg)`);
+        stars.forEach((s) => (s.style.transform = `rotate(${deg}deg)`));
       });
 
       const pills = document.querySelectorAll('.services-offer-pill');

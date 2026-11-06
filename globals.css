@@ -138,24 +138,40 @@ p {
 }
 
 .hero .hero-header h1 {
-  font-size: 7rem;
+  font-size: 4rem;
   font-weight: 500;
   line-height: 0.9;
-  color: var(--tone-500);
+  color: var(--tone-100);
+}
+
+.hero .hero-header .hero-subtitle .hero-sub-brand {
+  background: lightblue;
+  color: var(--tone-100);
+  padding: 0.05em 0.25em;
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
 }
 
 .hero .hero-header .hero-subtitle {
-  font-size: 2rem;
+  font-size: 3.5rem;
   font-weight: 500;
   line-height: 0.9;
+}
+
+.hero .hero-header .hero-subtitle .star {
+  color: var(--tone-500);
+}
+
+.hero .hero-header .hero-subtitle .hero-subtitle-text {
+  font-size: 0.6em;
 }
 
 @media (max-width: 1000px) {
   .hero .hero-header h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
   }
   .hero .hero-header .hero-subtitle {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
 
@@ -192,4 +208,40 @@ p {
 
 .link-h2:hover::after {
   width: 100%;
+}
+
+.about-copy .container .nosotras-bio {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+  text-transform: none;
+  font-size: 1.125rem;
+  line-height: 1.5;
+  color: var(--tone-300);
+}
+
+.about .about-copy .container {
+  gap: 1.5rem;
+}
+
+.about .nav-footer-item {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.about .nav-footer-item a {
+  color: var(--tone-500);
+}
+
+@media (max-width: 1000px) {
+  .about-copy .container .nosotras-bio {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--tone-100);
+  }
 }

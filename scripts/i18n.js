@@ -18,10 +18,13 @@ const translations = {
     "seo-description": "Diseño y desarrollo web white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Terciarizá tu web y destacá.",
 
     "hero-heading": "design for the <br/>outstanding ones",
-    "hero-sub": "★Brand & Web★",
+    "hero-sub": "<span class=\"star\">★</span><span class=\"hero-sub-brand\">Brand & Web</span><span class=\"star\">★</span>",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Diseño web creativo",
     "services-desc": "Somos el partner white label de estudios de branding, agencias y marcas premium. Diseñamos la forma en que una marca existe en internet: estrategia, dirección creativa y desarrollo, bajo tu marca.",
+    "about-intro": "<span class=\"about-intro-text\">¡Hola! Somos tu estudio de diseño amigable, conocido por un diseño experimental pero accesible y funcional. Diseñamos la forma en que una marca existe en internet, traduciendo de algún modo una experiencia de tienda de lujo al mundo digital.</span> <a href=\"https://calendly.com/holadivinodivino/30min\" target=\"_blank\" class=\"about-intro-cta\">[ \u00a0agendá una call de descubrimiento gratis de 30 min\u00a0 ]</a>",
+    "about-more": "¡Hacé click acá para ver si somos un fit!",
+    "about-cta": "[ \u00a0agendá una call de descubrimiento gratis de 30 min\u00a0 ]",
     "workflow-heading": "De la idea a la experiencia",
     "workflow-1-title": "Descubrimos tu esencia",
     "workflow-1-desc": "Entendemos quién sos, qué querés comunicar y hacia dónde va tu proyecto.",
@@ -103,7 +106,7 @@ const translations = {
     "care-form-back": "[ \u00a0volver a los planes\u00a0 ]",
     "care-intl-plan-name": "Hosting + Renovación de Dominio",
 
-    "form-intro": "Si ya estás lista para dar este paso y querés por fin una identidad y una web a la altura de tus objetivos, ¡soy tu persona! Te respondo dentro de 1 día hábil para una call de consultoría (totalmente gratis) y ver si hacemos match.",
+    "form-intro": "Si ya estás lista para dar este paso y querés por fin una identidad y una web a la altura de tus objetivos, hablemos! Te respondo dentro de 1 día hábil para una call de consultoría gratis y ver si hacemos match.",
     "form-first-name": "Nombre",
     "form-last-name": "Apellido",
     "form-email": "Email",
@@ -150,10 +153,13 @@ const translations = {
     "seo-description": "White label web design and development for branding studios, agencies and premium brands. 2D/3D motion, visual identity and SEO. Based in Buenos Aires, working worldwide.",
 
     "hero-heading": "design for the <br/>outstanding ones",
-    "hero-sub": "★Brand & Web★",
+    "hero-sub": "<span class=\"star\">★</span><span class=\"hero-sub-brand\">Brand & Web</span><span class=\"star\">★</span>",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Creative Web Design",
     "services-desc": "We are the white label partner for branding studios, agencies and premium brands. We design how a brand exists online: strategy, creative direction and development, under your brand.",
+    "about-intro": "<span class=\"about-intro-text\">Hello! We are your friendly design studio known for experimental, but approachable and functional design. We design the way a brand exists online, translating somehow a luxury store experience into the digital.</span> <a href=\"https://calendly.com/holadivinodivino/30min\" target=\"_blank\" class=\"about-intro-cta\">[ \u00a0book a free 30 min discovery call\u00a0 ]</a>",
+    "about-more": "Click here to find out if we are a fit!",
+    "about-cta": "[ \u00a0book a free 30 min discovery call\u00a0 ]",
     "workflow-heading": "From Idea to Experience",
     "workflow-1-title": "We discover your essence",
     "workflow-1-desc": "We understand who you are, what you want to communicate, and where your project is headed.",
@@ -266,7 +272,7 @@ const translations = {
 };
 
 function getLang() {
-  return localStorage.getItem("lang") || "es";
+  return "en";
 }
 
 function setLang(lang) {
