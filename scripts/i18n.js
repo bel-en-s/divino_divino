@@ -223,26 +223,42 @@ function t(key) {
   return translations[lang]?.[key] ?? translations.es?.[key] ?? key;
 }
 
+const DEFAULT_LANG = "es";
+
 function translate() {
   const lang = getLang();
   document.documentElement.lang = lang;
 
+  const useDefault = lang === DEFAULT_LANG;
+
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
+    if (!el.hasAttribute("data-i18n-default")) {
+      el.setAttribute("data-i18n-default", el.textContent);
+    }
+    const fallback = el.getAttribute("data-i18n-default");
     const text = translations[lang]?.[key];
-    if (text) el.textContent = text;
+    el.textContent = useDefault ? fallback : text ?? fallback;
   });
 
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
     const key = el.getAttribute("data-i18n-html");
+    if (!el.hasAttribute("data-i18n-html-default")) {
+      el.setAttribute("data-i18n-html-default", el.innerHTML);
+    }
+    const fallback = el.getAttribute("data-i18n-html-default");
     const text = translations[lang]?.[key];
-    if (text) el.innerHTML = text;
+    el.innerHTML = useDefault ? fallback : text ?? fallback;
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
     const key = el.getAttribute("data-i18n-placeholder");
+    if (!el.hasAttribute("data-i18n-placeholder-default")) {
+      el.setAttribute("data-i18n-placeholder-default", el.placeholder);
+    }
+    const fallback = el.getAttribute("data-i18n-placeholder-default");
     const text = translations[lang]?.[key];
-    if (text) el.placeholder = text;
+    el.placeholder = useDefault ? fallback : text ?? fallback;
   });
 
   const langToggle = document.querySelector(".lang-toggle");
