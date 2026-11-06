@@ -1,0 +1,236 @@
+/* CONTACT FORM (shared: landing + /contact) */
+
+.contact-form-section {
+  padding: 4rem 0 6rem;
+  text-align: center;
+}
+
+.contact-form-eyebrow {
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  color: var(--tone-300);
+  margin-bottom: 1.5rem;
+  text-transform: none;
+}
+
+.contact-form-title {
+  margin: 0 auto 2rem;
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 500;
+  line-height: 1.02;
+  color: var(--tone-100);
+  text-transform: none;
+}
+
+.contact-form-intro {
+  max-width: 620px;
+  margin: 0 auto 3rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--tone-300);
+  text-transform: none;
+}
+
+.formulario-landing {
+  max-width: 880px;
+  margin: 0 auto;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field-full {
+  grid-column: 1 / -1;
+}
+
+.form-field label,
+.form-group legend {
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--tone-300);
+  text-transform: none;
+}
+
+.formulario-landing input,
+.formulario-landing textarea {
+  background: transparent;
+  color: var(--tone-100);
+  font-family: "Cossette Titre", sans-serif;
+  padding: 12px 14px;
+  border: 1px solid var(--tone-100);
+  border-radius: 0;
+  font-size: 1rem;
+  width: 100%;
+  text-transform: none;
+}
+
+.formulario-landing input::placeholder,
+.formulario-landing textarea::placeholder {
+  color: var(--tone-300);
+  opacity: 0.7;
+}
+
+.formulario-landing textarea {
+  resize: vertical;
+}
+
+.form-help {
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+  color: var(--tone-300);
+  opacity: 0.7;
+  text-transform: none;
+}
+
+.form-group {
+  border: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group legend {
+  padding: 0;
+  margin-bottom: 0.25rem;
+}
+
+.form-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.form-option {
+  position: relative;
+  cursor: pointer;
+}
+
+.form-option input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.form-option span {
+  display: inline-block;
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  padding: 10px 18px;
+  border: 1px solid var(--tone-100);
+  color: var(--tone-100);
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+  user-select: none;
+  text-transform: none;
+}
+
+.form-option input:checked + span {
+  background: var(--tone-100);
+  color: var(--tone-400);
+}
+
+.form-option span:hover {
+  background: var(--tone-100);
+  color: var(--tone-400);
+}
+
+.form-option input:focus-visible + span {
+  outline: 2px solid var(--tone-500);
+  outline-offset: 2px;
+}
+
+.form-submit {
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 1rem;
+  padding: 14px 32px;
+  background: transparent;
+  border: 1px solid var(--tone-100);
+  color: var(--tone-100);
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s ease, color 0.2s ease;
+  text-transform: none;
+}
+
+.form-submit:hover {
+  background: var(--tone-100);
+  color: var(--tone-400);
+}
+
+.form-result {
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.9rem;
+  color: var(--tone-300);
+  text-transform: none;
+}
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.contact-links a {
+  font-size: 1rem;
+  color: var(--tone-100);
+  text-transform: none;
+}
+
+.contact-links a:hover {
+  color: var(--tone-500);
+}
+
+.contact-copyright {
+  margin-top: 3rem;
+  font-size: 0.8rem;
+  color: var(--tone-300);
+  text-transform: none;
+}
+
+@media (max-width: 1000px) {
+  .contact-form-title {
+    width: 100%;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-options {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .form-option span {
+    width: 100%;
+    text-align: center;
+  }
+
+  .form-submit {
+    align-self: stretch;
+  }
+}

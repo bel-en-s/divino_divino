@@ -1,7 +1,7 @@
 const translations = {
   es: {
     "lang-label": "ES",
-    "lang-toggle": "SWITCH LANGUAGE",
+    "lang-toggle": "CAMBIAR IDIOMA",
     "menu-btn": "Menu",
     "nav-cta": "[ \u00a0hablemos de tu proyecto\u00a0 ]",
     "footer-desc": "Sitios web, landing pages y experiencias digitales pensadas para verse bien y funcionar mejor.",
@@ -17,8 +17,8 @@ const translations = {
 
     "seo-description": "Diseño y desarrollo web white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Terciarizá tu web y destacá.",
 
-    "hero-heading": "Diseño web<br />creativo",
-    "hero-sub": "para TU MUNDO DIGITAL",
+    "hero-heading": "design for the <br/>outstanding ones",
+    "hero-sub": "★Brand & Web★",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Diseño web creativo",
     "services-desc": "Somos el partner white label de estudios de branding, agencias y marcas premium. Diseñamos la forma en que una marca existe en internet: estrategia, dirección creativa y desarrollo, bajo tu marca.",
@@ -102,10 +102,38 @@ const translations = {
     "care-form-soon": "El pago internacional está en camino. Por ahora escribinos a <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> o por <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> y te armamos la suscripción.",
     "care-form-back": "[ \u00a0volver a los planes\u00a0 ]",
     "care-intl-plan-name": "Hosting + Renovación de Dominio",
+
+    "form-intro": "Si ya estás lista para dar este paso y querés por fin una identidad y una web a la altura de tus objetivos, ¡soy tu persona! Te respondo dentro de 1 día hábil para una call de consultoría (totalmente gratis) y ver si hacemos match.",
+    "form-first-name": "Nombre",
+    "form-last-name": "Apellido",
+    "form-email": "Email",
+    "form-instagram": "Instagram",
+    "form-business": "¿Cuál es tu negocio?",
+    "form-business-url": "¿Cuál es la URL de tu negocio?",
+    "form-services": "¿Qué servicios te interesan?",
+    "form-budget": "¿Cuál es tu presupuesto? (USD)",
+    "form-how-found": "¿Cómo me encontraste?",
+    "form-how-found-help": "Esto me ayuda a saber cómo llegaste hasta acá.",
+    "form-subject": "Asunto",
+    "form-message": "Mensaje",
+    "form-submit": "Enviar",
+    "form-sending": "Enviando...",
+    "form-success": "¡Gracias! Tu mensaje fue enviado.",
+    "form-error": "Hubo un error al enviar tu mensaje. Intentá de nuevo.",
+    "form-conn-error": "Error de conexión.",
+    "form-first-name-ph": "Tu nombre",
+    "form-last-name-ph": "Tu apellido",
+    "form-email-ph": "tucorreo@email.com",
+    "form-instagram-ph": "@tuinstagram",
+    "form-business-ph": "Tu negocio",
+    "form-business-url-ph": "https://",
+    "form-how-found-ph": "Instagram, Google, recomendación...",
+    "form-subject-ph": "Asunto",
+    "form-message-ph": "Contame qué necesitás y cuál es tu presupuesto...",
   },
   en: {
     "lang-label": "EN",
-    "lang-toggle": "CAMBIAR IDIOMA",
+    "lang-toggle": "SWITCH LANGUAGE",
     "menu-btn": "Menu",
     "nav-cta": "[ \u00a0let's talk about your project\u00a0 ]",
     "footer-desc": "Websites, landing pages, and digital experiences designed to look good and work better.",
@@ -121,8 +149,8 @@ const translations = {
 
     "seo-description": "White label web design and development for branding studios, agencies and premium brands. 2D/3D motion, visual identity and SEO. Based in Buenos Aires, working worldwide.",
 
-    "hero-heading": "Creative<br />web design",
-    "hero-sub": "for YOUR DIGITAL WORLD",
+    "hero-heading": "design for the <br/>outstanding ones",
+    "hero-sub": "★Brand & Web★",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Creative Web Design",
     "services-desc": "We are the white label partner for branding studios, agencies and premium brands. We design how a brand exists online: strategy, creative direction and development, under your brand.",
@@ -206,6 +234,34 @@ const translations = {
     "care-form-soon": "International payment is on its way. For now email us at <a href=\"mailto:holadivinodivino@gmail.com\">holadivinodivino@gmail.com</a> or reach out via <a href=\"https://wa.me/5491169188741\" target=\"_blank\" rel=\"noopener\">WhatsApp</a> and we will set up your subscription.",
     "care-form-back": "[ \u00a0back to plans\u00a0 ]",
     "care-intl-plan-name": "Hosting + Domain Renewal",
+
+    "form-intro": "If you're feeling ready to take this step, frustrated with not having the overall look and feel that your business needs for your goals, I'm your girl! I'll get back to you within 1 business day for a (totally free) consultation call to see if we're a good fit!",
+    "form-first-name": "First name",
+    "form-last-name": "Last name",
+    "form-email": "Email",
+    "form-instagram": "Instagram",
+    "form-business": "What is your business?",
+    "form-business-url": "What is your business URL?",
+    "form-services": "What service(s) are you interested in?",
+    "form-budget": "What is your budget? (USD)",
+    "form-how-found": "How did you find me?",
+    "form-how-found-help": "This helps me understand how you found me.",
+    "form-subject": "Subject",
+    "form-message": "Message",
+    "form-submit": "Submit",
+    "form-sending": "Sending...",
+    "form-success": "Thanks! Your message has been sent.",
+    "form-error": "There was an error sending your message. Please try again.",
+    "form-conn-error": "Connection error.",
+    "form-first-name-ph": "Your first name",
+    "form-last-name-ph": "Your last name",
+    "form-email-ph": "you@email.com",
+    "form-instagram-ph": "@yourinstagram",
+    "form-business-ph": "Your business",
+    "form-business-url-ph": "https://",
+    "form-how-found-ph": "Instagram, Google, referral...",
+    "form-subject-ph": "Subject",
+    "form-message-ph": "Tell me what you need & what your budget is...",
   },
 };
 
@@ -229,16 +285,15 @@ function translate() {
   const lang = getLang();
   document.documentElement.lang = lang;
 
-  const useDefault = lang === DEFAULT_LANG;
-
   document.querySelectorAll("[data-i18n]").forEach((el) => {
     const key = el.getAttribute("data-i18n");
     if (!el.hasAttribute("data-i18n-default")) {
       el.setAttribute("data-i18n-default", el.textContent);
     }
     const fallback = el.getAttribute("data-i18n-default");
-    const text = translations[lang]?.[key];
-    el.textContent = useDefault ? fallback : text ?? fallback;
+    const text =
+      translations[lang]?.[key] ?? translations[DEFAULT_LANG]?.[key];
+    el.textContent = text ?? fallback;
   });
 
   document.querySelectorAll("[data-i18n-html]").forEach((el) => {
@@ -247,8 +302,9 @@ function translate() {
       el.setAttribute("data-i18n-html-default", el.innerHTML);
     }
     const fallback = el.getAttribute("data-i18n-html-default");
-    const text = translations[lang]?.[key];
-    el.innerHTML = useDefault ? fallback : text ?? fallback;
+    const text =
+      translations[lang]?.[key] ?? translations[DEFAULT_LANG]?.[key];
+    el.innerHTML = text ?? fallback;
   });
 
   document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
@@ -257,8 +313,9 @@ function translate() {
       el.setAttribute("data-i18n-placeholder-default", el.placeholder);
     }
     const fallback = el.getAttribute("data-i18n-placeholder-default");
-    const text = translations[lang]?.[key];
-    el.placeholder = useDefault ? fallback : text ?? fallback;
+    const text =
+      translations[lang]?.[key] ?? translations[DEFAULT_LANG]?.[key];
+    el.placeholder = text ?? fallback;
   });
 
   const langToggle = document.querySelector(".lang-toggle");

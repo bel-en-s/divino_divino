@@ -55,6 +55,7 @@
     <link rel="stylesheet" href="./css/transition.css" />
     <link rel="stylesheet" href="./css/menu.css" />
     <link rel="stylesheet" href="./css/home.css" />
+    <link rel="stylesheet" href="./css/form.css" />
     <link rel="stylesheet" href="./css/pixelated-video.css" />
     <link rel="stylesheet" href="./css/pixelated-text.css" />
     <link rel="stylesheet" href="./css/spotlight.css" />
@@ -220,10 +221,8 @@
           <span class="lang-toggle">SWITCH LANGUAGE</span>
           <div class="menu-toggle-btn">
           
-              <p data-i18n="menu-btn">Work</p>
-               <p data-i18n="menu-btn">Inquire</p>
-                 <div class="menu-toggle-btn-wrapper">
-              <p data-i18n="menu-btn">see more+</p>
+              <div class="menu-toggle-btn-wrapper">
+              <p data-i18n="menu-btn">Menu</p>
           
           </div>
         </div>
@@ -252,6 +251,9 @@
       <div class="nav-footer">
         <div class="container">
         
+          <div class="nav-footer-item">
+            <a href="https://bel-en-s.com/" target="_blank" data-i18n="nav-belu">belu</a>
+          </div>
           <div class="nav-footer-item nav-footer-buttons">
    
             <a
@@ -314,23 +316,27 @@
   <div class="services-column">
     <section class="about-copy">
       <div class="container">
-        <h3 data-i18n="services-heading">Diseño web creativo
-
-          
-        </h3>
+        
 
         <div class="about-copy-info">
           <p data-i18n="services-desc">
-           We design the way a brand exists online, translating somehow a luxury store experience into the digital. 
+          <p data-i18n="services-heading">Hello! We are your friendly design studio known for experimental, but approachable and functional design.
+            <br/> <br/>  We design the way a brand exists online, 
+           translating somehow a luxury store experience into the digital. working within the <span class="about-copy-bold">arts & entretainment</span> industry.
            
           </p>
+           <h3 data-i18n="services-heading"> Want to hear more?? </h3>
+
+
+          
+        </h3>
           <a
   href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!" target="_blank"
   class="scramble-hover services-cta"
   style="cursor:pointer; display:inline-block; position:relative; z-index:10; font-size: 20px;"
   data-i18n="nav-cta"
 >
-  [ &nbsp;hablemos de tu proyecto&nbsp; ]
+  [ &nbsp;book a free 30 min discovery call&nbsp; ]
 </a>
 
         </div>
@@ -392,7 +398,7 @@
         <span class="service-star h1 service-star-celeste workflow-star">
           <span class="service-star-icon">✷</span>
         </span>
-        <h2 class="workflow-title" data-i18n="workflow-heading">De la idea a la experiencia</h2>
+        <h2 class="workflow-title" data-i18n="workflow-heading">but,how does it work?</h2>
 
         <div class="workflow-grid">
           <div class="workflow-item">
@@ -485,8 +491,104 @@
 
     <!-- <section class="pixelated-text about-header"></section> -->
 
-    
-               
+    <section class="contact-form-section" data-reveal data-nav-label="contact">
+      <div class="container">
+        <p class="contact-form-eyebrow">Buenos Aires / Worldwide</p>
+        <h2 class="contact-form-title">lets make something<br />cool together.</h2>
+
+        <p class="contact-form-intro" data-i18n="form-intro">
+          If you're feeling ready to take this step, frustrated with not having
+          the overall look and feel that your business needs for your goals, I'm
+          your girl! I'll get back to you within 1 business day for a (totally
+          free) consultation call to see if we're a good fit!
+        </p>
+
+        <form class="formulario-landing" novalidate>
+          <input type="hidden" name="access_key" value="79647389-1e07-49c9-b7cc-7a4a64acfb94" />
+          <input type="hidden" name="subject" value="Nuevo mensaje desde divinodivino.com.ar" />
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="fl-first" data-i18n="form-first-name">First name</label>
+              <input id="fl-first" type="text" name="first_name" placeholder="First name" data-i18n-placeholder="form-first-name-ph" />
+            </div>
+            <div class="form-field">
+              <label for="fl-last" data-i18n="form-last-name">Last name</label>
+              <input id="fl-last" type="text" name="last_name" placeholder="Last name" data-i18n-placeholder="form-last-name-ph" />
+            </div>
+            <div class="form-field">
+              <label for="fl-email" data-i18n="form-email">Email</label>
+              <input id="fl-email" type="email" name="email" placeholder="you@email.com" data-i18n-placeholder="form-email-ph" />
+            </div>
+            <div class="form-field">
+              <label for="fl-insta" data-i18n="form-instagram">Instagram</label>
+              <input id="fl-insta" type="text" name="instagram" placeholder="@yourinstagram" data-i18n-placeholder="form-instagram-ph" />
+            </div>
+            <div class="form-field">
+              <label for="fl-business" data-i18n="form-business">What is your business?</label>
+              <input id="fl-business" type="text" name="business" placeholder="Your business" data-i18n-placeholder="form-business-ph" />
+            </div>
+            <div class="form-field">
+              <label for="fl-url" data-i18n="form-business-url">What is your business URL?</label>
+              <input id="fl-url" type="url" name="business_url" placeholder="https://" data-i18n-placeholder="form-business-url-ph" />
+            </div>
+          </div>
+
+          <fieldset class="form-group">
+            <legend data-i18n="form-services">What service(s) are you interested in?</legend>
+            <div class="form-options">
+              <label class="form-option"><input type="checkbox" name="services" value="Brand Design" /><span>Brand Design</span></label>
+              <label class="form-option"><input type="checkbox" name="services" value="Custom Website" /><span>Custom Website</span></label>
+              <label class="form-option"><input type="checkbox" name="services" value="Social Media Management" /><span>Social Media Management</span></label>
+              <label class="form-option"><input type="checkbox" name="services" value="SEO + AI Search Optimization" /><span>SEO + AI Search Optimization</span></label>
+              <label class="form-option"><input type="checkbox" name="services" value="Something Else" /><span>Something Else</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <legend data-i18n="form-budget">What is your budget? (USD)</legend>
+            <div class="form-options form-options-budget">
+              <label class="form-option"><input type="radio" name="budget" value="$800/1500" /><span>$800/1500</span></label>
+              <label class="form-option"><input type="radio" name="budget" value="$1500/2500" /><span>$1500/2500</span></label>
+              <label class="form-option"><input type="radio" name="budget" value="$2500+" /><span>$2500+</span></label>
+            </div>
+          </fieldset>
+
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="fl-source" data-i18n="form-how-found">How did you find me?</label>
+              <input id="fl-source" type="text" name="how_found" placeholder="Instagram, Google, referral..." data-i18n-placeholder="form-how-found-ph" />
+              <small class="form-help" data-i18n="form-how-found-help">This helps me understand my business!</small>
+            </div>
+            <div class="form-field">
+              <label for="fl-subject" data-i18n="form-subject">Subject</label>
+              <input id="fl-subject" type="text" name="project_subject" placeholder="Subject" data-i18n-placeholder="form-subject-ph" />
+            </div>
+          </div>
+
+          <div class="form-field form-field-full">
+            <label for="fl-message" data-i18n="form-message">Message</label>
+            <textarea id="fl-message" name="message" rows="5" placeholder="Tell me what you need & what your budget is, and let's figure out what incredible design we can make together!" data-i18n-placeholder="form-message-ph"></textarea>
+          </div>
+
+          <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+
+          <p class="form-result" aria-live="polite"></p>
+          <button type="submit" class="form-submit" data-i18n="form-submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="still-doubting" data-reveal>
+      <div class="container still-doubting-inner">
+        <h2 class="still-doubting-title">Still doubting?</h2>
+        <div class="still-doubting-cta">
+          <a href="./work" class="still-doubting-link">Lets crack the case</a>
+          <a href="./work" class="still-doubting-sub">/ view case studies</a>
+        </div>
+      </div>
+    </section>
+
     <footer style="z-index:1">
       <div class="footer-row form">
         <div class="container">

@@ -729,3 +729,70 @@
     gap: 3rem;
   }
 }
+
+/* STILL DOUBTING */
+
+.still-doubting {
+  padding: 4rem 0 6rem;
+}
+
+.still-doubting-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 2rem;
+}
+
+.still-doubting-title {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 500;
+  line-height: 0.9;
+  color: var(--tone-100);
+  text-align: left;
+  text-transform: none;
+}
+
+.still-doubting-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+  text-align: right;
+}
+
+.still-doubting-link {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--tone-100);
+  text-decoration: underline;
+  text-decoration-color: #c00000;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 6px;
+  text-transform: none;
+}
+
+.still-doubting-link:hover {
+  color: var(--tone-500);
+}
+
+.still-doubting-sub {
+  font-size: 1rem;
+  color: var(--tone-300);
+  text-transform: none;
+}
+
+.still-doubting-sub:hover {
+  color: var(--tone-100);
+}
+
+@media (max-width: 1000px) {
+  .still-doubting-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+  }
+
+  .still-doubting-cta {
+    align-items: flex-start;
+    text-align: left;
+  }
+}
