@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+.waabi-scroll {
+  position: relative;
+  width: 100%;
+  background-color: #000000;
+  font-family: "Inter", sans-serif;
+  color : #fff;
+}
+
+.waabi-scroll,
+.waabi-scroll * {
+  box-sizing: border-box;
+}
+
+.waabi-scroll img,
+.waabi-scroll video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.waabi-scroll h1,
+.waabi-scroll h3 {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.05rem;
+  line-height: 1;
+  text-transform: none;
+  color: inherit;
+}
+
+.waabi-scroll h1 {
+  font-size: clamp(2.25rem, 7vw, 5rem);
+}
+
+.waabi-scroll h3 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+}
+
+.waabi-scroll section {
+  position: relative;
+  width: 100%;
+  height: 100svh;
+}
+
+.waabi-hero-img,
+.waabi-hero-header,
+.waabi-hero-copy {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  will-change: transform, opacity, width, height;
+}
+
+.waabi-hero-img {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  padding :150px;
+  background-color: #0D0D0D;
+}
+
+.waabi-hero-header,
+.waabi-hero-copy {
+  display: flex;
+  align-items: flex-end;
+  padding: clamp(1.5rem, 4vw, 4rem);
+  color: #fff;
+}
+
+.waabi-hero-header h1 {
+  width: 80%;
+  max-width: 24ch;
+}
+
+.waabi-hero-copy h3 {
+  width: 55%;
+}
+
+.waabi-scroll .word {
+  display: inline-block;
+  margin-right: 0.25em;
+}
+
+.waabi-about,
+.waabi-outro {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.waabi-about {
+  margin-top: 275svh;
+}
+
+.waabi-about-images {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: clamp(1rem, 4vw, 4rem);
+}
+
+.waabi-imgs-col {
+  position: relative;
+  height: 125%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  will-change: transform;
+}
+
+.waabi-imgs-col .waabi-img {
+  width: clamp(56px, 8vw, 125px);
+  height: clamp(56px, 8vw, 125px);
+  border-radius: clamp(6px, 1vw, 10px);
+  overflow: hidden;
+}
+
+.waabi-about-header {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(40%, 720px);
+}
+
+.waabi-outro {
+  background-color: #cecec6;
+}
+
+.waabi-outro h3 {
+  width: min(35%, 560px);
+}
+
+@media (max-width: 1000px) {
+  .waabi-hero {
+    z-index: 2;
+  }
+
+  .waabi-hero-img {
+    padding: 0;
+  }
+
+  .waabi-hero-header h1,
+  .waabi-hero-copy h3 {
+    width: 100%;
+  }
+
+  .waabi-about-header,
+  .waabi-outro h3 {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .waabi-imgs-col .waabi-img {
+    opacity: 0.3;
+    filter: saturate(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .waabi-about-images {
+    padding: 0.75rem;
+  }
+
+  .waabi-imgs-col .waabi-img {
+    width: 48px;
+    height: 48px;
+  }
+}

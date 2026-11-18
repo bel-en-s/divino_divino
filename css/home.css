@@ -65,17 +65,19 @@
 }
 
 .about-intro .about-intro-text {
-  text-transform: lowercase;
-  text-decoration: underline;
-  text-decoration-color: #c00000;
-  text-decoration-thickness: 2px;
-  text-underline-offset: 6px;
+    font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.05rem;
+  line-height: 1;
+  text-transform: none;
+  color: inherit;
 }
 
 .about-intro .about-intro-cta {
   display: inline-block;
   font-size: 0.6em;
   color: #fe0100;
+    background: lightblue;
   text-decoration: none !important;
   white-space: nowrap;
   cursor: pointer;
@@ -160,7 +162,7 @@
 
 @media (max-width: 1000px) {
   .work-cta-btn {
-    font-size: 1.75rem;
+    font-size: 1rem;
   }
 }
 

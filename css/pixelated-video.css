@@ -41,6 +41,19 @@
   background: lightblue;
 }
 
+.hero .hero-book-call {
+  margin-top: 2rem;
+  pointer-events: auto;
+  font-size: 1.3rem;
+  color: var(--tone-500);
+  background: lightblue;
+  text-decoration: none;
+}
+
+.hero .hero-book-call:hover {
+  color: var(--tone-100);
+}
+
 .hero .hero-content .hero-header {
   width: 85%;
   text-align: center;

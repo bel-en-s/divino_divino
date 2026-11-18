@@ -5,6 +5,23 @@ const SECOND_ACCESS_KEY = "PONER_AQUI_EL_SEGUNDO_ACCESS_KEY";
 
 const tr = (key, fallback) => (window.t && window.t(key)) || fallback;
 
+function track(event, params) {
+  if (typeof window.gtag === "function") {
+    window.gtag("event", event, params || {});
+  }
+}
+
+document.addEventListener("click", (e) => {
+  const link = e.target.closest("a[href]");
+  if (!link) return;
+  const href = link.getAttribute("href") || "";
+  let label = "";
+  if (href.startsWith("mailto:")) label = "email_click";
+  else if (href.includes("wa.me")) label = "whatsapp_click";
+  else if (href.includes("calendly.com")) label = "calendly_click";
+  if (label) track("contact_click", { event_category: "outbound", event_label: label });
+});
+
 // main execution
 document.addEventListener("DOMContentLoaded", () => {
   const contactTextElements = document.querySelectorAll(
@@ -56,6 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (data.success) {
+          track("generate_lead", { event_category: "contact", event_label: "form_submit" });
           result.textContent = tr("form-success", "Thanks! Your message has been sent.");
           form.reset();
         } else {

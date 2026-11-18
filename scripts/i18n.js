@@ -17,7 +17,7 @@ const translations = {
 
     "seo-description": "Diseño y desarrollo web white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Terciarizá tu web y destacá.",
 
-    "hero-heading": "design for the <br/>outstanding ones",
+    "hero-heading": "diseño web creativo para <br/>los que quieren destacar",
     "hero-sub": "<span class=\"star\">★</span><span class=\"hero-sub-brand\">Brand & Web</span><span class=\"star\">★</span>",
     "hero-scroll": "[ \u00a0Scroll to Continue\u00a0 ]",
     "services-heading": "Diseño web creativo",
