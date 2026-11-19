@@ -10,6 +10,7 @@ const cleanUrlPages = {
   "white-label": "white-label.html",
   care: "care.html",
   "care-form": "care-form.html",
+  "care/sam": "care/sam.html",
 };
 
 function cleanUrlsPlugin() {
@@ -52,6 +53,7 @@ export default defineConfig({
         "white-label": resolve(__dirname, "white-label.html"),
         care: resolve(__dirname, "care.html"),
         "care-form": resolve(__dirname, "care-form.html"),
+        "care-sam": resolve(__dirname, "care/sam.html"),
       },
     },
     assetsInclude: ["**/*.jpeg", "**/*.jpg", "**/*.png", "**/*.svg", "**/*.gif", "**/*.mp4", "**/*.webp", "**/*.hdr"],

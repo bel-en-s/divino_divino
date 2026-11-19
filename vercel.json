@@ -12,6 +12,7 @@
     { "source": "/film.html", "destination": "/film", "permanent": true },
     { "source": "/care.html", "destination": "/care", "permanent": true },
     { "source": "/care-form.html", "destination": "/care-form", "permanent": true },
+    { "source": "/care/sam.html", "destination": "/care/sam", "permanent": true },
     { "source": "/work/", "destination": "/work", "permanent": true },
     { "source": "/culture/", "destination": "/culture", "permanent": true },
     { "source": "/directors/", "destination": "/directors", "permanent": true },
@@ -19,7 +20,8 @@
     { "source": "/white-label/", "destination": "/white-label", "permanent": true },
     { "source": "/film/", "destination": "/film", "permanent": true },
     { "source": "/care/", "destination": "/care", "permanent": true },
-    { "source": "/care-form/", "destination": "/care-form", "permanent": true }
+    { "source": "/care-form/", "destination": "/care-form", "permanent": true },
+    { "source": "/care/sam/", "destination": "/care/sam", "permanent": true }
   ],
   "rewrites": [
     { "source": "/work", "destination": "/work.html" },
@@ -29,7 +31,8 @@
     { "source": "/white-label", "destination": "/white-label.html" },
     { "source": "/film", "destination": "/film.html" },
     { "source": "/care", "destination": "/care.html" },
-    { "source": "/care-form", "destination": "/care-form.html" }
+    { "source": "/care-form", "destination": "/care-form.html" },
+    { "source": "/care/sam", "destination": "/care/sam.html" }
   ],
   "headers": [
     {
