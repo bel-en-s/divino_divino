@@ -25,12 +25,16 @@
 .contact-form-intro {
   max-width: 680px;
   margin: 0 auto 3rem;
-  font-size: 1.3rem;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.05rem;
+
   line-height: 1.5;
-  color: var(--tone-300);
+  color: var(--tone-100);
   text-transform: none;
   text-align: center;
 }
+
 
 .services-copy-info .contact-form-intro {
   text-align: center;

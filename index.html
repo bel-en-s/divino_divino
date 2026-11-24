@@ -487,8 +487,10 @@
       <div class="hero-content">
         <div class="hero-header">
           <div class="container">
-            <h3></h3>
-            <h1>helping arts, culture &amp; entertainment brands build distinctive digital experiences that engage &amp; enhance your value, letting you charge as a luxury service</h1>
+
+                <h3>Brand and Web Design</h3>
+            <h1>Helping arts, culture &amp; entertainment projects build distinctive digital experiences that <em>engage</em> &amp; 
+              <em>enhance</em> their value</h1>
           </div>
         </div>
 
@@ -528,25 +530,24 @@
       </div>
     </section>
 
-    <section class="services-copy">
+    <section class="services">
       <div class="container">
-        <span class="service-star h1">
-          <a
-            href="https://wa.me/5491169188741?text=Hola%2C%20DivinoDivino!"
-            target="_blank"
-            class="service-star-cta"
-          >hey!!!</a>
-        </span>
+         <p class="about-intro" data-i18n-html="about-intro">
+                  <span class="about-intro-text">We are your friendly design studio 
+                    known for experimental, but functional design.
+              
+                   </span>
+      
+                     
+                  <!-- <a href="https://calendly.com/holadivinodivino/30min" target="_blank" class="about-intro-cta">[ &nbsp;book a free 30 min discovery call&nbsp; ]</a> -->
+                </p>
+    
 
         <div class="services-copy-info">
           <div class="services-column">
             <section class="about-copy">
               <div class="container">
-                <p class="about-intro" data-i18n-html="about-intro">
-                  <span class="about-intro-text">We are your friendly design studio known for experimental, but approachable and functional design.
-                     We craft the way a brand exists online.</span>
-                  <!-- <a href="https://calendly.com/holadivinodivino/30min" target="_blank" class="about-intro-cta">[ &nbsp;book a free 30 min discovery call&nbsp; ]</a> -->
-                </p>
+               
               </div>
             </section>
           </div>
@@ -563,6 +564,7 @@
     <div class="work-cta">
       <a href="./work" class="scramble-hover services-cta work-cta-btn">[ &nbsp;see full work&nbsp; ]</a>
     </div>
+
     <!-- END CAROUSEL -->
 
     <!-- WAABI SCROLL ANIMATION -->
@@ -635,7 +637,7 @@
         </div>
 
         <section class="container services-copy-info">
-          <h3 class="contact-form-intro" data-i18n="form-intro">
+          <h3 class="about-copy-intro" data-i18n="form-intro">
             OMG hi! I'm Bel, a multimedia artist. I live in Buenos Aires and I  studied visual arts and then multimedia arts. I've been working independently for over 8 years, though I spent some time in studios on a full-time basis.
             <br /><br />
             I love using technology as a medium of expression for my work, and my job is to help your project use it creatively to communicate too. I believe that today, more than ever, whoever manages to be original and authentic, stands out.
@@ -776,17 +778,6 @@
       }
       window.addEventListener('scroll', tiltPills);
       tiltPills();
-
-      const hero = document.querySelector('.hero');
-      if (hero && 'IntersectionObserver' in window) {
-        const textureObserver = new IntersectionObserver(
-          ([entry]) => {
-            document.body.classList.toggle('texture-hidden', entry.isIntersecting);
-          },
-          { threshold: 0 }
-        );
-        textureObserver.observe(hero);
-      }
     </script>
   </body>
 </html>

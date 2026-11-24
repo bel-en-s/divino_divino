@@ -73,6 +73,15 @@
   color: inherit;
 }
 
+.about-copy-intro {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.05rem;
+  line-height: 1.2;
+  text-transform: none;
+  color: inherit;
+}
+
 .about-intro .about-intro-cta {
   display: inline-block;
   font-size: 0.6em;
