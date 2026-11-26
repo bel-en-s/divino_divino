@@ -4,6 +4,8 @@ class PixelatedVideoEffect {
   constructor() {
     this.heroContainer = document.querySelector(".hero");
     this.videoElement = document.querySelector(".hero-video");
+    this.visualContainer =
+      this.heroContainer?.querySelector(".hero-img") || this.heroContainer;
 
     if (!this.heroContainer || !this.videoElement) {
       console.debug("Hero container or video element not found");
@@ -122,7 +124,7 @@ class PixelatedVideoEffect {
       "position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0";
 
     this.videoElement.style.opacity = "0";
-    this.heroContainer.appendChild(canvas);
+    this.visualContainer.appendChild(canvas);
   }
 
   updateDataTexture() {

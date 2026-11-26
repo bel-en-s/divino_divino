@@ -43,6 +43,7 @@
 @media (max-width: 1000px) {
   .contact-form-intro {
     text-align: center;
+    font-size: 1.125rem;
   }
 }
 
@@ -85,9 +86,10 @@
 .formulario-landing textarea {
   background: transparent;
   color: var(--tone-100);
-  font-family: "Cossette Titre", sans-serif;
+
   padding: 12px 14px;
-  border: 1px solid var(--tone-100);
+   border: none;
+    border-bottom: 1px solid var(--tone-100);
   border-radius: 0;
   font-size: 1rem;
   width: 100%;

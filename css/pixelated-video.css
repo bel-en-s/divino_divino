@@ -3,11 +3,22 @@
   position: relative;
   width: 100%;
   height: 100svh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: var(--tone-100);
   overflow: hidden;
+}
+
+.hero .intro-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+  border-radius: 0.5rem;
+  transform-origin: center center;
+  will-change: transform;
 }
 
 .hero .hero-video {
@@ -17,6 +28,7 @@
   z-index: 0;
   width: 100%;
   height: 100%;
+  margin: 0;
   display: block;
   object-fit: cover;
 }
@@ -28,63 +40,35 @@
   z-index: 1;
   width: 100%;
   height: 100%;
+  padding: 15svh 2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
   pointer-events: none;
 }
 
-.hero .hero-cta {
-  margin-top: 2rem;
-  pointer-events: auto;
-  background: lightblue;
-}
-
-.hero .hero-book-call {
-  margin-top: 2rem;
-  pointer-events: auto;
-  font-size: 1.3rem;
-  color: var(--tone-500);
-  background: lightblue;
-  text-decoration: none;
-}
-
-.hero .hero-book-call:hover {
-  color: var(--tone-100);
-}
-
 .hero .hero-content .hero-header {
-  width: 55%;
-  text-align: center;
-  color: var(--tone-100);
+  width: 60%;
+  text-align: left;
+  color: #fff;
 }
 
-.hero .hero-content .hero-footer {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-}
-
-.hero .hero-content .hero-footer .container {
+.hero .hero-content .hero-social {
+  pointer-events: auto;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-   color: var(--tone-600);
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
 }
 
-.hero .hero-content .hero-footer p:nth-child(1) {
-  display: flex;
-  gap: 1rem;
+.hero .hero-content .hero-social p,
+.hero .hero-content .hero-social a {
+  display: block;
+  text-decoration: none;
 }
 
 @media (max-width: 1000px) {
   .hero .hero-content .hero-header {
     width: 100%;
-  }
-
-  .hero .hero-content .hero-footer p:nth-child(1) {
-    gap: 0.5rem;
   }
 }

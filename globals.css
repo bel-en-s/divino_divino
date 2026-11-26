@@ -144,12 +144,14 @@ p {
 .hero .hero-header h1 {
   margin: 0;
   font-family: "Inter", sans-serif;
+  margin-top : 100px;
   font-weight: 400;
   letter-spacing: -0.05rem;
   line-height: 1;
   text-transform: none;
   color: inherit;
   font-size: 3rem;
+  color:black;
 }
 
 .hero .hero-header .hero-subtitle .hero-sub-brand {

@@ -13,6 +13,7 @@ import "../css/footer.css";
 import "../scripts/footer.js";
 import "../scripts/lenis-scroll.js";
 import "../scripts/preloader.js";
+import "../scripts/hero-reveal.js";
 import "../scripts/transition.js";
 import "../scripts/menu.js";
 import "../scripts/reveals.js";
