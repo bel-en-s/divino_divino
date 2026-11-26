@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Estudio de Diseño Web Creativo — Diseño Web Premium e Inmersivo | DIVINO DIVINO</title>
+    <title>Creative Web &amp; Brand Design</title>
     <link rel="icon" href="./estrella-favicon.png" />
     <link rel="apple-touch-icon" href="./estrella-favicon.png" />
 
@@ -65,31 +65,69 @@
 
     <script>
       (function () {
-        const WORK_VIDEOS_1 = [
-          'AWK.mp4',
-          'Filoza.mp4',
+        const FEATURED_VIDEOS = [
           'lisboa.mp4',
-          'nerd.mp4'
-        ];
-
-        const WORK_VIDEOS_2 = [
           'rauw.mp4',
-          'sam.mov',
-          'clara-portfolio.mov',
-          'Tropel.mov'
+          'sam.mov'
         ];
 
         const WORK_LABELS = {
-          'AWK.mp4': 'AWK Agency: Branding & Creative Web Design',
-          'Filoza.mov': 'Filoza: E-commerce',
-          
           'lisboa.mp4': 'Tienda Lizboa: Inmersive Site',
-          'nerd.mp4': 'Nerd Studios: Animations, Visual Identity & Motion first Web Design',
           'rauw.mp4': 'Rauw Alejandro: Inmersive Site',
-          'sam.mov': 'SScorpio: Creative Web Design',
-          'clara-portfolio.mov': 'Creative Lead Portfolio (Self-managed)',
-          'Tropel.mov': 'Tropel: Creative Web Design & Multimedia'
+          'sam.mov': 'SScorpio: Creative Web Design'
         };
+
+        const STATIC_PROJECTS = [
+          {
+            video: 'AWK.mp4',
+            title: 'AWK Agency',
+            client: 'Branding & Creative Web Design',
+            url: 'https://www.awk.agency/',
+            tags: ['Gsap', 'React', 'Astro']
+          },
+          {
+            video: 'Filoza.mp4',
+            title: 'Filoza',
+            client: 'E-commerce',
+            url: 'https://filozajoyas.com/',
+            tags: ['Woocommerce', 'Wordpress']
+          },
+          {
+            video: 'nerd.mp4',
+            title: 'Nerd Studios',
+            client: 'Animations, Visual Identity & Motion first Web Design',
+            url: 'https://nerd-studios.shop/',
+            tags: ['Photoshop', 'Gsap', 'Shopify']
+          },
+          {
+            video: 'cartografias.mp4',
+            title: 'Cartography',
+            client: '3D Interactive Site',
+            url: 'https://www.behance.net/gallery/214474755/webgl-image-visualizator',
+            tags: ['WebGL', 'Three.js']
+          },
+          {
+            video: 'clara-portfolio.mov',
+            title: 'Creative Lead Portfolio',
+            client: 'Self-managed',
+            url: '',
+            tags: []
+          },
+          {
+            video: 'Tropel.mov',
+            title: 'Tropel Audiovisual Studio',
+            client: 'Creative Web Design & Multimedia',
+            url: '',
+            tags: []
+          },
+          {
+            video: 'arquitectura.mp4',
+            title: 'Paula Palmieri Architecture Studio',
+            client: 'Immersive Site',
+            url: '',
+            tags: []
+          }
+        ];
 
         function initDDCarousel(carousel, options) {
           if (!carousel || carousel.dataset.initialized === 'true') return;
@@ -127,7 +165,6 @@
           let travel = reverse ? Number.MAX_VALUE : 0;
           let currentIndex = -1;
           let playing = false;
-          let hovering = false;
           let lastTime = 0;
           let rafId = null;
           let currentSpeed = 0;
@@ -136,7 +173,7 @@
             maxTravel = Math.max(0, track.scrollWidth - carousel.clientWidth);
             if (travel > maxTravel) travel = maxTravel;
             render();
-            if (!hovering) play();
+            play();
           }
 
           function render() {
@@ -168,13 +205,8 @@
               parseFloat(
                 getComputedStyle(carousel).getPropertyValue('--carousel-speed')
               ) || 300;
-            const hoverSpeed =
-              parseFloat(
-                getComputedStyle(carousel).getPropertyValue('--carousel-speed-hover')
-              ) || (baseSpeed * 0.25);
 
-            const targetSpeed = hovering ? hoverSpeed : baseSpeed;
-            currentSpeed += (targetSpeed - currentSpeed) * Math.min(1, delta * 8);
+            currentSpeed += (baseSpeed - currentSpeed) * Math.min(1, delta * 8);
 
             if (reverse) {
               travel -= currentSpeed * delta;
@@ -205,12 +237,6 @@
             lastTime = 0;
           }
 
-          const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-          if (canHover) {
-            carousel.addEventListener('mouseenter', function () { hovering = true; });
-            carousel.addEventListener('mouseleave', function () { hovering = false; });
-          }
-
           const media = carousel.querySelectorAll('video, img');
           media.forEach(function (el) {
             const isVideo = el.tagName === 'VIDEO';
@@ -231,14 +257,72 @@
           measure();
         }
 
+        function initStaticProjects() {
+          const grid = document.querySelector('.work-grid__items');
+          if (!grid || grid.children.length) return;
+
+          STATIC_PROJECTS.forEach(function (project) {
+            const item = document.createElement('figure');
+            item.className = 'work-grid__item';
+
+            const media = document.createElement(project.url ? 'a' : 'div');
+            media.className = 'work-grid__media';
+            if (project.url) {
+              media.href = project.url;
+              media.target = '_blank';
+              media.rel = 'noopener';
+            }
+
+            const video = document.createElement('video');
+            video.src = './work-videos/' + encodeURI(project.video);
+            video.muted = true;
+            video.loop = true;
+            video.autoplay = true;
+            video.playsInline = true;
+            video.setAttribute('preload', 'metadata');
+            video.setAttribute('aria-label', project.title);
+            media.appendChild(video);
+
+            const caption = document.createElement('figcaption');
+            caption.className = 'work-grid__caption';
+
+            const title = document.createElement('h3');
+            title.className = 'work-grid__title';
+            title.textContent = project.title;
+
+            const client = document.createElement('p');
+            client.className = 'work-grid__client';
+            client.textContent = project.client;
+
+            caption.appendChild(title);
+            caption.appendChild(client);
+
+            if (project.tags && project.tags.length) {
+              const tags = document.createElement('div');
+              tags.className = 'work-grid__tags';
+              project.tags.forEach(function (tag) {
+                const tagEl = document.createElement('span');
+                tagEl.className = 'work-grid__tag';
+                tagEl.textContent = tag;
+                tags.appendChild(tagEl);
+              });
+              caption.appendChild(tags);
+            }
+
+            item.appendChild(media);
+            item.appendChild(caption);
+            grid.appendChild(item);
+          });
+        }
+
         function initAllDDCarousels() {
-          const lists = [WORK_VIDEOS_1, WORK_VIDEOS_2];
-          document.querySelectorAll('.dd-carousel').forEach(function (carousel, i) {
+          document.querySelectorAll('.dd-carousel').forEach(function (carousel) {
             initDDCarousel(carousel, {
               reverse: carousel.hasAttribute('data-reverse'),
-              videos: lists[i] || WORK_VIDEOS_1
+              videos: FEATURED_VIDEOS
             });
           });
+          initStaticProjects();
         }
 
         if (document.readyState === 'loading') {
@@ -565,22 +649,14 @@
 
     <!-- DIVINO DIVINO CAROUSEL -->
     <div class="dd-carousel" id="dd-carousel">
-<!--       
-         <h1>
-            Selected works
-        
-          </h1> -->
-       
-      <div class="dd-carousel__track"></div>
-      
-    </div>
-
-    <div class="dd-carousel" id="dd-carousel-reverse" data-reverse>
       <div class="dd-carousel__track"></div>
     </div>
 
-   
-    
+    <section class="work-grid">
+      <div class="container">
+        <div class="work-grid__items"></div>
+      </div>
+    </section>
 
     <div class="work-cta">
        <span class="about-intro-text">Your friendly design studio known for experimental, but functional design.</span>
