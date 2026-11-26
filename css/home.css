@@ -1269,7 +1269,7 @@
 
 .work-grid__items {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -1337,6 +1337,22 @@
   border-radius: 20px;
   background: #000;
   color: #fff;
+  white-space: nowrap;
+}
+
+.hover-to-play {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0;
+  font-family: "Cossette Titre", sans-serif;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--tone-500);
   white-space: nowrap;
 }
 

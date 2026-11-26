@@ -68,13 +68,15 @@
         const FEATURED_VIDEOS = [
           'lisboa.mp4',
           'rauw.mp4',
-          'sam.mov'
+          'sam.mov',
+          'cartografias.mp4'
         ];
 
         const WORK_LABELS = {
           'lisboa.mp4': 'Tienda Lizboa: Inmersive Site',
           'rauw.mp4': 'Rauw Alejandro: Inmersive Site',
-          'sam.mov': 'SScorpio: Creative Web Design'
+          'sam.mov': 'SScorpio: Creative Web Design',
+          'cartografias.mp4': 'Cartografías: 3D Interactive Site'
         };
 
         const STATIC_PROJECTS = [
@@ -98,13 +100,6 @@
             client: 'Animations, Visual Identity & Motion first Web Design',
             url: 'https://nerd-studios.shop/',
             tags: ['Photoshop', 'Gsap', 'Shopify']
-          },
-          {
-            video: 'cartografias.mp4',
-            title: 'Cartography',
-            client: '3D Interactive Site',
-            url: 'https://www.behance.net/gallery/214474755/webgl-image-visualizator',
-            tags: ['WebGL', 'Three.js']
           },
           {
             video: 'clara-portfolio.mov',
@@ -277,10 +272,20 @@
             video.src = './work-videos/' + encodeURI(project.video);
             video.muted = true;
             video.loop = true;
-            video.autoplay = true;
             video.playsInline = true;
             video.setAttribute('preload', 'metadata');
             video.setAttribute('aria-label', project.title);
+
+            media.addEventListener('mouseenter', function () {
+              const playPromise = video.play();
+              if (playPromise !== undefined) {
+                playPromise.catch(function () {});
+              }
+            });
+            media.addEventListener('mouseleave', function () {
+              video.pause();
+            });
+
             media.appendChild(video);
 
             const caption = document.createElement('figcaption');
@@ -315,6 +320,30 @@
           });
         }
 
+        function initHoverToPlay() {
+          const section = document.querySelector('.work-grid');
+          if (!section || document.querySelector('.hover-to-play')) return;
+
+          const label = document.createElement('div');
+          label.className = 'hover-to-play';
+          label.textContent = 'HOVER TO PLAY!';
+          document.body.appendChild(label);
+
+          if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+          section.addEventListener('mouseenter', function () {
+            gsap.to(label, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+          });
+
+          section.addEventListener('mouseleave', function () {
+            gsap.to(label, { opacity: 0, duration: 0.25, ease: 'power2.out' });
+          });
+
+          section.addEventListener('mousemove', function (e) {
+            gsap.set(label, { x: e.clientX + 18, y: e.clientY + 14 });
+          });
+        }
+
         function initAllDDCarousels() {
           document.querySelectorAll('.dd-carousel').forEach(function (carousel) {
             initDDCarousel(carousel, {
@@ -323,6 +352,7 @@
             });
           });
           initStaticProjects();
+          initHoverToPlay();
         }
 
         if (document.readyState === 'loading') {
