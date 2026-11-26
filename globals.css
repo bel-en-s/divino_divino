@@ -30,10 +30,19 @@
   display: none;
 }
 
+html {
+  overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+}
+
 body {
   background-color: #ffffff;
   color: var(--tone-100);
   overflow-x: hidden;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
+  position: relative;
 }
 
 h1,

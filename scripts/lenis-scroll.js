@@ -14,12 +14,16 @@ function isCoarsePointer() {
 document.addEventListener("DOMContentLoaded", () => {
   const isMobileLike = isCoarsePointer() || window.innerWidth <= 1000;
 
+  if (isMobileLike) {
+    window.lenis = null;
+    return;
+  }
+
   lenis = new Lenis({
-    smoothWheel: !isMobileLike,
+    smoothWheel: true,
     syncTouch: false,
-    touchMultiplier: 1,
-    lerp: isMobileLike ? 0.06 : 0.1,
-    duration: isMobileLike ? 0 : 1.2,
+    lerp: 0.1,
+    duration: 1.2,
     autoRaf: true,
   });
 

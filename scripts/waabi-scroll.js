@@ -6,10 +6,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-const isMobileLike =
-  window.matchMedia?.("(pointer: coarse)")?.matches || window.innerWidth <= 1000;
-if (isMobileLike) ScrollTrigger.normalizeScroll(true);
-
 function initWaabiScroll() {
   const scroller = document.querySelector(".waabi-scroll");
   if (!scroller || scroller.dataset.initialized === "true") return;

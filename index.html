@@ -124,6 +124,20 @@
           }
         ];
 
+        const PLAY_SVG = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>';
+
+        document.addEventListener('click', function (e) {
+          const btn = e.target.closest('.media-play-btn');
+          if (!btn) return;
+          const video = btn.parentElement && btn.parentElement.querySelector('video');
+          if (!video) return;
+          e.preventDefault();
+          e.stopPropagation();
+          const p = video.play();
+          if (p !== undefined) p.catch(function () {});
+          btn.classList.add('is-hidden');
+        });
+
         function initDDCarousel(carousel, options) {
           if (!carousel || carousel.dataset.initialized === 'true') return;
           options = options || {};
@@ -133,6 +147,8 @@
           const track = carousel.querySelector('.dd-carousel__track');
           if (!track) return;
 
+          const isMobile = window.matchMedia('(pointer: coarse)').matches || window.innerWidth <= 1000;
+
           if (!track.children.length) {
             const pagination = carousel.querySelector('.dd-carousel__pagination');
             let itemsHtml = '';
@@ -140,8 +156,13 @@
             videos.forEach(function (name) {
               const src = './work-videos/' + encodeURI(name);
               const label = WORK_LABELS[name] || name;
+              const poster = './work-videos/' + encodeURI(name.replace(/\.[^.]+$/, '')) + '.jpg';
+              const videoAttrs = isMobile
+                ? 'muted loop playsinline preload="metadata" poster="' + poster + '"'
+                : 'muted loop autoplay playsinline preload="metadata" poster="' + poster + '"';
+              const playBtn = isMobile ? '<button type="button" class="media-play-btn" aria-label="Play ' + label + '">' + PLAY_SVG + '</button>' : '';
               itemsHtml +=
-                '<figure class="dd-carousel__item"><video src="' + src + '" muted loop autoplay playsinline preload="metadata" aria-label="' + label + '"></video>' +
+                '<figure class="dd-carousel__item"><div class="dd-carousel__media"><video src="' + src + '" ' + videoAttrs + ' aria-label="' + label + '"></video>' + playBtn + '</div>' +
                 '<figcaption class="dd-carousel__chip">' + label + '</figcaption></figure>';
               dotsHtml += '<span class="dd-carousel__dot"></span>';
             });
@@ -268,25 +289,50 @@
               media.rel = 'noopener';
             }
 
-            const video = document.createElement('video');
-            video.src = './work-videos/' + encodeURI(project.video);
-            video.muted = true;
-            video.loop = true;
-            video.playsInline = true;
-            video.setAttribute('preload', 'metadata');
-            video.setAttribute('aria-label', project.title);
+            const poster = './work-videos/' + encodeURI(project.video.replace(/\.[^.]+$/, '')) + '.jpg';
+            const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-            media.addEventListener('mouseenter', function () {
-              const playPromise = video.play();
-              if (playPromise !== undefined) {
-                playPromise.catch(function () {});
-              }
-            });
-            media.addEventListener('mouseleave', function () {
-              video.pause();
-            });
+            if (canHover) {
+              const video = document.createElement('video');
+              video.src = './work-videos/' + encodeURI(project.video);
+              video.muted = true;
+              video.loop = true;
+              video.playsInline = true;
+              video.controls = false;
+              video.poster = poster;
+              video.setAttribute('preload', 'metadata');
+              video.setAttribute('aria-label', project.title);
 
-            media.appendChild(video);
+              media.addEventListener('mouseenter', function () {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                  playPromise.catch(function () {});
+                }
+              });
+              media.addEventListener('mouseleave', function () {
+                video.pause();
+              });
+
+              media.appendChild(video);
+            } else {
+              const video = document.createElement('video');
+              video.src = './work-videos/' + encodeURI(project.video);
+              video.muted = true;
+              video.loop = true;
+              video.playsInline = true;
+              video.controls = false;
+              video.poster = poster;
+              video.setAttribute('preload', 'metadata');
+              video.setAttribute('aria-label', project.title);
+              media.appendChild(video);
+
+              const btn = document.createElement('button');
+              btn.type = 'button';
+              btn.className = 'media-play-btn';
+              btn.setAttribute('aria-label', 'Play ' + project.title);
+              btn.innerHTML = PLAY_SVG;
+              media.appendChild(btn);
+            }
 
             const caption = document.createElement('figcaption');
             caption.className = 'work-grid__caption';
