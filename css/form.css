@@ -5,6 +5,13 @@
   text-align: center;
 }
 
+.contact-form-box {
+  max-width: 880px;
+  margin: 0 auto 3rem;
+  padding: 3rem 2rem;
+  border: 1px solid var(--tone-400);
+}
+
 .contact-form-eyebrow {
   font-size: 0.9rem;
   letter-spacing: 0.12em;

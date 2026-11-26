@@ -65,19 +65,37 @@
 
     <script>
       (function () {
-        const WORK_VIDEOS = [
+        const WORK_VIDEOS_1 = [
           'AWK.mp4',
           'Filoza.mp4',
-          'cartografias.mp4',
           'lisboa.mp4',
-          'nerd.mp4',
-          'rauw.mp4',
-          'sam.mov'
+          'nerd.mp4'
         ];
 
-        function initDDCarousel() {
-          const carousel = document.getElementById('dd-carousel');
+        const WORK_VIDEOS_2 = [
+          'rauw.mp4',
+          'sam.mov',
+          'clara-portfolio.mov',
+          'Tropel.mov'
+        ];
+
+        const WORK_LABELS = {
+          'AWK.mp4': 'AWK Agency: Branding & Creative Web Design',
+          'Filoza.mov': 'Filoza: E-commerce',
+          
+          'lisboa.mp4': 'Tienda Lizboa: Inmersive Site',
+          'nerd.mp4': 'Nerd Studios: Animations, Visual Identity & Motion first Web Design',
+          'rauw.mp4': 'Rauw Alejandro: Inmersive Site',
+          'sam.mov': 'SScorpio: Creative Web Design',
+          'clara-portfolio.mov': 'Creative Lead Portfolio (Self-managed)',
+          'Tropel.mov': 'Tropel: Creative Web Design & Multimedia'
+        };
+
+        function initDDCarousel(carousel, options) {
           if (!carousel || carousel.dataset.initialized === 'true') return;
+          options = options || {};
+          const reverse = !!options.reverse;
+          const videos = options.videos || [];
 
           const track = carousel.querySelector('.dd-carousel__track');
           if (!track) return;
@@ -86,10 +104,12 @@
             const pagination = carousel.querySelector('.dd-carousel__pagination');
             let itemsHtml = '';
             let dotsHtml = '';
-            WORK_VIDEOS.forEach(function (name) {
+            videos.forEach(function (name) {
               const src = './work-videos/' + encodeURI(name);
+              const label = WORK_LABELS[name] || name;
               itemsHtml +=
-                '<figure class="dd-carousel__item"><video src="' + src + '" muted loop autoplay playsinline preload="metadata" aria-label="' + name + '"></video></figure>';
+                '<figure class="dd-carousel__item"><video src="' + src + '" muted loop autoplay playsinline preload="metadata" aria-label="' + label + '"></video>' +
+                '<figcaption class="dd-carousel__chip">' + label + '</figcaption></figure>';
               dotsHtml += '<span class="dd-carousel__dot"></span>';
             });
             track.innerHTML = itemsHtml;
@@ -104,12 +124,13 @@
           carousel.dataset.initialized = 'true';
 
           let maxTravel = 0;
-          let travel = 0;
+          let travel = reverse ? Number.MAX_VALUE : 0;
           let currentIndex = -1;
           let playing = false;
           let hovering = false;
           let lastTime = 0;
           let rafId = null;
+          let currentSpeed = 0;
 
           function measure() {
             maxTravel = Math.max(0, track.scrollWidth - carousel.clientWidth);
@@ -143,15 +164,24 @@
             const delta = (time - lastTime) / 1000;
             lastTime = time;
 
-            const speed =
+            const baseSpeed =
               parseFloat(
                 getComputedStyle(carousel).getPropertyValue('--carousel-speed')
-              ) || 120;
+              ) || 300;
+            const hoverSpeed =
+              parseFloat(
+                getComputedStyle(carousel).getPropertyValue('--carousel-speed-hover')
+              ) || (baseSpeed * 0.25);
 
-            travel += speed * delta;
+            const targetSpeed = hovering ? hoverSpeed : baseSpeed;
+            currentSpeed += (targetSpeed - currentSpeed) * Math.min(1, delta * 8);
 
-            if (travel >= maxTravel) {
-              travel = 0;
+            if (reverse) {
+              travel -= currentSpeed * delta;
+              if (travel <= 0) travel = maxTravel;
+            } else {
+              travel += currentSpeed * delta;
+              if (travel >= maxTravel) travel = 0;
             }
 
             render();
@@ -177,8 +207,8 @@
 
           const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
           if (canHover) {
-            carousel.addEventListener('mouseenter', function () { hovering = true; pause(); });
-            carousel.addEventListener('mouseleave', function () { hovering = false; play(); });
+            carousel.addEventListener('mouseenter', function () { hovering = true; });
+            carousel.addEventListener('mouseleave', function () { hovering = false; });
           }
 
           const media = carousel.querySelectorAll('video, img');
@@ -198,91 +228,79 @@
             observer.observe(track);
           }
 
-          const lightbox = document.createElement('div');
-          lightbox.id = 'dd-lightbox';
-          lightbox.innerHTML =
-            '<button class="dd-lightbox__close" type="button" aria-label="Cerrar">×</button>' +
-            '<button class="dd-lightbox__arrow dd-lightbox__arrow--prev" type="button" aria-label="Anterior">❮</button>' +
-            '<video controls autoplay playsinline></video>' +
-            '<button class="dd-lightbox__arrow dd-lightbox__arrow--next" type="button" aria-label="Siguiente">❯</button>' +
-            '<span class="dd-lightbox__counter"></span>';
-          document.body.appendChild(lightbox);
-
-          const lightboxVideo = lightbox.querySelector('video');
-          const lightboxCounter = lightbox.querySelector('.dd-lightbox__counter');
-          const lightboxClose = lightbox.querySelector('.dd-lightbox__close');
-          const lightboxPrev = lightbox.querySelector('.dd-lightbox__arrow--prev');
-          const lightboxNext = lightbox.querySelector('.dd-lightbox__arrow--next');
-
-          let lightboxIndex = 0;
-
-          function openLightbox(index) {
-            lightboxIndex = index;
-            updateLightbox();
-            lightbox.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-          }
-
-          function updateLightbox() {
-            const video = items[lightboxIndex].querySelector('video');
-            const src = video ? video.getAttribute('src') : '';
-            lightboxVideo.src = src;
-            if (src) lightboxVideo.load();
-            lightboxCounter.textContent = (lightboxIndex + 1) + ' / ' + items.length;
-          }
-
-          function closeLightbox() {
-            lightbox.classList.remove('is-open');
-            lightboxVideo.pause();
-            lightboxVideo.removeAttribute('src');
-            lightboxVideo.load();
-            document.body.style.overflow = '';
-          }
-
-          function showPrev() {
-            lightboxIndex = (lightboxIndex - 1 + items.length) % items.length;
-            updateLightbox();
-          }
-
-          function showNext() {
-            lightboxIndex = (lightboxIndex + 1) % items.length;
-            updateLightbox();
-          }
-
-          items.forEach(function (item, i) {
-            const media = item.querySelector('video, img');
-            if (media) {
-              media.addEventListener('click', function () {
-                openLightbox(i);
-              });
-            }
-          });
-
-          lightboxClose.addEventListener('click', closeLightbox);
-          lightboxPrev.addEventListener('click', showPrev);
-          lightboxNext.addEventListener('click', showNext);
-
-          lightbox.addEventListener('click', function (e) {
-            if (e.target === lightbox) closeLightbox();
-          });
-
-          document.addEventListener('keydown', function (e) {
-            if (!lightbox.classList.contains('is-open')) return;
-            if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowLeft') showPrev();
-            if (e.key === 'ArrowRight') showNext();
-          });
-
           measure();
         }
 
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initDDCarousel);
-        } else {
-          initDDCarousel();
+        function initAllDDCarousels() {
+          const lists = [WORK_VIDEOS_1, WORK_VIDEOS_2];
+          document.querySelectorAll('.dd-carousel').forEach(function (carousel, i) {
+            initDDCarousel(carousel, {
+              reverse: carousel.hasAttribute('data-reverse'),
+              videos: lists[i] || WORK_VIDEOS_1
+            });
+          });
         }
 
-        window.addEventListener('load', initDDCarousel);
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', initAllDDCarousels);
+        } else {
+          initAllDDCarousels();
+        }
+
+        window.addEventListener('load', initAllDDCarousels);
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        if (!canHover) return;
+
+        const items = document.querySelectorAll('.services-hero-list-item[data-preview]');
+        if (!items.length) return;
+
+        const preview = document.createElement('div');
+        preview.className = 'services-hover-preview';
+        const img = document.createElement('img');
+        img.alt = '';
+        preview.appendChild(img);
+        document.body.appendChild(preview);
+
+        let rafId = null;
+        let x = 0;
+        let y = 0;
+        let tx = 0;
+        let ty = 0;
+        let visible = false;
+
+        function onMove(e) {
+          tx = e.clientX;
+          ty = e.clientY;
+        }
+
+        function tick() {
+          x += (tx - x) * 0.2;
+          y += (ty - y) * 0.2;
+          preview.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0) translate(-50%, -50%)';
+          rafId = window.requestAnimationFrame(tick);
+        }
+
+        items.forEach(function (item) {
+          const src = item.getAttribute('data-preview');
+          item.addEventListener('mouseenter', function () {
+            img.src = src;
+            visible = true;
+            preview.classList.add('is-visible');
+            tx = x = (item.getBoundingClientRect().left + item.getBoundingClientRect().right) / 2;
+            ty = y = (item.getBoundingClientRect().top + item.getBoundingClientRect().bottom) / 2;
+            if (!rafId) rafId = window.requestAnimationFrame(tick);
+          });
+          item.addEventListener('mousemove', onMove);
+          item.addEventListener('mouseleave', function () {
+            visible = false;
+            preview.classList.remove('is-visible');
+          });
+        });
       })();
     </script>
 
@@ -416,24 +434,6 @@
       </div>
     </div>
 
-    <div class="image-grid">
-      <div class="grid-row">
-        <div class="img"><img src="./spotlight/spotlight-1.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-2.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-3.jpg" alt="" /></div>
-      </div>
-      <div class="grid-row">
-        <div class="img"><img src="./spotlight/spotlight-4.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-5.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-6.jpg" alt="" /></div>
-      </div>
-      <div class="grid-row">
-        <div class="img"><img src="./spotlight/spotlight-7.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-8.jpg" alt="" /></div>
-        <div class="img"><img src="./spotlight/spotlight-9.jpg" alt="" /></div>
-      </div>
-    </div>
-
     <div class="transition">
       <div class="transition-overlay"></div>
     </div>
@@ -506,6 +506,7 @@
 
       <div class="hero-content">
         <div class="hero-header">
+          
           <h1>
             Helping arts, culture &amp; entertainment projects build distinctive
             digital experiences that <em>engage</em> &amp; <em>enhance</em> their
@@ -515,36 +516,76 @@
         </div>
 
         <div class="hero-social">
-          <p>Say Hello</p>
-          <a href="mailto:holadivinodivino@gmail.com">holadivinodivino@gmail.com</a>
+          
+                                  <a style="margin-top: 30px;" href="https://calendly.com/holadivinodivino/30min" target="_blank" rel="noopener" class="scramble-hover services-cta work-cta-btn">[ &nbsp;book a strategic 30 min call&nbsp; ]</a>
+                        <a style="margin-top: 30px;" href="mailto:holadivinodivino@gmail.com" target="_blank" rel="noopener" class="scramble-hover services-cta work-cta-btn">[ &nbsp;holadivinodivino@gmail.com&nbsp; ]</a>
+
         </div>
       </div>
     </section>
+      <section class="services-hero">
+        
+      <div class="services-hero-content">
+        
+        <div class="services-hero-header">
+          <h1>
+            Worked with 50+ brands delivering top-tier digital identities,
+            positioning them online as luxury services. 
+        
+          </h1>
+          <h3>    <br/> 
+            We asist from start to finish with weekly meet ups and strategic
+            questionaries to understand deeply your message</h3>
+           
 
-    <section class="services">
-      <div class="container">
-         <p class="about-intro" data-i18n-html="about-intro">
-                  <span class="about-intro-text">We are your friendly design studio 
-                    known for experimental, but functional design.
-              
-                   </span>
-      
-                     
-                  <!-- <a href="https://calendly.com/holadivinodivino/30min" target="_blank" class="about-intro-cta">[ &nbsp;book a free 30 min discovery call&nbsp; ]</a> -->
-                </p>
-    
+                        <a style="margin-top: 30px;" href="https://calendly.com/holadivinodivino/30min" target="_blank" rel="noopener" class="scramble-hover services-cta work-cta-btn">[ &nbsp;book a strategic 30 min call&nbsp; ]</a>
+
+        </div>
+
+        <ul class="services-hero-list">
+          <li class="services-hero-list-item" data-preview="./work/work-1.jpg">
+            <h3>Creative Web Design</h3>
+          </li>
+          <li class="services-hero-list-item" data-preview="./work/work-2.jpg">
+            <h3>Brand + Web design</h3>
+          </li>
+          <li class="services-hero-list-item" data-preview="./work/work-3.jpg">
+            <h3>Multimedia assets</h3>
+          </li>
+           <li class="services-hero-list-item" data-preview="./work/work-4.jpg">
+            <h3>E-commerce</h3>
+          </li>
+           <li class="services-hero-list-item" data-preview="./spotlight/spotlight-1.jpg">
+            <h3>3D & Motion Graphics</h3>
+          </li>
+        </ul>
       </div>
     </section>
-    
+
 
     <!-- DIVINO DIVINO CAROUSEL -->
     <div class="dd-carousel" id="dd-carousel">
+<!--       
+         <h1>
+            Selected works
+        
+          </h1> -->
+       
       <div class="dd-carousel__track"></div>
-      <div class="dd-carousel__pagination" aria-hidden="true"></div>
+      
     </div>
 
+    <div class="dd-carousel" id="dd-carousel-reverse" data-reverse>
+      <div class="dd-carousel__track"></div>
+    </div>
+
+   
+    
+
     <div class="work-cta">
-      <a href="./work" class="scramble-hover services-cta work-cta-btn">[ &nbsp;see full work&nbsp; ]</a>
+       <span class="about-intro-text">Your friendly design studio known for experimental, but functional design.</span>
+    
+      <a href="./work" class="scramble-hover services-cta work-cta-btn">[ &nbsp;see case studies (WIP)&nbsp; ]</a>
     </div>
 
     <!-- END CAROUSEL -->
@@ -604,28 +645,63 @@
     </div> -->
     <!-- END WAABI SCROLL ANIMATION -->
 
-        <section class="services-hero">
+  
+
+
+    <section class="about" data-reveal data-nav-label="quienes somos?">
+      <div class="container">
+        <span class="service-star h1 service-star-lightblue services-offer-star">
+          <span class="service-star-icon">✷</span>
+        </span>
+        <h2 class="nosotras-title" data-i18n="nosotras-title">Meet your designer</h2>
+
+        <div class="about-copy-row">
+          <img src="./about/about-photo.png" alt="Divino Divino studio" class="about-copy-photo" />
+
+          <section class="container services-copy-info">
+            <h3 class="about-copy-intro" data-i18n="form-intro">
+              OMG hi! I'm Bel, a multimedia artist. I live in Buenos Aires and I  studied visual arts and then multimedia arts. I've been working independently for over 8 years, though I spent some time in studios on a full-time basis.
+              <br /><br />
+              I love using technology as a medium of expression for my work, and my job is to help your project use it creatively to communicate too. I believe that today, more than ever, whoever manages to be original and authentic, stands out.
+            </h3>
+          </section>
+        </div>
+
+        <div class="nav-footer-item">
+          <a href="https://belenseoanepalmieri.com/" target="_blank" rel="noopener">
+            [ &nbsp;personal website here&nbsp; ]
+          </a>
+        </div>
+      </div>
+    </section>
+          <!-- <section class="services-hero">
+        
       <div class="services-hero-content">
+        
         <div class="services-hero-header">
           <h1>
-            Worked with 50+ brands delivering top-tier digital identities,
-            positioning them online as luxury services. 
+            We can help you if...
         
           </h1>
-          <h3>    <br/> <br/>
-            We asist from start to finish with weekly meet ups and strategic
-            questionaries to understand deeply your message</h3>
-
-                        <a style="margin-top: 30px;" href="https://calendly.com/holadivinodivino/30min" target="_blank" rel="noopener" class="scramble-hover services-cta work-cta-btn">[ &nbsp;book a strategic 30 min call&nbsp; ]</a>
-
+      
+    
         </div>
 
         <ul class="services-hero-list">
           <li class="services-hero-list-item">
-            <h3>Creative Web Design</h3>
+            <h3>You are looking to have a profesional portfolio website, but you don't know where to start</h3>
+<span style="font-family: 'Inter', sans-serif;padding-top: 100px;">
+         We offer weekly meetings and strategic questionaries to understand deeply your message and your goals, so we can help you to create a website that reflects your brand and your values.
+  
+</span>
+
           </li>
-          <li class="services-hero-list-item">
-            <h3>Brand plus Web design</h3>
+            <li class="services-hero-list-item">
+            <h3>Are looking for clarity in you digital prescence</h3>
+             <span style="font-family: 'Inter', sans-serif;padding-top: 100px;">
+      On our onboardings, we present a full audit and roadmap to get you to your goals.
+             </span>
+
           </li>
           <li class="services-hero-list-item">
             <h3>Multimedia assets</h3>
@@ -638,44 +714,21 @@
           </li>
         </ul>
       </div>
-    </section>
+    </section> -->
 
-
-    <section class="about" data-reveal data-nav-label="quienes somos?">
-      <div class="container">
-        <span class="service-star h1 service-star-lightblue services-offer-star">
-          <span class="service-star-icon">✷</span>
-        </span>
-        <h2 class="nosotras-title" data-i18n="nosotras-title">Meet your designer</h2>
-
-        <img src="./about/about-photo.png" alt="Divino Divino studio" class="about-copy-photo" />
-        <div class="nav-footer-item">
-          <a href="https://belenseoanepalmieri.com/" target="_blank" rel="noopener">
-            [ &nbsp;personal website here&nbsp; ]
-          </a>
-        </div>
-
-        <section class="container services-copy-info">
-          <h3 class="about-copy-intro" data-i18n="form-intro">
-            OMG hi! I'm Bel, a multimedia artist. I live in Buenos Aires and I  studied visual arts and then multimedia arts. I've been working independently for over 8 years, though I spent some time in studios on a full-time basis.
-            <br /><br />
-            I love using technology as a medium of expression for my work, and my job is to help your project use it creatively to communicate too. I believe that today, more than ever, whoever manages to be original and authentic, stands out.
-          </h3>
-        </section>
-      </div>
-    </section>
 
     <section class="contact-form-section" data-reveal data-nav-label="contact">
       <div class="container">
-        <h3 class="contact-form-eyebrow">Buenos Aires / Worldwide</h3>
-        <h2 class="contact-form-title">let's make something<br />cool together.</h2>
+        <div class="contact-form-box">
+          <h3 class="contact-form-eyebrow">Buenos Aires / Worldwide</h3>
+          <h2 class="contact-form-title">let's make something<br />cool together.</h2>
 
-        <h3 class="contact-form-intro" data-i18n="form-intro">
-          If you're feeling ready to take this step, frustrated with not having
-          the overall look and feel that your business needs for your goals, I'm
-          your girl! I'll get back to you within 1 business day for a (totally
-          free) consultation call to see if we're a good fit!
-        </h3>
+          <h3 class="contact-form-intro" data-i18n="form-intro">
+            If you're feeling ready to take this step, frustrated with not having
+            the overall look and feel that your business needs for your goals, I'm
+            your girl! I'll get back to you within 1 business day for a (totally
+            free) consultation call to see if we're a good fit!
+          </h3>
 
         <form class="formulario-landing" novalidate>
           <input type="hidden" name="access_key" value="79647389-1e07-49c9-b7cc-7a4a64acfb94" />
@@ -710,6 +763,7 @@
           <p class="form-result" aria-live="polite"></p>
           <button type="submit" class="form-submit" data-i18n="form-submit">Submit</button>
         </form>
+        </div>
       </div>
     </section>
 

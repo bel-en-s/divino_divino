@@ -7,24 +7,23 @@ CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
 // project data array
 const projectsData = [
-  { name: "Lunar Eclipse", director: "Amelia Crawford", location: "Toronto, ON" },
-  { name: "Visitor Quarters", director: "Marcus Reynolds", location: "Vancouver Studio, BC" },
-  { name: "Celestial", director: "Nina Liu // Weston", location: "Austin, TX" },
-  { name: "Streamwave Original", director: "Dylan Pierce", location: "Sunset Studios - Miami" },
-  { name: "Viewfinder", director: "Javier // Rodriguez", location: "BLANK Studios - Chicago" },
-  { name: "Rhythm Collective", director: "Sophia // Chen", location: "London, UK" },
-  { name: "Urban Odyssey", director: "Leo Thompson", location: "Pioneer Studios - Seattle" },
-  { name: "Prism No. 1", director: "Taylor // McKnight", location: "Private Estate - Sedona" },
-  { name: "Vision Quest", director: "Spencer // Hudson", location: "Elevation - Denver" },
-  { name: "Wavelength", director: "Kai Nakamura", location: "San Francisco, CA" },
-  { name: "Desert Horizon", director: "Olivia", location: "New Mexico" },
-  { name: "Spectrum", director: "Ellis // Moss", location: "Harmony Studio - Montreal" },
-  { name: "Vision Quest II", director: "Hudson // Wright", location: "Elevation Studios - Denver" },
-  { name: "Auteur", director: "Leo Thompson", location: "Berlin, DE" },
-  { name: "Capsule X Design", director: "Sophia // Chen", location: "Neon House - Brooklyn" },
-  { name: "Pulse", director: "Callum // Winters", location: "Echo Pavilion - Portland" },
+  { name: "Divino Divino", director: "Multimedia Studio", location: "Web // Art // Design" },
+  { name: "Culture", director: "Arts // Entertainment", location: "Digital Identity" },
+  { name: "Authenticity", director: "Human // Unique", location: "Meaningful Experiences" },
+  { name: "Sensory Web", director: "Digital // Physical", location: "Beyond the Screen" },
+  { name: "Expression", director: "Art // Technology", location: "Creative Exploration" },
+  { name: "Human Touch", director: "Gesture // Process", location: "Beyond AI" },
+  { name: "Connection", director: "People // Projects", location: "Audience Engagement" },
+  { name: "Visibility", director: "Reach // Discovery", location: "Digital Presence" },
+  { name: "Clarity", director: "Strategy // Focus", location: "Brand Positioning" },
+  { name: "Perception", director: "Premium // Distinctive", location: "Visual Identity" },
+  { name: "Wellbeing", director: "Care // Sensitivity", location: "Digital Spaces" },
+  { name: "Interaction", director: "Motion // Code", location: "Web Experiences" },
+  { name: "Value", director: "Quality // Purpose", location: "Better Clients" },
+  { name: "Growth", director: "Visibility // Strategy", location: "More Inquiries" },
+  { name: "Storytelling", director: "Visual // Editorial", location: "Digital Narratives" },
+  { name: "Possibilities", director: "Art // Innovation", location: "A Living Internet" },
 ];
-
 // image sources for rotation
 const allImageSources = Array.from(
   { length: 20 },
