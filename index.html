@@ -281,13 +281,8 @@
             const item = document.createElement('figure');
             item.className = 'work-grid__item';
 
-            const media = document.createElement(project.url ? 'a' : 'div');
+            const media = document.createElement('div');
             media.className = 'work-grid__media';
-            if (project.url) {
-              media.href = project.url;
-              media.target = '_blank';
-              media.rel = 'noopener';
-            }
 
             const poster = './work-videos/' + encodeURI(project.video.replace(/\.[^.]+$/, '')) + '.jpg';
             const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
@@ -326,6 +321,18 @@
               video.setAttribute('aria-label', project.title);
               media.appendChild(video);
 
+              video.addEventListener('click', function () {
+                if (video.paused) {
+                  const playPromise = video.play();
+                  if (playPromise !== undefined) {
+                    playPromise.catch(function () {});
+                  }
+                  btn.classList.add('is-hidden');
+                } else {
+                  video.pause();
+                }
+              });
+
               const btn = document.createElement('button');
               btn.type = 'button';
               btn.className = 'media-play-btn';
@@ -348,6 +355,9 @@
             caption.appendChild(title);
             caption.appendChild(client);
 
+            const meta = document.createElement('div');
+            meta.className = 'work-grid__meta';
+
             if (project.tags && project.tags.length) {
               const tags = document.createElement('div');
               tags.className = 'work-grid__tags';
@@ -357,7 +367,21 @@
                 tagEl.textContent = tag;
                 tags.appendChild(tagEl);
               });
-              caption.appendChild(tags);
+              meta.appendChild(tags);
+            }
+
+            if (project.url) {
+              const live = document.createElement('a');
+              live.className = 'work-grid__live';
+              live.href = project.url;
+              live.target = '_blank';
+              live.rel = 'noopener';
+              live.textContent = 'View live project';
+              meta.appendChild(live);
+            }
+
+            if (meta.children.length) {
+              caption.appendChild(meta);
             }
 
             item.appendChild(media);

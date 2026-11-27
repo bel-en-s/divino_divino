@@ -282,8 +282,11 @@ class MobilePixelatedVideo {
   async init() {
     const video = this.videoElement;
 
+    video.autoplay = true;
     video.muted = true;
     video.playsInline = true;
+    video.loop = true;
+    video.setAttribute("autoplay", "");
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
     video.setAttribute("loop", "");
@@ -302,11 +305,19 @@ class MobilePixelatedVideo {
 
     video.src = "./hero/hero-pixelated.mp4";
 
-    try {
-      await video.play();
-    } catch (error) {
-      console.warn("Video autoplay blocked:", error);
-    }
+    const tryPlay = () => {
+      const p = video.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+
+    tryPlay();
+    video.addEventListener("loadeddata", tryPlay, { once: true });
+    video.addEventListener("canplay", tryPlay, { once: true });
+
+    // Last resort for strict autoplay policies (first user interaction).
+    const unlock = () => tryPlay();
+    window.addEventListener("pointerdown", unlock, { once: true });
+    window.addEventListener("touchstart", unlock, { once: true });
   }
 }
 
