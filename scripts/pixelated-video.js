@@ -1,5 +1,12 @@
 import * as THREE from "three";
 
+function isMobileLike() {
+  return (
+    (window.matchMedia?.("(pointer: coarse)")?.matches ?? false) ||
+    window.innerWidth <= 1000
+  );
+}
+
 class PixelatedVideoEffect {
   constructor() {
     this.heroContainer = document.querySelector(".hero");
@@ -263,4 +270,48 @@ class PixelatedVideoEffect {
   }
 }
 
-new PixelatedVideoEffect();
+// Mobile/touch: play the pre-rendered pixelated video natively.
+// No WebGL, no Three.js, no canvas, no requestAnimationFrame.
+class MobilePixelatedVideo {
+  constructor() {
+    this.videoElement = document.querySelector(".hero-video");
+    if (!this.videoElement) return;
+    this.init();
+  }
+
+  async init() {
+    const video = this.videoElement;
+
+    video.muted = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("loop", "");
+
+    // Fallback to the original video if the pixelated one fails to load.
+    video.addEventListener(
+      "error",
+      () => {
+        if (video.src && video.src.includes("hero-pixelated")) {
+          video.src = "./hero/hero.mp4";
+          video.play().catch(() => {});
+        }
+      },
+      { once: true }
+    );
+
+    video.src = "./hero/hero-pixelated.mp4";
+
+    try {
+      await video.play();
+    } catch (error) {
+      console.warn("Video autoplay blocked:", error);
+    }
+  }
+}
+
+if (isMobileLike()) {
+  new MobilePixelatedVideo();
+} else {
+  new PixelatedVideoEffect();
+}

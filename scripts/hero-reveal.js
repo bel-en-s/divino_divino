@@ -20,13 +20,6 @@ function whenFontsReady(fn) {
 }
 
 function applyInitialState() {
-  gsap.set(".hero-img", {
-    scale: 0.2,
-    rotation: -7.5,
-    borderRadius: "2.5rem",
-    transformOrigin: "center center",
-  });
-
   gsap.set(TEXT_TARGETS, { opacity: 0 });
 }
 
@@ -53,14 +46,6 @@ function playReveal() {
   gsap.set(TEXT_TARGETS, { opacity: 1 });
 
   const tl = gsap.timeline();
-
-  tl.to(".hero-img", {
-    scale: 1,
-    rotation: 0,
-    borderRadius: 0,
-    duration: 1.5,
-    ease: "glide",
-  });
 
   tl.to(
     ".hero-header .line",

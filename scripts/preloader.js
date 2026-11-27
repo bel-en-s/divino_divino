@@ -120,8 +120,16 @@ function startImageRotation() {
   }
 }
 
+function isMobileLike() {
+  return (
+    (window.matchMedia?.("(pointer: coarse)")?.matches ?? false) ||
+    window.innerWidth <= 1000
+  );
+}
+
 // hero: scale up so it can shrink into place on reveal
 function setHeroEnteringScale() {
+  if (isMobileLike()) return;
   const heroVideo = document.querySelector(".hero-video");
   if (!heroVideo) return;
   gsap.set(heroVideo, { scale: 1.3 });
@@ -129,6 +137,7 @@ function setHeroEnteringScale() {
 
 // hero: shrink the initial image into place as the preloader completes
 function animateHeroEntrance() {
+  if (isMobileLike()) return;
   const heroVideo = document.querySelector(".hero-video");
   if (!heroVideo) return;
   gsap.to(heroVideo, {
