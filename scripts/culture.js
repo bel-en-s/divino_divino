@@ -187,6 +187,8 @@ function initTeamAnimation() {
 }
 
 function initHeaderPin() {
+  if (window.innerWidth < 1000) return;
+
   const teamSection = document.querySelector(".team");
   const header = document.querySelector(".team-header");
 

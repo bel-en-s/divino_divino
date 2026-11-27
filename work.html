@@ -577,21 +577,23 @@
       currentCenter = startIndex;
       positionVideos(startAngle);
 
-      gsap.to({ val: startAngle }, {
-        val: startAngle + totalRotation,
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".work-hero",
-          start: "top top",
-          end: "+=" + scrollDistance,
-          scrub: 0.5,
-          pin: true,
-        },
-        onUpdate() {
-          const obj = this.targets()[0];
-          positionVideos(obj.val);
-        },
-      });
+      if (window.innerWidth > 1000) {
+        gsap.to({ val: startAngle }, {
+          val: startAngle + totalRotation,
+          ease: "none",
+          scrollTrigger: {
+            trigger: ".work-hero",
+            start: "top top",
+            end: "+=" + scrollDistance,
+            scrub: 0.5,
+            pin: true,
+          },
+          onUpdate() {
+            const obj = this.targets()[0];
+            positionVideos(obj.val);
+          },
+        });
+      }
     </script>
   </body>
 </html>
