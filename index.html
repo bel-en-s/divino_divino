@@ -68,15 +68,22 @@
         const FEATURED_VIDEOS = [
           'lisboa.mp4',
           'rauw.mp4',
-          'sam.mov',
+          'sam.mp4',
           'cartografias.mp4'
         ];
 
         const WORK_LABELS = {
           'lisboa.mp4': 'Tienda Lizboa: Inmersive Site',
           'rauw.mp4': 'Rauw Alejandro: Inmersive Site',
-          'sam.mov': 'SScorpio: Creative Web Design',
+          'sam.mp4': 'SScorpio: Creative Web Design',
           'cartografias.mp4': 'Cartografías: 3D Interactive Site'
+        };
+
+        const FEATURED_URLS = {
+          'lisboa.mp4': 'https://www.behance.net/gallery/215992165/webGL-inmersive-landing-Tienda-Lizboa',
+          'rauw.mp4': 'https://www.behance.net/gallery/228985437/Landing-page-scenography-Raw-Alejandro',
+          'sam.mp4': 'https://sscorpiomag.com/',
+          'cartografias.mp4': 'https://www.behance.net/gallery/214474755/webgl-image-visualizator'
         };
 
         const STATIC_PROJECTS = [
@@ -102,14 +109,14 @@
             tags: ['Photoshop', 'Gsap', 'Shopify']
           },
           {
-            video: 'clara-portfolio.mov',
+            video: 'clara-portfolio.mp4',
             title: 'Creative Lead Portfolio',
             client: 'Self-managed',
             url: '',
             tags: []
           },
           {
-            video: 'Tropel.mov',
+            video: 'Tropel.mp4',
             title: 'Tropel Audiovisual Studio',
             client: 'Creative Web Design & Multimedia',
             url: '',
@@ -154,6 +161,9 @@
             let itemsHtml = '';
             let dotsHtml = '';
             videos.forEach(function (name) {
+              dotsHtml += '<span class="dd-carousel__dot"></span>';
+            });
+            const buildItem = function (name) {
               const src = './work-videos/' + encodeURI(name);
               const label = WORK_LABELS[name] || name;
               const poster = './work-videos/' + encodeURI(name.replace(/\.[^.]+$/, '')) + '.jpg';
@@ -161,11 +171,18 @@
                 ? 'muted loop playsinline preload="metadata" poster="' + poster + '"'
                 : 'muted loop autoplay playsinline preload="metadata" poster="' + poster + '"';
               const playBtn = isMobile ? '<button type="button" class="media-play-btn" aria-label="Play ' + label + '">' + PLAY_SVG + '</button>' : '';
-              itemsHtml +=
-                '<figure class="dd-carousel__item"><div class="dd-carousel__media"><video src="' + src + '" ' + videoAttrs + ' aria-label="' + label + '"></video>' + playBtn + '</div>' +
-                '<figcaption class="dd-carousel__chip">' + label + '</figcaption></figure>';
-              dotsHtml += '<span class="dd-carousel__dot"></span>';
-            });
+              const liveLink = FEATURED_URLS[name]
+                ? '<a class="dd-carousel__live" href="' + FEATURED_URLS[name] + '" target="_blank" rel="noopener">View live site</a>'
+                : '';
+              return '<figure class="dd-carousel__item"><div class="dd-carousel__media"><video src="' + src + '" ' + videoAttrs + ' aria-label="' + label + '"></video>' + playBtn + '</div>' +
+                '<figcaption class="dd-carousel__chip">' + label + '</figcaption>' + liveLink + '</figure>';
+            };
+            // duplicate the set for a seamless infinite loop
+            for (let pass = 0; pass < 2; pass++) {
+              videos.forEach(function (name) {
+                itemsHtml += buildItem(name);
+              });
+            }
             track.innerHTML = itemsHtml;
             if (pagination) pagination.innerHTML = dotsHtml;
           }
@@ -178,7 +195,7 @@
           carousel.dataset.initialized = 'true';
 
           let maxTravel = 0;
-          let travel = reverse ? Number.MAX_VALUE : 0;
+          let travel = 0;
           let currentIndex = -1;
           let playing = false;
           let lastTime = 0;
@@ -186,8 +203,16 @@
           let currentSpeed = 0;
 
           function measure() {
-            maxTravel = Math.max(0, track.scrollWidth - carousel.clientWidth);
-            if (travel > maxTravel) travel = maxTravel;
+            const itemsNow = carousel.querySelectorAll('.dd-carousel__item');
+            if (itemsNow.length > videos.length) {
+              // seamless: one set width = distance from first item to first item of the duplicate set
+              maxTravel = itemsNow[videos.length].offsetLeft - itemsNow[0].offsetLeft;
+            } else {
+              maxTravel = Math.max(0, track.scrollWidth - carousel.clientWidth);
+            }
+            if (maxTravel > 0) {
+              travel = ((travel % maxTravel) + maxTravel) % maxTravel;
+            }
             render();
             play();
           }
@@ -226,10 +251,10 @@
 
             if (reverse) {
               travel -= currentSpeed * delta;
-              if (travel <= 0) travel = maxTravel;
+              if (maxTravel > 0) travel = ((travel % maxTravel) + maxTravel) % maxTravel;
             } else {
               travel += currentSpeed * delta;
-              if (travel >= maxTravel) travel = 0;
+              if (maxTravel > 0) travel = travel % maxTravel;
             }
 
             render();
@@ -791,7 +816,7 @@
           <div class="waabi-imgs-col" id="waabi-imgs-col-2">
             <div class="waabi-img"><video src="./work-videos/nerd.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
             <div class="waabi-img"><video src="./work-videos/rauw.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
-            <div class="waabi-img"><video src="./work-videos/sam.mov" muted autoplay loop playsinline preload="metadata"></video></div>
+            <div class="waabi-img"><video src="./work-videos/sam.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
             <div class="waabi-img"><video src="./work-videos/AWK.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
           </div>
           <div class="waabi-imgs-col" id="waabi-imgs-col-3">
@@ -802,7 +827,7 @@
           </div>
           <div class="waabi-imgs-col" id="waabi-imgs-col-4">
             <div class="waabi-img"><video src="./work-videos/rauw.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
-            <div class="waabi-img"><video src="./work-videos/sam.mov" muted autoplay loop playsinline preload="metadata"></video></div>
+            <div class="waabi-img"><video src="./work-videos/sam.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
             <div class="waabi-img"><video src="./work-videos/AWK.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
             <div class="waabi-img"><video src="./work-videos/Filoza.mp4" muted autoplay loop playsinline preload="metadata"></video></div>
           </div>

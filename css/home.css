@@ -247,6 +247,11 @@
   font-size: 3rem;
 }
 
+.services-hero .services-hero-content .services-hero-header h3 {
+  font-family: "Inter", sans-serif;
+  color: var(--tone-300);
+}
+
 .services-hero .services-hero-content .services-hero-list {
   list-style: none;
   margin: 0;
@@ -1200,6 +1205,21 @@
   text-align: center;
   color: inherit;
   font-size: 12px;
+  white-space: nowrap;
+}
+
+.dd-carousel .dd-carousel__live {
+  display: block;
+  padding: 4px 4px 0;
+  text-align: center;
+  font-family: "Cossette Titre", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--tone-100);
+  text-decoration: underline;
+  text-underline-offset: 3px;
   white-space: nowrap;
 }
 
