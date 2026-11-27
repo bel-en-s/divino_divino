@@ -8,12 +8,11 @@ const translations = {
     "footer-cta": "[ \u00a0Hablemos de tu proyecto\u00a0 ]",
     "footer-dev": "Developed by DIVINO DIVINO",
     "nav-index": "Index",
-    "nav-work": "Work",
     "nav-white-label": "White Label",
     "nav-contact": "Contact",
     "nav-care": "Suscripciones",
     "nav-instagram": "Instagram",
-    "nav-belu": "belu",
+
 
     "seo-description": "Diseño y desarrollo web white label para estudios de branding, agencias y marcas premium. Motion 2D/3D, identidad visual y SEO. Terciarizá tu web y destacá.",
 
@@ -143,12 +142,10 @@ const translations = {
     "footer-cta": "[ \u00a0Let's talk about your project\u00a0 ]",
     "footer-dev": "Developed by DIVINO DIVINO",
     "nav-index": "Index",
-    "nav-work": "Work",
     "nav-white-label": "White Label",
     "nav-contact": "Contact",
     "nav-care": "Subscriptions",
     "nav-instagram": "Instagram",
-    "nav-belu": "belu",
 
     "seo-description": "White label web design and development for branding studios, agencies and premium brands. 2D/3D motion, visual identity and SEO. Based in Buenos Aires, working worldwide.",
 
